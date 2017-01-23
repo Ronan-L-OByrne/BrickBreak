@@ -1,26 +1,29 @@
 class Player extends Block
 {
+    
     Player()
     {
-        position = width*(.5);
-        blockWidth = width*(.1);
-        blockHeight = height*(.02);
+        this.positionX = width*(.5);
+        this.positionY = height*(.95);
+        this.blockWidth = width*(.1);
+        this.blockHeight = height*(.02);
+        this.blockCol = color(255);
     }//end player
     
     void updatePlayer()
     {
         if(checkKey(LEFT))
         {
-            if((position-blockWidth*(.5)) > width*(.05))
+            if((positionX-blockWidth*(.5)) > width*(.05))
             {
-                position = position-width*(.005);
+                positionX = positionX-width*(.005);
             }//end if
         }//end if
         if(checkKey(RIGHT))
         {
-            if((position+blockWidth*(.5)) < width*(.95))
+            if((positionX+blockWidth*(.5)) < width*(.95))
             {
-                position = position+width*(.005);
+                positionX = positionX+width*(.005);
             }//end if
         }//end if
         if(checkKey(UP))

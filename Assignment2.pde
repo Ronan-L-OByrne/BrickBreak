@@ -11,11 +11,27 @@ void setup()
     
     P1 = new Player();
     
-    for(int i=0; i<50; i++)
+    Destruct temp;
+    for(int i=0; i<8; i++)
     {
-        for(int j=0; i<10; i++)
+        for(int j=0; j<10; j++)
         {
-          
+            int typeChk = (int)(random(0, 80));
+            if(typeChk <= 70)
+            {
+                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 1);
+                Grid.add(temp);
+            }//end else if
+            else if(typeChk > 70 && typeChk <= 75)
+            {
+                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 2);
+                Grid.add(temp);
+            }//end else if
+            else if(typeChk > 75 && typeChk <= 80)
+            {
+                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 3);
+                Grid.add(temp);
+            }//end else if
         }//end for(j)
     }//end for(i)
 }//end setup
@@ -30,4 +46,9 @@ void draw()
     
     P1.renderBlock();
     P1.updatePlayer();
+    
+    for(int i=0; i<Grid.size(); i++)
+    {
+        Grid.get(i).renderBlock();
+    }//end for
 }//ned draw
