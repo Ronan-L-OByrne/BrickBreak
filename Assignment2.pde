@@ -1,7 +1,9 @@
 // Global Variables //
 boolean[] keys = new boolean[500];
 Player P1;
+Ball objBall;
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();
+boolean start = false;
 
 // Setup //
 void setup()
@@ -10,6 +12,7 @@ void setup()
     background(20, 20, 75);
     
     P1 = new Player();
+    objBall = new Ball();
     
     Destruct temp;
     for(int i=0; i<8; i++)
@@ -44,11 +47,14 @@ void draw()
     fill(125, 125, 180);
     rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     
-    P1.renderBlock();
     P1.updatePlayer();
+    P1.renderBlock();
     
     for(int i=0; i<Grid.size(); i++)
     {
         Grid.get(i).renderBlock();
     }//end for
+    
+    objBall.updateBall();
+    objBall.renderBall();
 }//ned draw

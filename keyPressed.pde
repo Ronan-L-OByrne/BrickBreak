@@ -11,9 +11,9 @@ void keyReleased()
 
 boolean checkKey(int k)
 {
-  if (keys.length >= k) 
-  {
-    return keys[k] || keys[Character.toUpperCase(k)];  
-  }//end if
+    if (keys.length >= k) 
+    {
+        return keys[k] || keys[Character.toUpperCase(k)];  
+    }//end if
   return false;
 }//end checkKey(int k)

@@ -26,10 +26,6 @@ class Player extends Block
                 positionX = positionX+width*(.005);
             }//end if
         }//end if
-        if(checkKey(UP))
-        {
-            
-        }//end if
-    }//end update()
+    }//end updatePlayer()
     
 }//end Player
