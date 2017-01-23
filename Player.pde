@@ -1,6 +1,5 @@
 class Player extends Block
 {
-    
     Player()
     {
         this.positionX = width*(.5);
