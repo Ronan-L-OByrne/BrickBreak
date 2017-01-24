@@ -49,10 +49,12 @@ void draw()
     
     P1.updatePlayer();
     P1.renderBlock();
+    P1.checkBlock();
     
     for(int i=0; i<Grid.size(); i++)
     {
         Grid.get(i).renderBlock();
+        Grid.get(i).checkBlock();
     }//end for
     
     objBall.updateBall();

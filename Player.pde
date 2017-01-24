@@ -26,5 +26,4 @@ class Player extends Block
             }//end if
         }//end if
     }//end updatePlayer()
-    
 }//end Player

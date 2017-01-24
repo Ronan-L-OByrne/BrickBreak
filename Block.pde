@@ -13,6 +13,40 @@ class Block
         fill(blockCol);
         rect(positionX-blockWidth*(.5), positionY-blockHeight*(.5), blockWidth, blockHeight);
     }//end renderPlayer
+    
+    void checkBlock()
+    {
+        if(objBall.ballPos.x+objBall.ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.ballPos.x-objBall.ballDiam*(.5) < positionX+blockWidth*(.5)
+        && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
+        {
+            if(objBall.theta < PI && objBall.theta > HALF_PI)
+            {
+                objBall.theta = PI-objBall.theta;
+                objBall.ballPos.y = objBall.ballPos.y+objBall.ballDiam*(.5);
+            }//end if
+            else if(objBall.theta > PI && objBall.theta < HALF_PI*3)
+            {
+                objBall.theta = TWO_PI-(objBall.theta-PI);
+                objBall.ballPos.y = objBall.ballPos.y+objBall.ballDiam*(.5);
+            }//end else if
+            else if(objBall.theta > 0 && objBall.theta < HALF_PI)
+            {
+                objBall.theta = PI+objBall.theta;
+                objBall.ballPos.y = objBall.ballPos.y+objBall.ballDiam*(.5);
+            }//end else if
+            else if(objBall.theta < TWO_PI && objBall.theta > HALF_PI*3)
+            {
+                objBall.theta = TWO_PI+(objBall.theta-PI);
+                objBall.ballPos.y = objBall.ballPos.y+objBall.ballDiam*(.5);
+            }//end else if
+            
+            objBall.forward.x = sin(objBall.theta);
+            objBall.forward.y = -cos(objBall.theta);
+            
+            
+            objBall.ballPos.add(objBall.forward);
+        }//end else if
+    }//end checkBlock
 }//end class Block
 
 class Destruct extends Block

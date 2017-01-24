@@ -40,32 +40,29 @@ class Ball
                 
                 ballPos.add(forward);
             }//end if
-            else if((ballPos.x-ballDiam*(.5)) <= width*(.05))
+            else if((ballPos.x-ballDiam*(.5)) < width*(.05))
             {
                 theta = PI-(theta-PI);
                 
                 forward.x = sin(theta);
                 forward.y = cos(theta);
                 
-                for(int i=0; i<10; i++)
-                {
-                    ballPos.add(forward);
-                }//end while
-                //while((ballPos.x-ballDiam*(.5)) <= width*(.05));
+                ballPos.x = width*(.05)+ballDiam*(.5);
+                
+                ballPos.add(forward);
             }//end else if
-            else if((ballPos.x+ballDiam*(.5)) >= width*(.95))
+            else if((ballPos.x+ballDiam*(.5)) > width*(.95))
             {
                 theta = PI+(PI-theta);
                 
                 forward.x = sin(theta);
                 forward.y = -cos(theta);
                 
-                for(int i=0; i<10; i++)
-                {
-                    ballPos.add(forward);
-                }//end while=
+                ballPos.x = width*(.95)-ballDiam*(.5);
+                
+                ballPos.add(forward);
             }//end else if
-            else if((ballPos.y-ballDiam*(.5)) <= height*(.075))
+            else if((ballPos.y-ballDiam*(.5)) < height*(.075))
             {
                 if(theta < PI)
                 {
@@ -79,10 +76,9 @@ class Ball
                 forward.x = sin(theta);
                 forward.y = -cos(theta);
                 
-                for(int i=0; i<10; i++)
-                {
-                    ballPos.add(forward);
-                }//end while
+                ballPos.y = height*(.075)+ballDiam*(.5);
+                
+                ballPos.add(forward);
             }//end else if
         }//end else
     }//end updatePlayer()
