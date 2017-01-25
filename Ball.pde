@@ -5,7 +5,6 @@ class Ball
     float speed = 4;
     float theta;
     float ballDiam;
-    int numBalls;
     
     Ball()
     {
@@ -86,7 +85,7 @@ class Ball
                 
                 ballPos.add(forward);
             }//end else if
-            else if((ballPos.y) > height*(.97) && numBalls == 0)
+            else if((ballPos.y) > height*(.97) && objBall.size() == 0)
             {
                 GameOver(false);
             }//end else if

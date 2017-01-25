@@ -90,7 +90,8 @@ class PowerBlock extends Destruct
     
     void hitPower()
     {
-        
+        Ball newBall = new Ball();
+        objBall.add(newBall);
     }//end hitPoswer()
 }//end clss PowerBlock
 

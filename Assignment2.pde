@@ -52,6 +52,7 @@ void draw()
     }//end if
     else
     {
+        background(20, 20, 75);
         strokeWeight((width+height)*(.0025));
         stroke(255, 195, 100);
         fill(125, 125, 180);
@@ -59,20 +60,26 @@ void draw()
         
         for(int x=0; x<objBall.size(); x++)
         {
-            objBall.get(x).updateBall();
-            objBall.get(x).renderBall();
-            
-            for(int i=0; i<Grid.size(); i++)
+            if((objBall.get(x).ballPos.y) > height*(.97))
             {
-                Grid.get(i).renderBlock();
-                Grid.get(i).checkBlock(i, x);
-            }//end for
+                objBall.remove(x);
+            }//end if
+            else
+            {
+                objBall.get(x).updateBall();
+                objBall.get(x).renderBall();
+                
+                for(int i=0; i<Grid.size(); i++)
+                {
+                    Grid.get(i).renderBlock();
+                    Grid.get(i).checkBlock(i, x);
+                }//end for
+                P1.checkPlayer(x);
+            }//end else
         }//end for
         
         P1.updatePlayer();
         P1.renderBlock();
-        P1.checkPlayer();
-        
     }//end else
     
 }//end draw
