@@ -45,16 +45,16 @@ class Player extends Block
             else if(objBall.theta > PI && objBall.theta < HALF_PI*3)
             {
                 println("IF NO. 4");
-                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, TWO_PI);
-                objBall.theta = TWO_PI-(temp-PI);
-                objBall.ballPos.y = positionY-objBall.ballDiam*(.5)-1;
+                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, PI);
+                objBall.theta = PI-temp;
+                objBall.ballPos.y = (positionY-blockHeight*(.5))-objBall.ballDiam*(.5)-1;
             }//end else if
             else if(objBall.theta < PI && objBall.theta > HALF_PI)
             {
                 println("IF NO. 5");
-                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, TWO_PI);
-                objBall.theta = PI-temp;
-                objBall.ballPos.y = positionY-objBall.ballDiam*(.5)-1;
+                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, PI);
+                objBall.theta = TWO_PI+(temp);
+                objBall.ballPos.y = (positionY-blockHeight*(.5))-objBall.ballDiam*(.5)-1;
             }//end else if
         }//end if
     }//end checkPlayer()
