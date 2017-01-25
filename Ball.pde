@@ -27,43 +27,53 @@ class Ball
     
     void updateBall()
     {
-        if(checkKey(UP) && start == false)
+        if(start == false)
         {
-           start = true; 
+            ballPos.x = P1.positionX;
+            if(checkKey(UP))
+            {
+                start = true;
+            }//end if
         }//end if
         else if(start)
         {
             if((ballPos.x-ballDiam*(.5)) > width*(.05) && (ballPos.x+ballDiam*(.5)) < width*(.95) && (ballPos.y-ballDiam*(.5)) >= height*(.075))
             {
-                forward.x = sin(theta)*2;
-                forward.y = -cos(theta)*2;
+                forward.x = sin(theta)*3;
+                forward.y = -cos(theta)*3;
                 
                 ballPos.add(forward);
             }//end if
             else if((ballPos.x-ballDiam*(.5)) < width*(.05))
             {
+                println("LEFT WALL");
+            println(theta);
                 theta = PI-(theta-PI);
                 
                 forward.x = sin(theta);
                 forward.y = cos(theta);
                 
-                ballPos.x = width*(.05)+ballDiam*(.5);
+                ballPos.x = width*(.05)+ballDiam*(.5)+1;
                 
                 ballPos.add(forward);
             }//end else if
             else if((ballPos.x+ballDiam*(.5)) > width*(.95))
             {
+                println("RIGHT WALL");
+            println(theta);
                 theta = PI+(PI-theta);
                 
                 forward.x = sin(theta);
                 forward.y = -cos(theta);
                 
-                ballPos.x = width*(.95)-ballDiam*(.5);
+                ballPos.x = width*(.95)-ballDiam*(.5)-1;
                 
                 ballPos.add(forward);
             }//end else if
             else if((ballPos.y-ballDiam*(.5)) < height*(.075))
             {
+                println("TOP WALL");
+            println(theta);
                 if(theta < PI)
                 {
                     theta = PI-theta;
@@ -76,7 +86,7 @@ class Ball
                 forward.x = sin(theta);
                 forward.y = -cos(theta);
                 
-                ballPos.y = height*(.075)+ballDiam*(.5);
+                ballPos.y = height*(.075)+ballDiam*(.5)+1;
                 
                 ballPos.add(forward);
             }//end else if
