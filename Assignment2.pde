@@ -1,7 +1,7 @@
 // Global Variables //
 boolean[] keys = new boolean[500];
 Player P1;
-Ball objBall;
+ArrayList<Ball> objBall = new ArrayList<Ball>();
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();
 boolean start = false;
 
@@ -12,7 +12,8 @@ void setup()
     background(20, 20, 75);
     
     P1 = new Player();
-    objBall = new Ball();
+    Ball tempBall = new Ball();
+    objBall.add(tempBall);
     
     Destruct temp;
     for(int i=0; i<8; i++)
@@ -22,18 +23,18 @@ void setup()
             int typeChk = (int)(random(0, 80));
             if(typeChk <= 70)
             {
-                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 1);
-                //Grid.add(temp);
+                temp = new NormalBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
+                Grid.add(temp);
             }//end else if
             else if(typeChk > 70 && typeChk <= 75)
             {
-                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 2);
-                //Grid.add(temp);
+                temp = new PowerBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
+                Grid.add(temp);
             }//end else if
             else if(typeChk > 75 && typeChk <= 80)
             {
-                temp = new Destruct((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j), 3);
-                //Grid.add(temp);
+                temp = new HazardBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
+                Grid.add(temp);
             }//end else if
         }//end for(j)
     }//end for(i)
@@ -46,7 +47,7 @@ void draw()
     {
         GameOver(true);
         
-        objBall.renderBall();
+        objBall.get(0).renderBall();
         P1.renderBlock();
     }//end if
     else
@@ -56,18 +57,22 @@ void draw()
         fill(125, 125, 180);
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
         
-        objBall.updateBall();
-        objBall.renderBall();
+        for(int x=0; x<objBall.size(); x++)
+        {
+            objBall.get(x).updateBall();
+            objBall.get(x).renderBall();
+            
+            for(int i=0; i<Grid.size(); i++)
+            {
+                Grid.get(i).renderBlock();
+                Grid.get(i).checkBlock(i, x);
+            }//end for
+        }//end for
         
         P1.updatePlayer();
         P1.renderBlock();
         P1.checkPlayer();
         
-        for(int i=0; i<Grid.size(); i++)
-        {
-            Grid.get(i).renderBlock();
-            Grid.get(i).checkBlock(i);
-        }//end for
     }//end else
     
 }//end draw

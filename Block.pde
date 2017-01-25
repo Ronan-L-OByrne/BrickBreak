@@ -12,59 +12,115 @@ class Block
         stroke(0);
         fill(blockCol);
         rect(positionX-blockWidth*(.5), positionY-blockHeight*(.5), blockWidth, blockHeight);
-    }//end renderPlayer
+    }//end renderBlock
 }//end class Block
 
 class Destruct extends Block
 {
-    int type;  
-  
-    Destruct(float posX, float posY, int type)
+    int type;
+    
+    void checkBlock(int i, int x)
     {
-        this.type = type;
+        if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
+        && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
+        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) 
+        && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5))
+        {
+            if(objBall.get(x).speed > 4)
+            {
+                objBall.get(x).speed -= .25; 
+            }//end if
+            
+            if(type == 1)
+            {
+                ((PowerBlock)Grid.get(i)).hitPower();
+            }//end if
+            else if(type == 3)
+            {
+                ((HazardBlock)Grid.get(i)).hitHazard(x);
+            }//end else if
+            
+            Grid.remove(i);
+            
+            if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta < PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI, PI, HALF_PI, 0);//PI-objBall.theta;
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end if
+            else if(objBall.get(x).theta >= PI && objBall.get(x).theta < HALF_PI*3)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, PI, HALF_PI*3, TWO_PI, HALF_PI*3);//TWO_PI-(objBall.theta-PI);
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.get(x).theta > 0 && objBall.get(x).theta < HALF_PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, 0, HALF_PI, PI, HALF_PI);//PI+objBall.theta;
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.get(x).theta >= HALF_PI*3 && objBall.get(x).theta <= TWO_PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI*3, TWO_PI, HALF_PI*3, PI);//TWO_PI-(objBall.theta-PI);
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.get(x).theta == 0)
+            {
+                objBall.get(x).theta = random((PI+HALF_PI)+HALF_PI/2, TWO_PI+HALF_PI/2);
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            
+            objBall.get(x).forward.x = sin(objBall.get(x).theta);
+            objBall.get(x).forward.y = -cos(objBall.get(x).theta);
+            
+            objBall.get(x).ballPos.add(objBall.get(x).forward);
+        }//end else if
+    }//end checkBlock
+}//end class Destruct
+
+class PowerBlock extends Destruct
+{
+    PowerBlock(float posX, float posY)
+    {
+        this.type = 1;
         this.positionX = posX;
         this.positionY = posY;
         this.blockWidth = width*(.1);
         this.blockHeight = height*(.02);
-        this.blockCol = color(random(100,255), random(50,75), random(50,75));
-    }//end player
+        this.blockCol = color(random(50,75), random(100,255), random(50,75));
+    }//end PowerBlock
     
-    void checkBlock(int i)
+    void hitPower()
     {
-        if(objBall.ballPos.x+objBall.ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.ballPos.x-objBall.ballDiam*(.5) < positionX+blockWidth*(.5)
-        && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
-        {
-            Grid.remove(i);
-            if(objBall.theta >= HALF_PI && objBall.theta < PI)
-            {
-                objBall.theta = map(objBall.theta, HALF_PI, PI, HALF_PI, 0);//PI-objBall.theta;
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end if
-            else if(objBall.theta >= PI && objBall.theta < HALF_PI*3)
-            {
-                objBall.theta = map(objBall.theta, PI, HALF_PI*3, TWO_PI, HALF_PI*3);//TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta > 0 && objBall.theta < HALF_PI)
-            {
-                objBall.theta = map(objBall.theta, 0, HALF_PI, PI, HALF_PI);//PI+objBall.theta;
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta >= HALF_PI*3 && objBall.theta <= TWO_PI)
-            {
-                objBall.theta = map(objBall.theta, HALF_PI*3, TWO_PI, HALF_PI*3, PI);//TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta == 0)
-            {
-                objBall.theta = random((PI+HALF_PI)+HALF_PI/2, TWO_PI+HALF_PI/2);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            
-            objBall.forward.x = sin(objBall.theta);
-            objBall.forward.y = -cos(objBall.theta);
-            
-            objBall.ballPos.add(objBall.forward);
-        }//end else if
-    }//end checkBlock
-}//end class Destruct
+        
+    }//end hitPoswer()
+}//end clss PowerBlock
+
+class NormalBlock extends Destruct
+{
+    NormalBlock(float posX, float posY)
+    {
+        this.type = 2;
+        this.positionX = posX;
+        this.positionY = posY;
+        this.blockWidth = width*(.1);
+        this.blockHeight = height*(.02);
+        this.blockCol = color(random(50,75), random(50,75), random(100,255));
+    }//end NormalBlock
+}//end clss NormalBlock
+
+class HazardBlock extends Destruct
+{
+    HazardBlock(float posX, float posY)
+    {
+        this.type = 3;
+        this.positionX = posX;
+        this.positionY = posY;
+        this.blockWidth = width*(.1);
+        this.blockHeight = height*(.02);
+        this.blockCol = color(random(150,255), random(75,100), random(75,100));
+    }//end HazardBlock
+    
+    void hitHazard(int x)
+    {
+        objBall.get(x).speed = objBall.get(x).speed+2;
+    }//end hitHazard()
+}//end clss HazardBlock

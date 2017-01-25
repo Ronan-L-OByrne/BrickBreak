@@ -2,9 +2,10 @@ class Ball
 {
     PVector ballPos;
     PVector forward;
-    float speed = 5;
+    float speed = 4;
     float theta;
     float ballDiam;
+    int numBalls;
     
     Ball()
     {
@@ -19,7 +20,7 @@ class Ball
         pushMatrix();
           translate(ballPos.x, ballPos.y);
           //rotate(theta);
-        strokeWeight((width+height)*(.001));
+          strokeWeight((width+height)*(.001));
           stroke(0);
           fill(255);
           ellipse(0, 0, ballDiam, ballDiam);
@@ -85,14 +86,14 @@ class Ball
                 
                 ballPos.add(forward);
             }//end else if
-            else if((ballPos.y) > height*(.97))
+            else if((ballPos.y) > height*(.97) && numBalls == 0)
             {
                 GameOver(false);
             }//end else if
             else
             {
-                forward.x = sin(theta)*4;
-                forward.y = -cos(theta)*4;
+                forward.x = sin(theta)*speed;
+                forward.y = -cos(theta)*speed;
                 
                 ballPos.add(forward);
             }//end if
