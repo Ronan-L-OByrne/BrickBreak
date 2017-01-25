@@ -10,7 +10,7 @@ class Ball
     {
         this.ballPos = new PVector(P1.positionX, P1.positionY-(height*(.025)));
         this.forward = new PVector(0, 1);
-        this.theta = PI*.25;
+        this.theta = 0;
         this.ballDiam = (width+height)*(.01);
     }//end Ball
     
@@ -18,7 +18,7 @@ class Ball
     {
         pushMatrix();
           translate(ballPos.x, ballPos.y);
-          rotate(theta);
+          //rotate(theta);
           stroke(0);
           fill(255);
           ellipse(0, 0, ballDiam, ballDiam);
@@ -27,6 +27,7 @@ class Ball
     
     void updateBall()
     {
+        theta = theta % TWO_PI;
         if(start == false)
         {
             ballPos.x = P1.positionX;
@@ -39,8 +40,8 @@ class Ball
         {
             if((ballPos.x-ballDiam*(.5)) > width*(.05) && (ballPos.x+ballDiam*(.5)) < width*(.95) && (ballPos.y-ballDiam*(.5)) >= height*(.075))
             {
-                forward.x = sin(theta)*3;
-                forward.y = -cos(theta)*3;
+                forward.x = sin(theta)*5;
+                forward.y = -cos(theta)*5;
                 
                 ballPos.add(forward);
             }//end if

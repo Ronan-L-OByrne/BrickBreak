@@ -20,25 +20,31 @@ class Block
         && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
         {
             Grid.remove(i);
-            if(objBall.theta < PI && objBall.theta > HALF_PI)
+            if(objBall.theta >= HALF_PI && objBall.theta < PI)
             {
                 objBall.theta = PI-objBall.theta;
-                objBall.ballPos.y = positionY-objBall.ballDiam*(.5)+1;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
             }//end if
-            else if(objBall.theta > PI && objBall.theta < HALF_PI*3)
+            else if(objBall.theta >= PI && objBall.theta < HALF_PI*3)
             {
                 objBall.theta = TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY-objBall.ballDiam*(.5)+1;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
             }//end else if
             else if(objBall.theta > 0 && objBall.theta < HALF_PI)
             {
+                println("HIT");
                 objBall.theta = PI+objBall.theta;
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)-1;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
             }//end else if
-            else if(objBall.theta < TWO_PI && objBall.theta > HALF_PI*3)
+            else if(objBall.theta >= HALF_PI*3 && objBall.theta <= TWO_PI)
             {
                 objBall.theta = TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)-1;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.theta == 0)
+            {
+                objBall.theta = random(PI+HALF_PI/2, TWO_PI+HALF_PI/2);
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
             }//end else if
             
             objBall.forward.x = sin(objBall.theta);

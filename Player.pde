@@ -34,27 +34,34 @@ class Player extends Block
         if(objBall.ballPos.x+objBall.ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.ballPos.x-objBall.ballDiam*(.5) < positionX+blockWidth*(.5)
         && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
         {
-            if(objBall.theta > 0 && objBall.theta < HALF_PI)
+            if(objBall.theta >= 0 && objBall.theta < HALF_PI)
             {
                 println("IF NO. 2");
             }//end if
-            else if(objBall.theta > HALF_PI*3 && objBall.theta < TWO_PI)
+            else if(objBall.theta >= HALF_PI*3 && objBall.theta <= TWO_PI)
             {
                 println("IF NO. 3");
             }//end else
-            else if(objBall.theta > PI && objBall.theta < HALF_PI*3)
+            else if(objBall.ballPos.x <= positionX)
             {
                 println("IF NO. 4");
-                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, PI);
-                objBall.theta = PI-temp;
+                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
+                objBall.theta = temp;
                 objBall.ballPos.y = (positionY-blockHeight*(.5))-objBall.ballDiam*(.5)-1;
             }//end else if
-            else if(objBall.theta < PI && objBall.theta > HALF_PI)
+            else if(objBall.ballPos.x > positionX)
             {
                 println("IF NO. 5");
-                float temp = map(objBall.ballPos.x, positionX-blockWidth*(.5), positionX+blockWidth*(.5), 0, PI);
-                objBall.theta = TWO_PI+(temp);
+                float temp = map(objBall.ballPos.x, positionX, positionX+blockWidth*(.5), 0, HALF_PI-(HALF_PI/4));
+                objBall.theta = temp;
                 objBall.ballPos.y = (positionY-blockHeight*(.5))-objBall.ballDiam*(.5)-1;
+            }//end else if
+            else if(objBall.theta >= PI && objBall.theta < HALF_PI*3)
+            {
+            }//end else if
+            else if(objBall.theta >= HALF_PI && objBall.theta <= PI)
+            {
+                
             }//end else if
         }//end if
     }//end checkPlayer()
