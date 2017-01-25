@@ -13,46 +13,6 @@ class Block
         fill(blockCol);
         rect(positionX-blockWidth*(.5), positionY-blockHeight*(.5), blockWidth, blockHeight);
     }//end renderPlayer
-    
-    void checkBlock(int i)
-    {
-        if(objBall.ballPos.x+objBall.ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.ballPos.x-objBall.ballDiam*(.5) < positionX+blockWidth*(.5)
-        && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
-        {
-            Grid.remove(i);
-            if(objBall.theta >= HALF_PI && objBall.theta < PI)
-            {
-                objBall.theta = PI-objBall.theta;
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end if
-            else if(objBall.theta >= PI && objBall.theta < HALF_PI*3)
-            {
-                objBall.theta = TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta > 0 && objBall.theta < HALF_PI)
-            {
-                println("HIT");
-                objBall.theta = PI+objBall.theta;
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta >= HALF_PI*3 && objBall.theta <= TWO_PI)
-            {
-                objBall.theta = TWO_PI-(objBall.theta-PI);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            else if(objBall.theta == 0)
-            {
-                objBall.theta = random(PI+HALF_PI/2, TWO_PI+HALF_PI/2);
-                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
-            }//end else if
-            
-            objBall.forward.x = sin(objBall.theta);
-            objBall.forward.y = -cos(objBall.theta);
-            
-            objBall.ballPos.add(objBall.forward);
-        }//end else if
-    }//end checkBlock
 }//end class Block
 
 class Destruct extends Block
@@ -68,4 +28,43 @@ class Destruct extends Block
         this.blockHeight = height*(.02);
         this.blockCol = color(random(100,255), random(50,75), random(50,75));
     }//end player
+    
+    void checkBlock(int i)
+    {
+        if(objBall.ballPos.x+objBall.ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.ballPos.x-objBall.ballDiam*(.5) < positionX+blockWidth*(.5)
+        && objBall.ballPos.y+objBall.ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.ballPos.y-objBall.ballDiam*(.5) < positionY+blockHeight*(.5))
+        {
+            Grid.remove(i);
+            if(objBall.theta >= HALF_PI && objBall.theta < PI)
+            {
+                objBall.theta = map(objBall.theta, HALF_PI, PI, HALF_PI, 0);//PI-objBall.theta;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end if
+            else if(objBall.theta >= PI && objBall.theta < HALF_PI*3)
+            {
+                objBall.theta = map(objBall.theta, PI, HALF_PI*3, TWO_PI, HALF_PI*3);//TWO_PI-(objBall.theta-PI);
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.theta > 0 && objBall.theta < HALF_PI)
+            {
+                objBall.theta = map(objBall.theta, 0, HALF_PI, PI, HALF_PI);//PI+objBall.theta;
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.theta >= HALF_PI*3 && objBall.theta <= TWO_PI)
+            {
+                objBall.theta = map(objBall.theta, HALF_PI*3, TWO_PI, HALF_PI*3, PI);//TWO_PI-(objBall.theta-PI);
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.theta == 0)
+            {
+                objBall.theta = random((PI+HALF_PI)+HALF_PI/2, TWO_PI+HALF_PI/2);
+                objBall.ballPos.y = positionY+objBall.ballDiam*(.5)+1;
+            }//end else if
+            
+            objBall.forward.x = sin(objBall.theta);
+            objBall.forward.y = -cos(objBall.theta);
+            
+            objBall.ballPos.add(objBall.forward);
+        }//end else if
+    }//end checkBlock
 }//end class Destruct

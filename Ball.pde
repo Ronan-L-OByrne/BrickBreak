@@ -19,6 +19,7 @@ class Ball
         pushMatrix();
           translate(ballPos.x, ballPos.y);
           //rotate(theta);
+        strokeWeight((width+height)*(.001));
           stroke(0);
           fill(255);
           ellipse(0, 0, ballDiam, ballDiam);
@@ -38,17 +39,10 @@ class Ball
         }//end if
         else if(start)
         {
-            if((ballPos.x-ballDiam*(.5)) > width*(.05) && (ballPos.x+ballDiam*(.5)) < width*(.95) && (ballPos.y-ballDiam*(.5)) >= height*(.075))
-            {
-                forward.x = sin(theta)*5;
-                forward.y = -cos(theta)*5;
-                
-                ballPos.add(forward);
-            }//end if
-            else if((ballPos.x-ballDiam*(.5)) < width*(.05))
+            if((ballPos.x-ballDiam*(.5)) < width*(.05))
             {
                 println("LEFT WALL");
-            println(theta);
+                println(theta);
                 theta = PI-(theta-PI);
                 
                 forward.x = sin(theta);
@@ -61,7 +55,7 @@ class Ball
             else if((ballPos.x+ballDiam*(.5)) > width*(.95))
             {
                 println("RIGHT WALL");
-            println(theta);
+                println(theta);
                 theta = PI+(PI-theta);
                 
                 forward.x = sin(theta);
@@ -74,7 +68,7 @@ class Ball
             else if((ballPos.y-ballDiam*(.5)) < height*(.075))
             {
                 println("TOP WALL");
-            println(theta);
+                println(theta);
                 if(theta < PI)
                 {
                     theta = PI-theta;
@@ -91,6 +85,17 @@ class Ball
                 
                 ballPos.add(forward);
             }//end else if
+            else if((ballPos.y) > height*(.97))
+            {
+                GameOver(false);
+            }//end else if
+            else
+            {
+                forward.x = sin(theta)*4;
+                forward.y = -cos(theta)*4;
+                
+                ballPos.add(forward);
+            }//end if
         }//end else
     }//end updatePlayer()
 }//end class ball
