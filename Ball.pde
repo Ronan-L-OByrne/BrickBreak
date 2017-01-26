@@ -2,7 +2,7 @@ class Ball
 {
     PVector ballPos;
     PVector forward;
-    float speed = 4;
+    float speed;
     float theta;
     float ballDiam;
     
@@ -10,6 +10,7 @@ class Ball
     {
         this.ballPos = new PVector(P1.positionX, P1.positionY-(height*(.025)));
         this.forward = new PVector(0, 1);
+        this.speed = 4;
         this.theta = 0;
         this.ballDiam = (width+height)*(.01);
     }//end Ball

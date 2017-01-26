@@ -36,32 +36,21 @@ class Player extends Block
         {
             if(objBall.get(x).theta >= 0 && objBall.get(x).theta < HALF_PI)
             {
-                println("IF NO. 2");
             }//end if
             else if(objBall.get(x).theta >= HALF_PI*3 && objBall.get(x).theta <= TWO_PI)
             {
-                println("IF NO. 3");
-            }//end else
+            }//end else if
             else if(objBall.get(x).ballPos.x <= positionX)
             {
-                println("IF NO. 4");
                 float temp = map(objBall.get(x).ballPos.x, positionX-blockWidth*(.5), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
             }//end else if
             else if(objBall.get(x).ballPos.x > positionX)
             {
-                println("IF NO. 5");
                 float temp = map(objBall.get(x).ballPos.x, positionX, positionX+blockWidth*(.5), 0, HALF_PI-(HALF_PI/4));
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
-            }//end else if
-            else if(objBall.get(x).theta >= PI && objBall.get(x).theta < HALF_PI*3)
-            {
-            }//end else if
-            else if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta <= PI)
-            {
-                
             }//end else if
         }//end if
     }//end checkPlayer()

@@ -46,10 +46,16 @@ void draw()
     if(Grid.size() == 0)
     {
         GameOver(true);
-        
-        objBall.get(0).renderBall();
-        P1.renderBlock();
     }//end if
+    else if(objBall.size() == 0)
+    {
+        GameOver(false);
+        
+        for(int i=0; i<Grid.size(); i++)
+        {
+            Grid.get(i).renderBlock();
+        }//end for
+    }//end else if
     else
     {
         background(20, 20, 75);
@@ -86,20 +92,21 @@ void draw()
 
 void GameOver(boolean val)
 {
+    strokeWeight((width+height)*(.0025));
+    
     if(val)
     {
         background(20, 100, 35);
-        strokeWeight((width+height)*(.0025));
         stroke(255);
         fill(125, 180, 125);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     }//end if
     else
     {
         background(100, 20, 35);
-        strokeWeight((width+height)*(.0025));
         stroke(0);
         fill(180, 125, 125);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     }//end else
+    
+    rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+    P1.renderBlock();
 }//end GameOver()

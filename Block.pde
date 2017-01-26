@@ -21,10 +21,10 @@ class Destruct extends Block
     
     void checkBlock(int i, int x)
     {
-        if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
-        && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
-        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) 
-        && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5))
+        if(objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.2) 
+        && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.2)
+        && objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
+        && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5))
         {
             if(objBall.get(x).speed > 4)
             {
@@ -72,6 +72,54 @@ class Destruct extends Block
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
             
             objBall.get(x).ballPos.add(objBall.get(x).forward);
+        }//end else if
+        else if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
+        && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
+        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.2) 
+        && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.2))
+        {
+            if(objBall.get(x).speed > 4)
+            {
+                objBall.get(x).speed -= .25; 
+            }//end if
+            
+            if(type == 1)
+            {
+                ((PowerBlock)Grid.get(i)).hitPower();
+            }//end if
+            else if(type == 3)
+            {
+                ((HazardBlock)Grid.get(i)).hitHazard(x);
+            }//end else if
+            
+            Grid.remove(i);
+            
+            if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta < PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI, PI, HALF_PI*3, PI);//PI-objBall.theta;
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end if
+            else if(objBall.get(x).theta >= PI && objBall.get(x).theta < HALF_PI*3)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, PI, HALF_PI*3, PI, HALF_PI);//TWO_PI-(objBall.theta-PI);
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.get(x).theta > 0 && objBall.get(x).theta < HALF_PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, 0, HALF_PI, HALF_PI*3, TWO_PI);//PI+objBall.theta;
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            else if(objBall.get(x).theta >= HALF_PI*3 && objBall.get(x).theta <= TWO_PI)
+            {
+                objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI*3, TWO_PI, HALF_PI, 0);//TWO_PI-(objBall.theta-PI);
+                objBall.get(x).ballPos.y = positionY+objBall.get(x).ballDiam*(.5)+1;
+            }//end else if
+            
+            objBall.get(x).forward.x = sin(objBall.get(x).theta);
+            objBall.get(x).forward.y = -cos(objBall.get(x).theta);
+            
+            objBall.get(x).ballPos.add(objBall.get(x).forward);
+            
         }//end else if
     }//end checkBlock
 }//end class Destruct
