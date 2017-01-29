@@ -136,8 +136,8 @@ class PowerBlock extends Destruct
         this.type = 1;
         this.positionX = posX;
         this.positionY = posY;
-        this.blockWidth = width*(.1);
-        this.blockHeight = height*(.02);
+        this.blockWidth = width*(.17);
+        this.blockHeight = height*(.031);
         this.blockCol = color(random(50,75), random(100,255), random(50,75));
     }//end PowerBlock
     
@@ -155,8 +155,8 @@ class NormalBlock extends Destruct
         this.type = 2;
         this.positionX = posX;
         this.positionY = posY;
-        this.blockWidth = width*(.1);
-        this.blockHeight = height*(.02);
+        this.blockWidth = width*(.17);
+        this.blockHeight = height*(.031);
         this.blockCol = color(random(50,75), random(50,75), random(100,255));
     }//end NormalBlock
 }//end clss NormalBlock
@@ -168,8 +168,8 @@ class HazardBlock extends Destruct
         this.type = 3;
         this.positionX = posX;
         this.positionY = posY;
-        this.blockWidth = width*(.1);
-        this.blockHeight = height*(.02);
+        this.blockWidth = width*(.17);
+        this.blockHeight = height*(.031);
         this.blockCol = color(random(150,255), random(75,100), random(75,100));
     }//end HazardBlock
     

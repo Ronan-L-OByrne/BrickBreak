@@ -11,7 +11,7 @@ boolean[] keys = new boolean[500];
 Player P1;
 ArrayList<Ball> objBall = new ArrayList<Ball>();
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();
-boolean start = false;
+boolean start;
 PFont titleFont;
 boolean menu = true;
 
@@ -25,31 +25,10 @@ void setup()
     Ball tempBall = new Ball();
     objBall.add(tempBall);
     
+    start = false;
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
     
-    Destruct temp;
-    for(int i=0; i<8; i++)
-    {
-        for(int j=0; j<10; j++)
-        {
-            int typeChk = (int)(random(0, 80));
-            if(typeChk <= 70)
-            {
-                temp = new NormalBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
-                Grid.add(temp);
-            }//end else if
-            else if(typeChk > 70 && typeChk <= 75)
-            {
-                temp = new PowerBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
-                Grid.add(temp);
-            }//end else if
-            else if(typeChk > 75 && typeChk <= 80)
-            {
-                temp = new HazardBlock((width*(.115))+width*((.11)*i), (height*(.095))+height*((.03)*j));
-                Grid.add(temp);
-            }//end else if
-        }//end for(j)
-    }//end for(i)
+    createGrid();
 }//end setup
 
 // Draw //
@@ -75,14 +54,17 @@ void draw()
         text("LEFT: MOVE LEFT", width*(.5), height*(.35));
         text("RIGHT: MOVE RIGHT", width*(.5), height*(.4));
         
-        text("GAME", width*(.5), height*(.6));
-        text("_______", width*(.5), height*(.6));
-        text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.65));
-        text("THE BLOCKS", width*(.5), height*(.7));
-        text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.75));
-        text("BALL", width*(.5), height*(.8));
-        text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.85));
-        text("THAT HIT IT", width*(.5), height*(.9));
+        text("GAME", width*(.5), height*(.55));
+        text("_______", width*(.5), height*(.55));
+        text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.6));
+        text("THE BLOCKS", width*(.5), height*(.65));
+        text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.7));
+        text("BALL", width*(.5), height*(.75));
+        text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.8));
+        text("THAT HIT IT", width*(.5), height*(.85));
+        
+        text("ENTER TO CONTINUE", width*(.5), height*(.95));
+        text("_________________________", width*(.5), height*(.95));
         
         if(checkKey(ENTER))
         {
@@ -144,12 +126,51 @@ void GameOver(boolean val)
     
     if(val)
     {
+        for(int i=0; i<objBall.size(); i++)
+        {
+            objBall.get(i).renderBall();
+        }//end for
+        
+        if(checkKey(ENTER))
+        {
+            for(int i = 0; i<objBall.size(); i++)
+            {
+                objBall.remove(i);
+            }//end while
+            
+            setup();
+            /*
+            createGrid();
+            
+            Ball temp = new Ball();
+            objBall.add(temp);
+            
+            start = false;*/
+        }//end if
+        
         background(20, 100, 35);
         stroke(255);
         fill(125, 180, 125);
     }//end if
     else
     {
+        if(checkKey(ENTER))
+        {
+            for(int i = 0; i<Grid.size(); i++)
+            {
+                Grid.remove(i);
+            }//end while
+            
+            setup();
+            /*
+            createGrid();
+            
+            Ball temp = new Ball();
+            objBall.add(temp);
+            
+            start = false;*/
+        }//end if
+        
         background(100, 20, 35);
         stroke(0);
         fill(180, 125, 125);
@@ -158,3 +179,30 @@ void GameOver(boolean val)
     rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     P1.renderBlock();
 }//end GameOver()
+
+void createGrid()
+{
+    Destruct temp = new Destruct();
+    for(int i=0; i<5; i++)
+    {
+        for(int j=0; j<10; j++)
+        {
+            int typeChk = (int)(random(0, 80));
+            if(typeChk <= 70)
+            {
+                temp = new NormalBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
+                Grid.add(temp);
+            }//end else if
+            else if(typeChk > 70 && typeChk <= 75)
+            {
+                temp = new PowerBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
+                Grid.add(temp);
+            }//end else if
+            else if(typeChk > 75 && typeChk <= 80)
+            {
+                temp = new HazardBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
+                Grid.add(temp);
+            }//end else if
+        }//end for(j)
+    }//end for(i)
+}//end createGrid
