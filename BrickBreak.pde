@@ -28,7 +28,7 @@ void setup()
     start = false;
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
     
-    createGrid();
+    //createGrid();
 }//end setup
 
 // Draw //
@@ -85,6 +85,10 @@ void draw()
             {
                 Grid.get(i).renderBlock();
             }//end for
+        
+            fill(255);
+            textSize((width+height)*(.05));
+            text("YOU LOSE", width*(.5), height*(.3));
         }//end else if
         else
         {
@@ -151,6 +155,11 @@ void GameOver(boolean val)
         background(20, 100, 35);
         stroke(255);
         fill(125, 180, 125);
+        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+        
+        fill(255);
+        textSize((width+height)*(.05));
+        text("YOU WIN", width*(.5), height*(.3));
     }//end if
     else
     {
@@ -174,9 +183,9 @@ void GameOver(boolean val)
         background(100, 20, 35);
         stroke(0);
         fill(180, 125, 125);
+        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     }//end else
     
-    rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     P1.renderBlock();
 }//end GameOver()
 
@@ -187,18 +196,18 @@ void createGrid()
     {
         for(int j=0; j<10; j++)
         {
-            int typeChk = (int)(random(0, 80));
-            if(typeChk <= 70)
+            int typeChk = (int)(random(0, 50));
+            if(typeChk <= 40)
             {
                 temp = new NormalBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
             }//end else if
-            else if(typeChk > 70 && typeChk <= 75)
+            else if(typeChk > 40 && typeChk <= 45)
             {
                 temp = new PowerBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
             }//end else if
-            else if(typeChk > 75 && typeChk <= 80)
+            else if(typeChk > 45 && typeChk <= 50)
             {
                 temp = new HazardBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
