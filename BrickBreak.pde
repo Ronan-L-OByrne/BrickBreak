@@ -8,12 +8,12 @@
 
 // Global Variables //
 boolean[] keys = new boolean[700];
-Player P1;
+ArrayList<Player> objPlayer = new ArrayList<Player>();
 ArrayList<Ball> objBall = new ArrayList<Ball>();
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();
 boolean start;
 PFont titleFont;
-boolean menu = true;
+int menu = 0;
 
 // Setup //
 void setup()
@@ -21,7 +21,8 @@ void setup()
     size(600, 800);
     background(20, 20, 75);
     
-    P1 = new Player();
+    Player tempPlayer = new Player();
+    objPlayer.add(tempPlayer);
     
     Ball tempBall = new Ball();
     objBall.add(tempBall);
@@ -35,42 +36,17 @@ void setup()
 // Draw //
 void draw()
 {
-    if(menu)
+    if(menu == 0)
     {
-        background(20, 20, 75);
-        fill(200, 100, 70);
-        strokeWeight((width+height)*(.002));
-        stroke(255);
-        rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
-        
-        fill(255);
-        textFont(titleFont, (height+width)*(.04));
-        textAlign(CENTER,CENTER);
-        text("BRICK BREAK", width*(.5), height*(.125));
-        
-        textFont(titleFont, (height+width)*(.025));
-        text("CONTROLS", width*(.5), height*(.25));
-        text("_____________", width*(.5), height*(.25));
-        text("UP: BEGIN GAME", width*(.5), height*(.3));
-        text("LEFT: MOVE LEFT", width*(.5), height*(.35));
-        text("RIGHT: MOVE RIGHT", width*(.5), height*(.4));
-        
-        text("GAME", width*(.5), height*(.55));
-        text("_______", width*(.5), height*(.55));
-        text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.6));
-        text("THE BLOCKS", width*(.5), height*(.65));
-        text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.7));
-        text("BALL", width*(.5), height*(.75));
-        text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.8));
-        text("THAT HIT IT", width*(.5), height*(.85));
-        
-        text("ENTER TO CONTINUE", width*(.5), height*(.95));
-        text("_________________________", width*(.5), height*(.95));
-        
-        if(checkKey(ENTER))
-        {
-            menu = false;
-        }//end if
+        Menu();
+    }//end if
+    else if(menu == 1)
+    {
+        instructBrickBreak();
+    }//end if
+    else if(menu == 2)
+    {
+        instructBrickBreak();
     }//end if
     else
     {
@@ -115,12 +91,12 @@ void draw()
                         Grid.get(i).renderBlock();
                         Grid.get(i).checkBlock(i, x);
                     }//end for
-                    P1.checkPlayer(x);
+                    objPlayer.get(0).checkPlayer(x);
                 }//end else
             }//end for
             
-            P1.updatePlayer();
-            P1.renderBlock();
+            objPlayer.get(0).updatePlayer();
+            objPlayer.get(0).renderBlock();
         }//end else
     }//end else
 }//end draw
@@ -179,7 +155,7 @@ void GameOver(boolean val)
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
     }//end else
     
-    P1.renderBlock();
+    objPlayer.get(0).renderBlock();
 }//end GameOver()
 
 void createGrid()

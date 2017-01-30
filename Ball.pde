@@ -8,7 +8,7 @@ class Ball
     
     Ball()
     {
-        this.ballPos = new PVector(P1.positionX, P1.positionY-(height*(.025)));
+        this.ballPos = new PVector(objPlayer.get(0).positionX, objPlayer.get(0).positionY-(height*(.025)));
         this.forward = new PVector(0, 1);
         this.speed = 4;
         this.theta = 0;
@@ -32,7 +32,7 @@ class Ball
         theta = theta % TWO_PI;
         if(start == false)
         {
-            ballPos.x = P1.positionX;
+            ballPos.x = objPlayer.get(0).positionX;
             if(checkKey(UP))
             {
                 start = true;
