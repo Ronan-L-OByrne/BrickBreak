@@ -5,6 +5,77 @@ void Menu()
     strokeWeight((width+height)*(.002));
     stroke(50, 20, 255);
     rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
+    
+    fill(255);
+    textFont(titleFont, (height+width)*(.04));
+    textAlign(CENTER,CENTER);
+    text("C15332036", width*(.5), height*(.125));
+    text("", width*(.5), height*(.125));
+    
+    if((mouseX < width *(.2)  || mouseX > width*(.805)) 
+    || (mouseY < height*(.29) || mouseY > height*(.41)))
+    {
+        fill(200, 100, 70);
+        stroke(20, 20, 75);
+        rect(width*(.2), height*(.29), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(0);
+        textFont(titleFont, (height+width)*(.025));
+        text("1. BRICK BREAK", width*(.5), height*(.35));
+    }//end if
+    else
+    {
+        fill(20, 20, 75);
+        stroke(200, 100, 70);
+        rect(width*(.2), height*(.29), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(255);
+        textFont(titleFont, (height+width)*(.025));
+        text("1. BRICK BREAK", width*(.5), height*(.35));
+        
+        if(mousePressed)
+        {
+            menu = 1;
+        }//end if
+    }//end else
+    
+    if((mouseX < width *(.2)  || mouseX > width*(.805)) 
+    || (mouseY < height*(.59) || mouseY > height*(.71)))
+    {
+        fill(0);
+        stroke(255);
+        rect(width*(.2), height*(.59), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(255);
+        text("2. PONG", width*(.5), height*(.65));
+    }//end if
+    else
+    {
+        fill(255);
+        stroke(0);
+        rect(width*(.2), height*(.59), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(0);
+        text("2. PONG", width*(.5), height*(.65));
+        
+        if(mousePressed)
+        {
+            menu = 2;
+        }//end if
+    }//end else
+    
+    fill(0);
+    text("ENTER TO CONTINUE", width*(.5), height*(.95));
+    text("_________________________", width*(.5), height*(.95));
+    
+    if(checkKey('1'))
+    {
+        menu = 1;
+    }//end if
+    else if(checkKey('2'))
+    {
+        menu = 2;
+    }//end if
 }//end Menu()
 
 void instructBrickBreak()
@@ -43,4 +114,47 @@ void instructBrickBreak()
     {
         menu = 4;
     }//end if
+    else if(checkKey(SHIFT))
+    {
+        menu = 0;
+    }//end else if
 }//end instructBrickBreak()
+
+void instructPong()
+{
+    background(0);
+    fill(0);
+    strokeWeight((width+height)*(.002));
+    stroke(255);
+    rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
+    
+    fill(255);
+    textFont(titleFont, (height+width)*(.04));
+    textAlign(CENTER,CENTER);
+    text("Pong", width*(.5), height*(.118));
+    
+    textFont(titleFont, (height+width)*(.025));
+    text("CONTROLS", width*(.5), height*(.25));
+    text("_____________", width*(.5), height*(.25));
+    text("SPACE: BEGIN GAME", width*(.5), height*(.3));
+    //textAlign(LEFT,CENTER);
+    text("LEFT/A: MOVE LEFT", width*(.5), height*(.35));
+    text("RIGHT/D: MOVE RIGHT", width*(.5), height*(.4));
+    
+    textAlign(CENTER,CENTER);
+    text("GAME", width*(.5), height*(.55));
+    text("_______", width*(.5), height*(.55));
+    text("OBJECTIVE: GET THE BALL PAST ", width*(.5), height*(.6));
+    text("THE OTHER PADDLE 5 TIMES", width*(.5), height*(.65));
+    text("ENTER TO CONTINUE", width*(.5), height*(.95));
+    text("_________________________", width*(.5), height*(.95));
+    
+    if(checkKey(ENTER))
+    {
+        menu = 4;
+    }//end if
+    else if(checkKey(SHIFT))
+    {
+        menu = 0;
+    }//end else if
+}//end instructPong()

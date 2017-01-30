@@ -46,7 +46,7 @@ void draw()
     }//end if
     else if(menu == 2)
     {
-        instructBrickBreak();
+        instructPong();
     }//end if
     else
     {
