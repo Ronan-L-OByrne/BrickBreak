@@ -21,7 +21,7 @@ void setup()
     size(600, 800);
     background(20, 20, 75);
     
-    Player tempPlayer = new Player();
+    Player tempPlayer = new Player(1);
     objPlayer.add(tempPlayer);
     
     Ball tempBall = new Ball();
@@ -29,8 +29,6 @@ void setup()
     
     start = false;
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
-    
-    createGrid();
 }//end setup
 
 // Draw //
@@ -48,115 +46,15 @@ void draw()
     {
         instructPong();
     }//end if
-    else
+    else if(menu == 3)
     {
-        if(Grid.size() == 0)
-        {
-            GameOver(true);
-        }//end if
-        else if(objBall.size() == 0)
-        {
-            GameOver(false);
-            
-            for(int i=0; i<Grid.size(); i++)
-            {
-                Grid.get(i).renderBlock();
-            }//end for
-        
-            fill(255);
-            textSize((width+height)*(.05));
-            text("YOU LOSE", width*(.5), height*(.3));
-        }//end else if
-        else
-        {
-            background(20, 20, 75);
-            strokeWeight((width+height)*(.0025));
-            stroke(255, 195, 100);
-            fill(125, 125, 180);
-            rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-            
-            for(int x=0; x<objBall.size(); x++)
-            {
-                if((objBall.get(x).ballPos.y) > height*(.97))
-                {
-                    objBall.remove(x);
-                }//end if
-                else
-                {
-                    objBall.get(x).updateBall();
-                    objBall.get(x).renderBall();
-                    
-                    for(int i=0; i<Grid.size(); i++)
-                    {
-                        Grid.get(i).renderBlock();
-                        Grid.get(i).checkBlock(i, x);
-                    }//end for
-                    objPlayer.get(0).checkPlayer(x);
-                }//end else
-            }//end for
-            
-            objPlayer.get(0).updatePlayer();
-            objPlayer.get(0).renderBlock();
-        }//end else
+        brickBreak();
+    }//end else if
+    else if(menu == 4)
+    {
+        Pong();
     }//end else
 }//end draw
-
-void GameOver(boolean val)
-{
-    strokeWeight((width+height)*(.0025));
-    
-    if(val)
-    {
-        for(int i=0; i<objBall.size(); i++)
-        {
-            objBall.get(i).renderBall();
-        }//end for
-        
-        if(checkKey(ENTER))
-        {
-            objBall.clear();
-            Grid.clear();
-            
-            createGrid();
-            
-            Ball tempBall = new Ball();
-            objBall.add(tempBall);
-            
-            start = false;
-        }//end if
-        
-        background(20, 100, 35);
-        stroke(255);
-        fill(125, 180, 125);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-        
-        for(int i=0; i<objBall.size(); i++)
-        {
-            objBall.get(i).renderBall();
-        }//end for
-        
-        fill(255);
-        textSize((width+height)*(.05));
-        text("YOU WIN", width*(.5), height*(.3));
-    }//end if
-    else
-    {
-        if(checkKey(ENTER))
-        {
-            objBall.clear();
-            Grid.clear();
-            
-            setup();
-        }//end if
-        
-        background(100, 20, 35);
-        stroke(0);
-        fill(180, 125, 125);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-    }//end else
-    
-    objPlayer.get(0).renderBlock();
-}//end GameOver()
 
 void createGrid()
 {

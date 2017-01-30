@@ -112,7 +112,8 @@ void instructBrickBreak()
     
     if(checkKey(ENTER))
     {
-        menu = 4;
+        menu = 3;
+        createGrid();
     }//end if
     else if(checkKey(SHIFT))
     {
@@ -151,6 +152,11 @@ void instructPong()
     
     if(checkKey(ENTER))
     {
+        objBall.get(0).speed = 7;
+      
+        Player tempPlayer = new Player(2);
+        objPlayer.add(tempPlayer);
+        
         menu = 4;
     }//end if
     else if(checkKey(SHIFT))

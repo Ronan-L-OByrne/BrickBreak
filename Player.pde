@@ -1,9 +1,22 @@
 class Player extends Block
 {
-    Player()
+    int playerNo;
+    int pScore;
+    
+    Player(int play)
     {
-        this.positionX = width*(.5);
-        this.positionY = height*(.95);
+        this.playerNo = play;
+        this.pScore = 0;
+        if(play == 1)
+        {
+            this.positionX = width*(.5);
+            this.positionY = height*(.95);
+        }//end if
+        else
+        {
+            this.positionX = width*(.5);
+            this.positionY = height*(.1);
+        }//end else
         this.blockWidth = width*(.1);
         this.blockHeight = height*(.02);
         this.blockCol = color(255);
@@ -12,14 +25,14 @@ class Player extends Block
     //updates the position of the player
     void updatePlayer()
     {
-        if(checkKey(LEFT))
+        if((checkKey(LEFT) && playerNo == 1) || (checkKey('A') && playerNo == 2))
         {
             if((positionX-blockWidth*(.5)) > width*(.05))
             {
                 positionX = positionX-width*(.005);
             }//end if
         }//end if
-        if(checkKey(RIGHT))
+        if((checkKey(RIGHT) && playerNo == 1) || (checkKey('D') && playerNo == 2) )
         {
             if((positionX+blockWidth*(.5)) < width*(.95))
             {
@@ -32,15 +45,10 @@ class Player extends Block
     void checkPlayer(int x)
     {
         if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
-        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5))
+        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)
+        && playerNo == 1)
         {
-            if(objBall.get(x).theta >= 0 && objBall.get(x).theta < HALF_PI)
-            {
-            }//end if
-            else if(objBall.get(x).theta >= HALF_PI*3 && objBall.get(x).theta <= TWO_PI)
-            {
-            }//end else if
-            else if(objBall.get(x).ballPos.x <= positionX)
+            if(objBall.get(x).ballPos.x <= positionX)
             {
                 float temp = map(objBall.get(x).ballPos.x, positionX-blockWidth*(.5), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
                 objBall.get(x).theta = temp;
@@ -51,6 +59,23 @@ class Player extends Block
                 float temp = map(objBall.get(x).ballPos.x, positionX, positionX+blockWidth*(.5), 0, HALF_PI-(HALF_PI/4));
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
+            }//end else if
+        }//end if
+        else if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
+        && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)
+        && playerNo == 2)
+        {
+            if(objBall.get(x).ballPos.x <= positionX)
+            {
+                float temp = map(objBall.get(x).ballPos.x, positionX+blockWidth*(.5), positionX, HALF_PI+(HALF_PI/4), PI);
+                objBall.get(x).theta = temp;
+                objBall.get(x).ballPos.y = (positionY+blockHeight*(.5))+objBall.get(x).ballDiam*(.5)+1;
+            }//end if
+            else if(objBall.get(x).ballPos.x > positionX)
+            {
+                float temp = map(objBall.get(x).ballPos.x, positionX, positionX-blockWidth*(.5), PI, HALF_PI+PI-(HALF_PI/4));
+                objBall.get(x).theta = temp;
+                objBall.get(x).ballPos.y = (positionY+blockHeight*(.5))+objBall.get(x).ballDiam*(.5)+1;
             }//end else if
         }//end if
     }//end checkPlayer()
