@@ -42,8 +42,8 @@ class Ball
         {
             if((ballPos.x-ballDiam*(.5)) < width*(.05))
             {
-                println("LEFT WALL");
-                println(theta);
+                //println("LEFT WALL");
+                //println(theta);
                 theta = PI-(theta-PI);
                 
                 forward.x = sin(theta);
@@ -55,8 +55,8 @@ class Ball
             }//end else if
             else if((ballPos.x+ballDiam*(.5)) > width*(.95))
             {
-                println("RIGHT WALL");
-                println(theta);
+                //println("RIGHT WALL");
+                //println(theta);
                 theta = PI+(PI-theta);
                 
                 forward.x = sin(theta);
@@ -68,8 +68,8 @@ class Ball
             }//end else if
             else if((ballPos.y-ballDiam*(.5)) < height*(.075))
             {
-                println("TOP WALL");
-                println(theta);
+                //println("TOP WALL");
+                //println(theta);
                 if(theta < PI)
                 {
                     theta = PI-theta;

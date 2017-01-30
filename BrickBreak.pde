@@ -7,7 +7,7 @@
 */
 
 // Global Variables //
-boolean[] keys = new boolean[500];
+boolean[] keys = new boolean[700];
 Player P1;
 ArrayList<Ball> objBall = new ArrayList<Ball>();
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();
@@ -22,13 +22,14 @@ void setup()
     background(20, 20, 75);
     
     P1 = new Player();
+    
     Ball tempBall = new Ball();
     objBall.add(tempBall);
     
     start = false;
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
     
-    //createGrid();
+    createGrid();
 }//end setup
 
 // Draw //
@@ -137,25 +138,26 @@ void GameOver(boolean val)
         
         if(checkKey(ENTER))
         {
-            for(int i = 0; i<objBall.size(); i++)
-            {
-                objBall.remove(i);
-            }//end while
+            objBall.clear();
+            Grid.clear();
             
-            setup();
-            /*
             createGrid();
             
-            Ball temp = new Ball();
-            objBall.add(temp);
+            Ball tempBall = new Ball();
+            objBall.add(tempBall);
             
-            start = false;*/
+            start = false;
         }//end if
         
         background(20, 100, 35);
         stroke(255);
         fill(125, 180, 125);
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+        
+        for(int i=0; i<objBall.size(); i++)
+        {
+            objBall.get(i).renderBall();
+        }//end for
         
         fill(255);
         textSize((width+height)*(.05));
@@ -165,19 +167,10 @@ void GameOver(boolean val)
     {
         if(checkKey(ENTER))
         {
-            for(int i = 0; i<Grid.size(); i++)
-            {
-                Grid.remove(i);
-            }//end while
+            objBall.clear();
+            Grid.clear();
             
             setup();
-            /*
-            createGrid();
-            
-            Ball temp = new Ball();
-            objBall.add(temp);
-            
-            start = false;*/
         }//end if
         
         background(100, 20, 35);
