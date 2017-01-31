@@ -19,6 +19,14 @@ class Destruct extends Block
 {
     int type;
     
+    Destruct(float posX, float posY)
+    {
+        this.positionX = posX;
+        this.positionY = posY;
+        this.blockWidth = width*(.17);
+        this.blockHeight = height*(.031);
+    }//end Destruct()
+    
     void checkBlock(int i, int x)
     {
         if(objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) 
@@ -133,11 +141,8 @@ class PowerBlock extends Destruct
 {
     PowerBlock(float posX, float posY)
     {
+        super(posX, posY);
         this.type = 1;
-        this.positionX = posX;
-        this.positionY = posY;
-        this.blockWidth = width*(.17);
-        this.blockHeight = height*(.031);
         this.blockCol = color(random(50,75), random(100,255), random(50,75));
     }//end PowerBlock
     
@@ -152,11 +157,8 @@ class NormalBlock extends Destruct
 {
     NormalBlock(float posX, float posY)
     {
+        super(posX, posY);
         this.type = 2;
-        this.positionX = posX;
-        this.positionY = posY;
-        this.blockWidth = width*(.17);
-        this.blockHeight = height*(.031);
         this.blockCol = color(random(50,75), random(50,75), random(100,255));
     }//end NormalBlock
 }//end clss NormalBlock
@@ -165,11 +167,8 @@ class HazardBlock extends Destruct
 {
     HazardBlock(float posX, float posY)
     {
+        super(posX, posY);
         this.type = 3;
-        this.positionX = posX;
-        this.positionY = posY;
-        this.blockWidth = width*(.17);
-        this.blockHeight = height*(.031);
         this.blockCol = color(random(150,255), random(75,100), random(75,100));
     }//end HazardBlock
     

@@ -58,7 +58,7 @@ void draw()
 
 void createGrid()
 {
-    Destruct temp = new Destruct();
+    Destruct temp;
     for(int i=0; i<5; i++)
     {
         for(int j=0; j<10; j++)

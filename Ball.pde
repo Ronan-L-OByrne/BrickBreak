@@ -21,7 +21,6 @@ class Ball
     {
         pushMatrix();
           translate(ballPos.x, ballPos.y);
-          //rotate(theta);
           strokeWeight((width+height)*(.001));
           stroke(0);
           fill(255);

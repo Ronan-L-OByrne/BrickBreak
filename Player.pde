@@ -50,13 +50,13 @@ class Player extends Block
         {
             if(objBall.get(x).ballPos.x <= positionX)
             {
-                float temp = map(objBall.get(x).ballPos.x, positionX-blockWidth*(.5), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
+                float temp = map(objBall.get(x).ballPos.x, positionX-blockWidth*(.65), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
             }//end else if
             else if(objBall.get(x).ballPos.x > positionX)
             {
-                float temp = map(objBall.get(x).ballPos.x, positionX, positionX+blockWidth*(.5), 0, HALF_PI-(HALF_PI/4));
+                float temp = map(objBall.get(x).ballPos.x, positionX, positionX+blockWidth*(.65), 0, HALF_PI-(HALF_PI/4));
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
             }//end else if
@@ -67,13 +67,13 @@ class Player extends Block
         {
             if(objBall.get(x).ballPos.x <= positionX)
             {
-                float temp = map(objBall.get(x).ballPos.x, positionX+blockWidth*(.5), positionX, HALF_PI+(HALF_PI/4), PI);
+                float temp = map(objBall.get(x).ballPos.x, positionX+blockWidth*(.65), positionX, HALF_PI+(HALF_PI/4), PI);
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY+blockHeight*(.5))+objBall.get(x).ballDiam*(.5)+1;
             }//end if
             else if(objBall.get(x).ballPos.x > positionX)
             {
-                float temp = map(objBall.get(x).ballPos.x, positionX, positionX-blockWidth*(.5), PI, HALF_PI+PI-(HALF_PI/4));
+                float temp = map(objBall.get(x).ballPos.x, positionX, positionX-blockWidth*(.65), PI, HALF_PI+PI-(HALF_PI/4));
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY+blockHeight*(.5))+objBall.get(x).ballDiam*(.5)+1;
             }//end else if
