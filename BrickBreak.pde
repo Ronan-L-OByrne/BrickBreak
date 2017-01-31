@@ -29,7 +29,7 @@ void setup()
     
     start = false;
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
-}//end setup
+}//end setup()
 
 // Draw //
 void draw()

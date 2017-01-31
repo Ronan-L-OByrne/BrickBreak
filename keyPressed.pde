@@ -1,4 +1,4 @@
-//Checking and updating keys
+//Checking when a key is pressed
 void keyPressed()
 { 
     keys[keyCode] = true;

@@ -62,24 +62,24 @@ void Pong()
     }//end else if
     else
     {
-      background(0);
-      strokeWeight((width+height)*(.0025));
-      stroke(255);
-      fill(0);
-      rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-      
-      ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
-      line(width*(.05), height*(.525), width*(.95), height*(.525));
-      
-      objPlayer.get(0).updatePlayer();
-      objPlayer.get(0).renderBlock();
-      objPlayer.get(0).checkPlayer(0);
-      
-      objPlayer.get(1).updatePlayer();
-      objPlayer.get(1).renderBlock();
-      objPlayer.get(1).checkPlayer(0);
-      
-      objBall.get(0).renderBall();
-      objBall.get(0).updateBall();
+        background(0);
+        strokeWeight((width+height)*(.0025));
+        stroke(255);
+        fill(0);
+        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+        
+        ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
+        line(width*(.05), height*(.525), width*(.95), height*(.525));
+        
+        objPlayer.get(0).updatePlayer();
+        objPlayer.get(0).renderBlock();
+        objPlayer.get(0).checkPlayer(0);
+        
+        objPlayer.get(1).updatePlayer();
+        objPlayer.get(1).renderBlock();
+        objPlayer.get(1).checkPlayer(0);
+        
+        objBall.get(0).renderBall();
+        objBall.get(0).updateBall();
     }//end else
 }//end Pong()

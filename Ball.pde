@@ -5,9 +5,11 @@ class Ball
     float speed;
     float theta;
     float ballDiam;
+    int curPlayer;
     
     Ball()
     {
+        this.curPlayer = 1;
         this.ballPos = new PVector(objPlayer.get(0).positionX, objPlayer.get(0).positionY-(height*(.025)));
         this.forward = new PVector(0, 1);
         this.speed = 4;
@@ -30,22 +32,36 @@ class Ball
     void updateBall()
     {
         theta = theta % TWO_PI;
-        if(start == false)
+        
+        if(!start)
         {
-            ballPos.x = objPlayer.get(0).positionX;
-            if(checkKey(UP))
+            if(curPlayer == 1)
             {
-                start = true;
+                ballPos.x = objPlayer.get(0).positionX;
+                ballPos.y = objPlayer.get(0).positionY-(height*(.025));
+            
+                if(checkKey(UP))
+                {
+                    start = true;
+                }//end if
             }//end if
+            else
+            {
+                ballPos.x = objPlayer.get(1).positionX;
+                ballPos.y = objPlayer.get(1).positionY+(height*(.025));
+            
+                if(checkKey('w'))
+                {
+                    start = true;
+                }//end if
+            }//end else
         }//end if
         else if(start)
         {
-            if(menu == 3)
+            if(menu == 4)
             {
                 if((ballPos.x-ballDiam*(.5)) < width*(.05))
                 {
-                    //println("LEFT WALL");
-                    //println(theta);
                     theta = PI-(theta-PI);
                     
                     forward.x = sin(theta);
@@ -54,11 +70,9 @@ class Ball
                     ballPos.x = width*(.05)+ballDiam*(.5)+1;
                     
                     ballPos.add(forward);
-                }//end else if
+                }//end if
                 else if((ballPos.x+ballDiam*(.5)) > width*(.95))
                 {
-                    //println("RIGHT WALL");
-                    //println(theta);
                     theta = PI+(PI-theta);
                     
                     forward.x = sin(theta);
@@ -71,7 +85,14 @@ class Ball
                 else if((ballPos.y-ballDiam*(.5)) < height*(.075))
                 {
                     //println("TOP WALL");
-                    //println(theta);
+                    //println(theta)
+                    objPlayer.get(0).pScore += 1;
+                    
+                    start = false;
+                    
+                    objBall.get(0).ballPos.x = objPlayer.get(1).positionX;
+                    objBall.get(0).ballPos.y = objPlayer.get(1).positionY+(height*(.025));
+                    /*
                     if(theta < PI)
                     {
                         theta = PI-theta;
@@ -86,11 +107,16 @@ class Ball
                     
                     ballPos.y = height*(.075)+ballDiam*(.5)+1;
                     
-                    ballPos.add(forward);
+                    ballPos.add(forward);*/
                 }//end else if
-                else if((ballPos.y) > height*(.97) && objBall.size() == 0)
+                else if((ballPos.y) > height*(.97))
                 {
-                    GameOverBB(false);
+                    objPlayer.get(1).pScore += 1;
+                    
+                    start = false;
+                    
+                    objBall.get(0).ballPos.x = objPlayer.get(0).positionX;
+                    objBall.get(0).ballPos.y = objPlayer.get(0).positionY-(height*(.025));
                 }//end else if
                 else
                 {
@@ -98,9 +124,9 @@ class Ball
                     forward.y = -cos(theta)*speed;
                     
                     ballPos.add(forward);
-                }//end if
+                }//end else
             }//end if
-            else if(menu == 4)
+            else if(menu == 3)
             {
                 if((ballPos.x-ballDiam*(.5)) < width*(.05))
                 {
@@ -112,7 +138,7 @@ class Ball
                     ballPos.x = width*(.05)+ballDiam*(.5)+1;
                     
                     ballPos.add(forward);
-                }//end else if
+                }//end if
                 else if((ballPos.x+ballDiam*(.5)) > width*(.95))
                 {
                     theta = PI+(PI-theta);
@@ -152,8 +178,8 @@ class Ball
                     forward.y = -cos(theta)*speed;
                     
                     ballPos.add(forward);
-                }//end if
+                }//end else
             }//end else
         }//end else
-    }//end updatePlayer()
+    }//end updateBall()
 }//end class ball

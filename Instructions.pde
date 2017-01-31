@@ -152,6 +152,8 @@ void instructPong()
     
     if(checkKey(ENTER))
     {
+        Ball tempBall = new Ball();
+        objBall.add(tempBall);
         objBall.get(0).speed = 7;
       
         Player tempPlayer = new Player(2);
