@@ -39,6 +39,7 @@ class Ball
             {
                 ballPos.x = objPlayer.get(0).positionX;
                 ballPos.y = objPlayer.get(0).positionY-(height*(.025));
+                theta = 0;
             
                 if(checkKey(UP))
                 {
@@ -49,6 +50,7 @@ class Ball
             {
                 ballPos.x = objPlayer.get(1).positionX;
                 ballPos.y = objPlayer.get(1).positionY+(height*(.025));
+                theta = PI;
             
                 if(checkKey('w'))
                 {
@@ -56,58 +58,42 @@ class Ball
                 }//end if
             }//end else
         }//end if
-        else if(start)
+        else
         {
+            if((ballPos.x-ballDiam*(.5)) < width*(.05))
+            {
+                theta = PI-(theta-PI);
+                
+                forward.x = sin(theta);
+                forward.y = cos(theta);
+                
+                ballPos.x = width*(.05)+ballDiam*(.5)+1;
+                
+                ballPos.add(forward);
+            }//end if
+            else if((ballPos.x+ballDiam*(.5)) > width*(.95))
+            {
+                theta = PI+(PI-theta);
+                
+                forward.x = sin(theta);
+                forward.y = -cos(theta);
+                
+                ballPos.x = width*(.95)-ballDiam*(.5)-1;
+                
+                ballPos.add(forward);
+            }//end else if
+            
             if(menu == 4)
             {
-                if((ballPos.x-ballDiam*(.5)) < width*(.05))
+                if((ballPos.y-ballDiam*(.5)) < height*(.075))
                 {
-                    theta = PI-(theta-PI);
-                    
-                    forward.x = sin(theta);
-                    forward.y = cos(theta);
-                    
-                    ballPos.x = width*(.05)+ballDiam*(.5)+1;
-                    
-                    ballPos.add(forward);
-                }//end if
-                else if((ballPos.x+ballDiam*(.5)) > width*(.95))
-                {
-                    theta = PI+(PI-theta);
-                    
-                    forward.x = sin(theta);
-                    forward.y = -cos(theta);
-                    
-                    ballPos.x = width*(.95)-ballDiam*(.5)-1;
-                    
-                    ballPos.add(forward);
-                }//end else if
-                else if((ballPos.y-ballDiam*(.5)) < height*(.075))
-                {
-                    //println("TOP WALL");
-                    //println(theta)
                     objPlayer.get(0).pScore += 1;
                     
                     start = false;
                     
                     objBall.get(0).ballPos.x = objPlayer.get(1).positionX;
                     objBall.get(0).ballPos.y = objPlayer.get(1).positionY+(height*(.025));
-                    /*
-                    if(theta < PI)
-                    {
-                        theta = PI-theta;
-                    }//end if
-                    else if(theta > PI)
-                    {
-                        theta = TWO_PI-(theta-PI);
-                    }//end else if
-                    
-                    forward.x = sin(theta);
-                    forward.y = -cos(theta);
-                    
-                    ballPos.y = height*(.075)+ballDiam*(.5)+1;
-                    
-                    ballPos.add(forward);*/
+                    objBall.get(0).curPlayer = 2;
                 }//end else if
                 else if((ballPos.y) > height*(.97))
                 {
@@ -117,40 +103,12 @@ class Ball
                     
                     objBall.get(0).ballPos.x = objPlayer.get(0).positionX;
                     objBall.get(0).ballPos.y = objPlayer.get(0).positionY-(height*(.025));
+                    objBall.get(0).curPlayer = 1;
                 }//end else if
-                else
-                {
-                    forward.x = sin(theta)*speed;
-                    forward.y = -cos(theta)*speed;
-                    
-                    ballPos.add(forward);
-                }//end else
             }//end if
             else if(menu == 3)
             {
-                if((ballPos.x-ballDiam*(.5)) < width*(.05))
-                {
-                    theta = PI-(theta-PI);
-                    
-                    forward.x = sin(theta);
-                    forward.y = cos(theta);
-                    
-                    ballPos.x = width*(.05)+ballDiam*(.5)+1;
-                    
-                    ballPos.add(forward);
-                }//end if
-                else if((ballPos.x+ballDiam*(.5)) > width*(.95))
-                {
-                    theta = PI+(PI-theta);
-                    
-                    forward.x = sin(theta);
-                    forward.y = -cos(theta);
-                    
-                    ballPos.x = width*(.95)-ballDiam*(.5)-1;
-                    
-                    ballPos.add(forward);
-                }//end else if
-                else if((ballPos.y-ballDiam*(.5)) < height*(.075))
+                if((ballPos.y-ballDiam*(.5)) < height*(.075))
                 {
                     if(theta < PI)
                     {
@@ -161,9 +119,6 @@ class Ball
                         theta = TWO_PI-(theta-PI);
                     }//end else if
                     
-                    forward.x = sin(theta);
-                    forward.y = -cos(theta);
-                    
                     ballPos.y = height*(.075)+ballDiam*(.5)+1;
                     
                     ballPos.add(forward);
@@ -172,14 +127,12 @@ class Ball
                 {
                     GameOverBB(false);
                 }//end else if
-                else
-                {
-                    forward.x = sin(theta)*speed;
-                    forward.y = -cos(theta)*speed;
-                    
-                    ballPos.add(forward);
-                }//end else
             }//end else
+            
+            forward.x = sin(theta)*speed;
+            forward.y = -cos(theta)*speed;
+            
+            ballPos.add(forward);
         }//end else
     }//end updateBall()
 }//end class ball
