@@ -1,6 +1,6 @@
 /*Brick Break Game, Object Oriented Programming Assignment: Year 2 ~ Christmas --SECOND ATTEMPT--
   
-  This Program be a brick break like game which meets all of the requirements laid out in the assignment brief
+  This Program be a brick break and pong like games which meets all of the requirements laid out in the assignment brief
 
   Date Begun: 23/01/2016;    Date Finished: xx/xx/xxxx;
   Author: Ronan O'Byrne, C15332036;

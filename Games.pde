@@ -1,6 +1,10 @@
 void brickBreak()
 {
-    if(Grid.size() == 0)
+    if(checkKey(SHIFT))
+    {
+        menu = 0;
+    }//end if
+    else if(Grid.size() == 0)
     {
         GameOverBB(true);
     }//end if
@@ -62,7 +66,11 @@ void brickBreak()
 
 void Pong(int noPlayers)
 {
-    if(objPlayer.get(0).pScore == 5)
+    if(checkKey(SHIFT))
+    {
+        menu = 0;
+    }//end if
+    else if(objPlayer.get(0).pScore == 5)
     {
         GameOverP(0);
     }//end if
