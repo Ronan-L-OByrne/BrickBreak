@@ -12,6 +12,7 @@ boolean[] keys = new boolean[700];                     // Array to store whether
 ArrayList<Player> objPlayer = new ArrayList<Player>(); // ArrayList to hold either 1 or 2 players 
 ArrayList<Ball> objBall = new ArrayList<Ball>();       // ArrayList to hold all the Balls on the screen at a given time
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();  // ArrayList to hold all of the Blocks in the grid
+ArrayList<ParticleSystem> pSystem = new ArrayList<ParticleSystem>();
 
 boolean start;                                         // Used to keep track of if the ball has been fired yet
 

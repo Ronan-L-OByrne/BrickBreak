@@ -1,6 +1,23 @@
 //Bulk of the code used in the Birck Break game
 void brickBreak()
 {
+    for(int i=0; i< pSystem.size(); i++)
+    {
+        println("LOOP\n");
+        if(pSystem.get(i).Lifespan > 0)
+        {
+            println("IF\n");
+            pSystem.get(i).addParticle();
+            pSystem.get(i).run();
+            pSystem.get(i).Lifespan--;
+        }//end if
+        else
+        {
+            println("ELSE\n");
+            pSystem.remove(i);
+        }//end else
+    }//end for
+    
     if(checkKey(SHIFT))
     {
         menu = 0;
@@ -91,14 +108,6 @@ void Pong(int noPlayers)
         ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
         line(width*(.05), height*(.525), width*(.95), height*(.525));
         
-        textFont(titleFont, (width+height)*(.025));
-        fill(255);
-        textAlign(CENTER, CENTER);
-        
-        text("P1: " + objPlayer.get(0).pScore, width*(.1), height*(.035));
-        text("P2: " + objPlayer.get(1).pScore, width*(.9), height*(.035));
-        textFont(titleFont, (width+height)*(.035));
-        text("PONG", width*(.5), height*(.035));
         
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
@@ -119,4 +128,13 @@ void Pong(int noPlayers)
         objBall.get(0).renderBall();
         objBall.get(0).updateBall();
     }//end else
+    
+    textFont(titleFont, (width+height)*(.025));
+    fill(255);
+    textAlign(CENTER, CENTER);
+    
+    text("P1: " + objPlayer.get(0).pScore, width*(.1), height*(.035));
+    text("P2: " + objPlayer.get(1).pScore, width*(.9), height*(.035));
+    textFont(titleFont, (width+height)*(.035));
+    text("PONG", width*(.5), height*(.035));
 }//end Pong()

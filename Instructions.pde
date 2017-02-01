@@ -173,6 +173,7 @@ void instructPong()
     
     if(checkKey(ENTER))
     {
+        objBall.clear();
         Ball tempBall = new Ball();
         objBall.add(tempBall);
         objBall.get(0).speed = 7;
@@ -198,6 +199,7 @@ void instructPong()
         
         if(mousePressed)
         {
+            objBall.clear();
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 7;
@@ -220,6 +222,7 @@ void instructPong()
         
         if(mousePressed)
         {
+            objBall.clear();
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 7;

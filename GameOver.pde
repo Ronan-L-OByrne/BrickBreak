@@ -68,27 +68,22 @@ void GameOverP(int play)
 {
     strokeWeight((width+height)*(.0025));
 
-    for(int i=0; i<objBall.size(); i++)
-    {
-        objBall.get(i).renderBall();
-    }//end for
+    objBall.get(0).renderBall();
+    
+    fill(255);
+    textSize((width+height)*(.05));
+    text("PLAYER " + (play+1) +" WINS", width*(.5), height*(.275));
     
     if(checkKey(ENTER))
     {
         objBall.clear();
         
         objPlayer.get(1).pScore = 0;
-        objPlayer.get(1).pScore = 0;
+        objPlayer.get(0).pScore = 0;
         
         Ball tempBall = new Ball();
         objBall.add(tempBall);
         
         start = false;
     }//end if
-    
-    objBall.get(0).renderBall();
-    
-    fill(255);
-    textSize((width+height)*(.05));
-    text("PLAYER " + (play+1) +" WINS", width*(.5), height*(.275));
 }//end GameOverP()

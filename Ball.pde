@@ -87,7 +87,7 @@ class Ball
                 ballPos.add(forward);
             }//end else if
             
-            if(menu == 4 || menu == 5)
+            if(menu == 4 || menu == 5 && (objPlayer.get(0).pScore < 5 || objPlayer.get(1).pScore < 5))
             {
                 if((ballPos.y-ballDiam*(.5)) < height*(.075))
                 {

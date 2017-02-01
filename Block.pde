@@ -39,6 +39,9 @@ class Destruct extends Block
         && objBall.get(x).ballPos.x > positionX-blockWidth*(.5)  
         && objBall.get(x).ballPos.x < positionX+blockWidth*(.5))
         {
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
+            pSystem.add(temp);
+            
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
@@ -101,6 +104,9 @@ class Destruct extends Block
              && objBall.get(x).ballPos.y > positionY-blockHeight*(.5) 
              && objBall.get(x).ballPos.y < positionY+blockHeight*(.5))
         {
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
+            pSystem.add(temp);
+            
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
@@ -199,3 +205,84 @@ class HazardBlock extends Destruct
         objBall.get(x).speed = objBall.get(x).speed+2;
     }//end hitHazard()
 }//end clss HazardBlock
+
+class ParticleSystem
+{
+    ArrayList<Particles> particles;
+    PVector origin;
+    int Lifespan;
+  
+    ParticleSystem(PVector position)
+    {
+        this.origin = position.copy();
+        this.particles = new ArrayList<Particles>();
+        this.Lifespan = 20;
+    }
+  
+    void addParticle()
+    {
+        particles.add(new Particles(origin));
+    }//end addParticle()
+  
+    void run()
+    {
+        for (int i = particles.size()-1; i >= 0; i--)
+        {
+            Particles p = particles.get(i);
+            p.runEffect();
+            
+            if (p.isDead())
+            {
+                particles.remove(i);
+            }//end if
+        }//end for
+    }//end run()
+}//end ParticleSystem
+
+class Particles
+{
+    PVector position;
+    PVector velocity;
+    PVector acceleration;
+    float lifespan;
+    
+    Particles(PVector orig)
+    {
+        this.position = orig.copy();
+        this.velocity = new PVector(random(-1, 1), random(-2,0));
+        this.acceleration = new PVector(0, 0.05);
+        this.lifespan = 255;
+    }//end ParticleEffect
+    
+    void runEffect()
+    {
+        updateParticle();
+        displayParticle();
+    }//end runEffect()
+    
+    void updateParticle()
+    {
+        velocity.add(acceleration);
+        position.add(velocity);
+        lifespan -= 1.0;
+    }//end updateParticle()
+    
+    void displayParticle()
+    {
+        stroke(255, lifespan);
+        fill(255, lifespan);
+        ellipse(position.x, position.y, 8, 8);
+    }//end displayParticle()
+    
+    boolean isDead()
+    {
+        if (lifespan < 0.0)
+        {
+            return true;
+        }//end if
+        else
+        {
+            return false;
+        }//end else
+    }//end isDead()
+}//end class ParticleEffect
