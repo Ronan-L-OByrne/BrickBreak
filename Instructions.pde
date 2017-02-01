@@ -114,6 +114,7 @@ void instructBrickBreak()
     {
         menu = 3;
         objPlayer.get(0).pScore = 0;
+        objBall.get(0).speed = 5;
         createGrid();
     }//end if
     else if(checkKey(SHIFT))

@@ -88,6 +88,8 @@ class Player extends Block
                 objBall.get(x).theta = temp;
                 objBall.get(x).ballPos.y = (positionY-blockHeight*(.5))-objBall.get(x).ballDiam*(.5)-1;
             }//end else if
+            
+            objBall.get(x).scoreMultiplier = 1;
         }//end if
         else if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
         && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)

@@ -46,6 +46,8 @@ void GameOverBB(boolean val)
             setup();
         }//end if
         
+        objPlayer.get(0).pScore = 0;
+         
         background(100, 20, 35);
         stroke(0);
         fill(180, 125, 125);

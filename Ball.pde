@@ -6,6 +6,7 @@ class Ball
     float theta;
     float ballDiam;
     int curPlayer;
+    float scoreMultiplier;
     
     Ball()
     {
@@ -15,6 +16,7 @@ class Ball
         this.speed = 4;
         this.theta = 0;
         this.ballDiam = (width+height)*(.01);
+        this.scoreMultiplier = 1;
     }//end Ball
     
     void renderBall()

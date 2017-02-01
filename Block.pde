@@ -42,13 +42,19 @@ class Destruct extends Block
             if(type == 1)
             {
                 ((PowerBlock)Grid.get(i)).hitPower();
-                objPlayer.get(0).pScore += 100;
+                objPlayer.get(0).pScore += 75*objBall.get(x).scoreMultiplier;
             }//end if
             else if(type == 3)
             {
                 ((HazardBlock)Grid.get(i)).hitHazard(x);
+                objPlayer.get(0).pScore += 150*objBall.get(x).scoreMultiplier;
             }//end else if
+            else
+            {
+                objPlayer.get(0).pScore += 100*objBall.get(x).scoreMultiplier;
+            }//end else
             
+            objBall.get(x).scoreMultiplier += .25;
             Grid.remove(i);
             
             if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta < PI)
