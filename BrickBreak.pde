@@ -14,6 +14,7 @@ ArrayList<Destruct> Grid = new ArrayList<Destruct>();
 boolean start;
 PFont titleFont;
 int menu = 0;
+int Enemy = 0;
 
 // Setup //
 void setup()
@@ -52,7 +53,11 @@ void draw()
     }//end else if
     else if(menu == 4)
     {
-        Pong();
+        Pong(1);
+    }//end else
+    else if(menu == 5)
+    {
+        Pong(2);
     }//end else
 }//end draw
 

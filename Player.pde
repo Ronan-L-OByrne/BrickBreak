@@ -17,6 +17,7 @@ class Player extends Block
             this.positionX = width*(.5);
             this.positionY = height*(.1);
         }//end else
+        
         this.blockWidth = width*(.1);
         this.blockHeight = height*(.02);
         this.blockCol = color(255);
@@ -35,6 +36,33 @@ class Player extends Block
         if((checkKey(RIGHT) && playerNo == 1) || (checkKey('D') && playerNo == 2) )
         {
             if((positionX+blockWidth*(.5)) < width*(.95))
+            {
+                positionX = positionX+width*(.005);
+            }//end if
+        }//end if
+    }//end updatePlayer()
+    
+    //Controls the computer Player
+    void updatePlayerAI()
+    {
+        if(positionX > objBall.get(0).ballPos.x)
+        {
+            if(objBall.get(0).curPlayer == 2 && !start)
+            {
+                start = true;
+            }//end if
+            else if((positionX-blockWidth*(.5)) > width*(.05))
+            {
+                positionX = positionX-width*(.005);
+            }//end if
+        }//end if
+        if(positionX < objBall.get(0).ballPos.x)
+        {
+            if(objBall.get(0).curPlayer == 2 && !start)
+            {
+                start = true;
+            }//end if
+            else if((positionX+blockWidth*(.5)) < width*(.95))
             {
                 positionX = positionX+width*(.005);
             }//end if

@@ -82,7 +82,7 @@ class Ball
                 ballPos.add(forward);
             }//end else if
             
-            if(menu == 4)
+            if(menu == 4 || menu == 5)
             {
                 if((ballPos.y-ballDiam*(.5)) < height*(.075))
                 {

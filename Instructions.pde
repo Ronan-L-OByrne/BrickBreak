@@ -147,8 +147,18 @@ void instructPong()
     text("_______", width*(.5), height*(.55));
     text("OBJECTIVE: GET THE BALL PAST ", width*(.5), height*(.6));
     text("THE OTHER PADDLE 5 TIMES", width*(.5), height*(.65));
-    text("ENTER TO CONTINUE", width*(.5), height*(.95));
-    text("_________________________", width*(.5), height*(.95));
+    
+    fill(0);
+    rect(width*(.1), height*(.725), width*(.35), height*(.2), (width+height)*(.01));
+        
+    fill(255);
+    text("1 Player", width*(.27), height*(.825));
+    
+    fill(0);
+    rect(width*(.55), height*(.725), width*(.35), height*(.2), (width+height)*(.01));
+        
+    fill(255);
+    text("2 Player", width*(.725), height*(.825));
     
     if(checkKey(ENTER))
     {
@@ -164,5 +174,45 @@ void instructPong()
     else if(checkKey(SHIFT))
     {
         menu = 0;
+    }//end else if
+    else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.725) && mouseY <= height*(.925))
+    {
+        fill(255);
+        rect(width*(.1), height*(.725), width*(.35), height*(.2), (width+height)*(.01));
+            
+        fill(0);
+        text("1 Player", width*(.27), height*(.825));
+        
+        if(mousePressed)
+        {
+            Ball tempBall = new Ball();
+            objBall.add(tempBall);
+            objBall.get(0).speed = 7;
+          
+            Player tempPlayer = new Player(2);
+            objPlayer.add(tempPlayer);
+            
+            menu = 4;
+        }//end if
+    }//end else if
+    else if(mouseX >= width*(.55) && mouseX <= width*(.85) && mouseY >= height*(.725) && mouseY <= height*(.925))
+    {
+        fill(255);
+        rect(width*(.55), height*(.725), width*(.35), height*(.2), (width+height)*(.01));
+            
+        fill(0);
+        text("2 Player", width*(.725), height*(.825));
+        
+        if(mousePressed)
+        {
+            Ball tempBall = new Ball();
+            objBall.add(tempBall);
+            objBall.get(0).speed = 7;
+          
+            Player tempPlayer = new Player(2);
+            objPlayer.add(tempPlayer);
+            
+            menu = 5;
+        }//end if
     }//end else if
 }//end instructPong()

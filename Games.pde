@@ -50,7 +50,7 @@ void brickBreak()
     }//end else
 }//end brickBreak()
 
-void Pong()
+void Pong(int noPlayers)
 {
     if(objPlayer.get(0).pScore == 5)
     {
@@ -71,14 +71,26 @@ void Pong()
         ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
         line(width*(.05), height*(.525), width*(.95), height*(.525));
         
+        textFont(titleFont, (width+height)*(.025));
+        fill(255);
+        textAlign(CENTER, CENTER);
+        
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
         objPlayer.get(0).checkPlayer(0);
         
-        objPlayer.get(1).updatePlayer();
+        if(noPlayers == 1)
+        {
+            objPlayer.get(1).updatePlayerAI();
+        }//end if
+        else if(noPlayers == 2)
+        {
+            objPlayer.get(1).updatePlayer();
+        }//end else if
+        
         objPlayer.get(1).renderBlock();
         objPlayer.get(1).checkPlayer(0);
-        
+            
         objBall.get(0).renderBall();
         objBall.get(0).updateBall();
     }//end else
