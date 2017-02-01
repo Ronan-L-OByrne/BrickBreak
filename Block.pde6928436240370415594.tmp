@@ -39,6 +39,9 @@ class Destruct extends Block
         && objBall.get(x).ballPos.x > positionX-blockWidth*(.5)  
         && objBall.get(x).ballPos.x < positionX+blockWidth*(.5))
         {
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
+            pSystem.add(temp);
+            
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
@@ -95,20 +98,15 @@ class Destruct extends Block
             
             objBall.get(x).forward.x = sin(objBall.get(x).theta);
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
-            
-            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
-            while(temp.particles.size() < 20)
-            {
-                temp.addParticle();
-            }//end for
-            
-            pSystem.add(temp);
         }//end else if
         else if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
              && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
              && objBall.get(x).ballPos.y > positionY-blockHeight*(.5) 
              && objBall.get(x).ballPos.y < positionY+blockHeight*(.5))
         {
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
+            pSystem.add(temp);
+            
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
@@ -153,13 +151,6 @@ class Destruct extends Block
             
             objBall.get(x).forward.x = sin(objBall.get(x).theta);
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
-            
-            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
-            while(temp.particles.size() < 20)
-            {
-                temp.addParticle();
-            }//end for
-            pSystem.add(temp);
         }//end else if
     }//end checkBlock
 }//end class Destruct
@@ -231,6 +222,7 @@ class ParticleSystem
     void addParticle()
     {
         particles.add(new Particles(origin));
+            println("Added");
     }//end addParticle()
   
     void run()
@@ -239,9 +231,11 @@ class ParticleSystem
         {
             Particles p = particles.get(i);
             p.runEffect();
+            println(pSystem.get(i).Lifespan--);
             
             if (p.isDead())
             {
+                println("Removed.");
                 particles.remove(i);
             }//end if
         }//end for
@@ -253,14 +247,14 @@ class Particles
     PVector position;
     PVector velocity;
     PVector acceleration;
-    int lifespan;
+    float lifespan;
     
     Particles(PVector orig)
     {
-        this.position = new PVector(random(orig.x-width*(.17)*(.5), orig.x+width*(.17)*(.5)), orig.y);
+        this.position = orig.copy();
         this.velocity = new PVector(random(-1, 1), random(-2,0));
         this.acceleration = new PVector(0, 0.05);
-        this.lifespan = 255;
+        this.lifespan = 100;
     }//end ParticleEffect
     
     void runEffect()
@@ -273,14 +267,14 @@ class Particles
     {
         velocity.add(acceleration);
         position.add(velocity);
-        lifespan -= 2.55;
+        lifespan--;
     }//end updateParticle()
     
     void displayParticle()
     {
-        stroke(random(150,255), random(75,100), random(75,100), lifespan);
-        fill(random(150,255), random(75,100), random(75,100), lifespan);
-        ellipse(position.x, position.y, (width+height)*(.005), (width+height)*(.005));
+        stroke(255, lifespan);
+        fill(255, lifespan);
+        ellipse(position.x, position.y, 8, 8);
     }//end displayParticle()
     
     boolean isDead()

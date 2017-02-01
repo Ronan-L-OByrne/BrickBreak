@@ -1,6 +1,24 @@
 //Bulk of the code used in the Birck Break game
 void brickBreak()
 {
+    println("FRAME");
+    for(int i=0; i< pSystem.size(); i++)
+    {
+        println("LOOP\n");
+        if(pSystem.get(i).Lifespan > 0)
+        {
+            println(pSystem.get(i).Lifespan);
+            pSystem.get(i).addParticle();
+            pSystem.get(i).run();
+            pSystem.get(i).Lifespan--;
+        }//end if
+        else
+        {
+            println("ELSE\n");
+            pSystem.remove(i);
+        }//end else
+    }//end for
+    
     if(checkKey(SHIFT))
     {
         menu = 0;
@@ -53,21 +71,6 @@ void brickBreak()
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
     }//end else
-    
-    for(int i=0; i< pSystem.size(); i++)
-    {
-        if(pSystem.get(i).Lifespan > 0)
-        {
-            pSystem.get(i).run();
-            pSystem.get(i).Lifespan--;
-        }//end if
-        else
-        {
-            println("ELSE\n");
-            pSystem.remove(i);
-        }//end else
-    }//end for
-    
     
     fill(255, 195, 100);
     
