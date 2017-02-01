@@ -7,58 +7,68 @@
 */
 
 // Global Variables //
-boolean[] keys = new boolean[700];
-ArrayList<Player> objPlayer = new ArrayList<Player>();
-ArrayList<Ball> objBall = new ArrayList<Ball>();
-ArrayList<Destruct> Grid = new ArrayList<Destruct>();
-boolean start;
-PFont titleFont;
-int menu = 0;
-int Enemy = 0;
+boolean[] keys = new boolean[700];                     // Array to store whether or not a key is pressed
+
+ArrayList<Player> objPlayer = new ArrayList<Player>(); // ArrayList to hold either 1 or 2 players 
+ArrayList<Ball> objBall = new ArrayList<Ball>();       // ArrayList to hold all the Balls on the screen at a given time
+ArrayList<Destruct> Grid = new ArrayList<Destruct>();  // ArrayList to hold all of the Blocks in the grid
+
+boolean start;                                         // Used to keep track of if the ball has been fired yet
+
+PFont titleFont;                                       // Font used throughout the Program
+
+int menu = 0;                                          // Dictates what menu or game the screen will display
+int Enemy = 0;                                         // Used to see if the current game is PvP or not
 
 // Setup //
 void setup()
 {
+    // Sets the size of the screen
     size(600, 800);
-    background(20, 20, 75);
     
+    // Creates the first player and adds them to the ArrayList
     Player tempPlayer = new Player(1);
     objPlayer.add(tempPlayer);
     
+    // Creates the first ball and adds them to the ArrayList
     Ball tempBall = new Ball();
     objBall.add(tempBall);
     
+    //The ball has not been fired yet
     start = false;
+    
+    //Loads the font used in the sketch
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
 }//end setup()
 
 // Draw //
 void draw()
 {
+    //Checks which game or menu the user is currently on
     if(menu == 0)
     {
-        Menu();
+        Menu();               // Game selection screen
     }//end if
     else if(menu == 1)
     {
-        instructBrickBreak();
-    }//end if
+        instructBrickBreak(); // Brick Break instruction creen
+    }//end else if
     else if(menu == 2)
     {
-        instructPong();
-    }//end if
+        instructPong();       // Pong instruction screen
+    }//end else if
     else if(menu == 3)
     {
-        brickBreak();
+        brickBreak();         // Brick Break game
     }//end else if
     else if(menu == 4)
     {
-        Pong(1);
-    }//end else
+        Pong(1);              // Pong game (1 Player)
+    }//end else if
     else if(menu == 5)
     {
-        Pong(2);
-    }//end else
+        Pong(2);              // Pong game(2 Player)
+    }//end else if
 }//end draw
 
 //Used to create the grid used in the Brick Break game
@@ -70,17 +80,17 @@ void createGrid()
         for(int j=0; j<10; j++)
         {
             int typeChk = (int)(random(0, 50));
-            if(typeChk <= 40)
+            if(typeChk <= 40)                        // Brick has an 80% chance to be a Normal Block
             {
                 temp = new NormalBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
             }//end else if
-            else if(typeChk > 40 && typeChk <= 45)
+            else if(typeChk > 40 && typeChk <= 45)   // Brick has a 10% chance to be a Power Block
             {
                 temp = new PowerBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
             }//end else if
-            else if(typeChk > 45 && typeChk <= 50)
+            else if(typeChk > 45 && typeChk <= 50)   // Brick has a 10% chance to be a Hazard Block
             {
                 temp = new HazardBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
