@@ -42,6 +42,7 @@ class Destruct extends Block
             if(type == 1)
             {
                 ((PowerBlock)Grid.get(i)).hitPower();
+                objPlayer.get(0).pScore += 100;
             }//end if
             else if(type == 3)
             {

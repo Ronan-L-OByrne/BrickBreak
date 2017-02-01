@@ -25,6 +25,14 @@ void brickBreak()
         fill(125, 125, 180);
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
         
+        textFont(titleFont, (width+height)*(.025));
+        fill(200, 100, 70);
+        textAlign(CENTER, CENTER);
+        
+        text("SCORE: " + objPlayer.get(0).pScore, width*(.8), height*(.035));
+        textFont(titleFont, (width+height)*(.035));
+        text("BRICKBREAK", width*(.325), height*(.035));
+        
         for(int x=0; x<objBall.size(); x++)
         {
             if((objBall.get(x).ballPos.y) > height*(.97))
@@ -74,6 +82,11 @@ void Pong(int noPlayers)
         textFont(titleFont, (width+height)*(.025));
         fill(255);
         textAlign(CENTER, CENTER);
+        
+        text("P1: " + objPlayer.get(0).pScore, width*(.1), height*(.035));
+        text("P2: " + objPlayer.get(1).pScore, width*(.9), height*(.035));
+        textFont(titleFont, (width+height)*(.035));
+        text("PONG", width*(.5), height*(.035));
         
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();

@@ -113,6 +113,7 @@ void instructBrickBreak()
     if(checkKey(ENTER))
     {
         menu = 3;
+        objPlayer.get(0).pScore = 0;
         createGrid();
     }//end if
     else if(checkKey(SHIFT))
@@ -132,7 +133,7 @@ void instructPong()
     fill(255);
     textFont(titleFont, (height+width)*(.04));
     textAlign(CENTER,CENTER);
-    text("Pong", width*(.5), height*(.118));
+    text("PONG", width*(.5), height*(.125));
     
     textFont(titleFont, (height+width)*(.025));
     text("CONTROLS", width*(.5), height*(.25));
@@ -166,6 +167,8 @@ void instructPong()
         objBall.add(tempBall);
         objBall.get(0).speed = 7;
       
+        objPlayer.get(0).pScore = 0;
+        
         Player tempPlayer = new Player(2);
         objPlayer.add(tempPlayer);
         
@@ -189,6 +192,8 @@ void instructPong()
             objBall.add(tempBall);
             objBall.get(0).speed = 7;
           
+            objPlayer.get(0).pScore = 0;
+        
             Player tempPlayer = new Player(2);
             objPlayer.add(tempPlayer);
             
@@ -208,6 +213,8 @@ void instructPong()
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 7;
+          
+            objPlayer.get(0).pScore = 0;
           
             Player tempPlayer = new Player(2);
             objPlayer.add(tempPlayer);
