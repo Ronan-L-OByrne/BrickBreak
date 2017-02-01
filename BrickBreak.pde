@@ -61,6 +61,7 @@ void draw()
     }//end else
 }//end draw
 
+//Used to create the grid used in the Brick Break game
 void createGrid()
 {
     Destruct temp;

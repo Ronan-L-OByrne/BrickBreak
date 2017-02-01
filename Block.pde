@@ -1,3 +1,4 @@
+//Parent class used for all Blocks and Players
 class Block
 {
     float positionX;
@@ -6,6 +7,7 @@ class Block
     float blockHeight;
     color blockCol;
     
+    //Renders all blocks on the screen
     void renderBlock()
     {
         strokeWeight((width+height)*(.001));
@@ -15,10 +17,12 @@ class Block
     }//end renderBlock
 }//end class Block
 
+//Sub-class for all non-Player blocks
 class Destruct extends Block
 {
     int type;
     
+    //Destruct Constructor
     Destruct(float posX, float posY)
     {
         this.positionX = posX;
@@ -27,6 +31,7 @@ class Destruct extends Block
         this.blockHeight = height*(.031);
     }//end Destruct()
     
+    //Checks if the ball has collided with the brick from any angle or direction
     void checkBlock(int i, int x)
     {
         if(objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) 
@@ -144,8 +149,10 @@ class Destruct extends Block
     }//end checkBlock
 }//end class Destruct
 
+//Sub-class for the power(Green) blocks
 class PowerBlock extends Destruct
 {
+    //PowerBlock Constructor
     PowerBlock(float posX, float posY)
     {
         super(posX, posY);
@@ -153,6 +160,7 @@ class PowerBlock extends Destruct
         this.blockCol = color(random(50,75), random(100,255), random(50,75));
     }//end PowerBlock
     
+    //Gives the user a second ball to destroy more blocks faster
     void hitPower()
     {
         Ball newBall = new Ball();
@@ -160,18 +168,24 @@ class PowerBlock extends Destruct
     }//end hitPoswer()
 }//end clss PowerBlock
 
+//Sub-class for the normal(Blue) blocks
 class NormalBlock extends Destruct
 {
+    //NormalBlock Constructor
     NormalBlock(float posX, float posY)
     {
         super(posX, posY);
         this.type = 2;
         this.blockCol = color(random(50,75), random(50,75), random(100,255));
     }//end NormalBlock
+    
+    //NO UNIQUE METHODS FOR THE NORMAL BLOCKS
 }//end clss NormalBlock
 
+//Sub-class for the hazard(Red) blocks
 class HazardBlock extends Destruct
 {
+    //HazardBlock Constructor
     HazardBlock(float posX, float posY)
     {
         super(posX, posY);
@@ -179,6 +193,7 @@ class HazardBlock extends Destruct
         this.blockCol = color(random(150,255), random(75,100), random(75,100));
     }//end HazardBlock
     
+    //When a hazard is hit 2 is added to the balls speed
     void hitHazard(int x)
     {
         objBall.get(x).speed = objBall.get(x).speed+2;

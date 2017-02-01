@@ -8,6 +8,7 @@ class Ball
     int curPlayer;
     float scoreMultiplier;
     
+    //Ball Constructor
     Ball()
     {
         this.curPlayer = 1;
@@ -19,6 +20,7 @@ class Ball
         this.scoreMultiplier = 1;
     }//end Ball
     
+    //Renders the balls on the screen
     void renderBall()
     {
         pushMatrix();
@@ -30,6 +32,7 @@ class Ball
         popMatrix();
     }//end renderBall()
     
+    //Updates the current positon of the ball
     void updateBall()
     {
         theta = theta % TWO_PI;

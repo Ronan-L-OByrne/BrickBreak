@@ -1,3 +1,4 @@
+//Bulk of the code used in the Birck Break game
 void brickBreak()
 {
     if(checkKey(SHIFT))
@@ -64,6 +65,7 @@ void brickBreak()
     text("BRICKBREAK", width*(.325), height*(.035));
 }//end brickBreak()
 
+//Bulk of the code used in the Pong Game
 void Pong(int noPlayers)
 {
     if(checkKey(SHIFT))

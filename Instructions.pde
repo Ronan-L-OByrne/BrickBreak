@@ -1,3 +1,4 @@
+//Creates the initial Menu where the user chooses the game
 void Menu()
 {
     background(255);
@@ -78,6 +79,7 @@ void Menu()
     }//end if
 }//end Menu()
 
+//Provides the user with instructions on how to play Brick Break
 void instructBrickBreak()
 {
     background(20, 20, 75);
@@ -126,6 +128,7 @@ void instructBrickBreak()
     }//end else if
 }//end instructBrickBreak()
 
+//Provides the user with instructions on how to play Pong and lets them choose the number of players
 void instructPong()
 {
     background(0);

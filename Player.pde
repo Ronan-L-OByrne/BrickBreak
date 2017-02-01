@@ -1,8 +1,10 @@
+//Sub-class for the Player blocks
 class Player extends Block
 {
     int playerNo;
     int pScore;
     
+    //Player Constructor
     Player(int play)
     {
         this.playerNo = play;
@@ -21,9 +23,9 @@ class Player extends Block
         this.blockWidth = width*(.1);
         this.blockHeight = height*(.02);
         this.blockCol = color(255);
-    }//end player
+    }//end Player
     
-    //updates the position of the player
+    //Updates the position of the player
     void updatePlayer()
     {
         if((checkKey(LEFT) && playerNo == 1) || (checkKey('A') && playerNo == 2))
@@ -42,7 +44,7 @@ class Player extends Block
         }//end if
     }//end updatePlayer()
     
-    //Controls the computer Player
+    //Controls the computer Player in 1 player Pong
     void updatePlayerAI()
     {
         if(positionX > objBall.get(0).ballPos.x)
@@ -67,7 +69,7 @@ class Player extends Block
                 positionX = positionX+width*(.005);
             }//end if
         }//end if
-    }//end updatePlayer()
+    }//end updatePlayerAI()
     
     //Checks if the ball is hitting the player
     void checkPlayer(int x)

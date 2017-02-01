@@ -1,3 +1,4 @@
+//Provides either the win or lose screens for Brick Break
 void GameOverBB(boolean val)
 {
     strokeWeight((width+height)*(.0025));
@@ -62,6 +63,7 @@ void GameOverBB(boolean val)
     objPlayer.get(0).renderBlock();
 }//end GameOver()
 
+//Provides either the win or lose screens for Pong
 void GameOverP(int play)
 {
     strokeWeight((width+height)*(.0025));
