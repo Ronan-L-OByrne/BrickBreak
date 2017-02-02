@@ -117,6 +117,11 @@ void instructBrickBreak()
     
     if(checkKey(ENTER))
     {
+        objBall.clear();
+        Grid.clear();
+        
+        objBall.add(new Ball());
+        
         menu = 3;
         objPlayer.get(0).pScore = 0;
         objBall.get(0).speed = 5;

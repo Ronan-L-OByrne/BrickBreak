@@ -13,6 +13,7 @@ ArrayList<Player> objPlayer = new ArrayList<Player>(); // ArrayList to hold eith
 ArrayList<Ball> objBall = new ArrayList<Ball>();       // ArrayList to hold all the Balls on the screen at a given time
 ArrayList<Destruct> Grid = new ArrayList<Destruct>();  // ArrayList to hold all of the Blocks in the grid
 ArrayList<ParticleSystem> pSystem = new ArrayList<ParticleSystem>();
+ArrayList<Leaderboard> Lead = new ArrayList<Leaderboard>();
 
 boolean start;                                         // Used to keep track of if the ball has been fired yet
 
@@ -42,7 +43,7 @@ void setup()
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
     
     //Load the BrickBreak Leaderboards
-    loadData("LeaderBoards.csv");
+    loadData("LeaderBoard.csv");
 }//end setup()
 
 // Draw //
@@ -103,13 +104,3 @@ void createGrid()
         }//end for(j)
     }//end for(i)
 }//end createGrid
-
-void loadData(String file)
-{
-    Table t = loadTable(file);
-    
-    for(int i=0; i<t.getRowCount(); i++)
-    {
-        TableRow row = t.getRow(i); // Variable to temporaraly hold the current 
-    }//end for
-}//end loadData
