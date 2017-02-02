@@ -96,8 +96,9 @@ class Destruct extends Block
             objBall.get(x).forward.x = sin(objBall.get(x).theta);
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
             
-            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
-            while(temp.particles.size() < 20)
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY), blockCol);
+            
+            while(temp.particles.size() < 10)
             {
                 temp.addParticle();
             }//end for
@@ -154,11 +155,12 @@ class Destruct extends Block
             objBall.get(x).forward.x = sin(objBall.get(x).theta);
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
             
-            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY));
-            while(temp.particles.size() < 20)
+            ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY), blockCol);
+            while(temp.particles.size() < 10)
             {
                 temp.addParticle();
             }//end for
+            
             pSystem.add(temp);
         }//end else if
     }//end checkBlock
@@ -220,17 +222,19 @@ class ParticleSystem
     ArrayList<Particles> particles;
     PVector origin;
     int Lifespan;
+    color col;
   
-    ParticleSystem(PVector position)
+    ParticleSystem(PVector position, int col)
     {
         this.origin = position.copy();
         this.particles = new ArrayList<Particles>();
         this.Lifespan = 100;
+        this.col = color(col);
     }
   
     void addParticle()
     {
-        particles.add(new Particles(origin));
+        particles.add(new Particles(origin,col));
     }//end addParticle()
   
     void run()
@@ -254,13 +258,18 @@ class Particles
     PVector velocity;
     PVector acceleration;
     int lifespan;
+    color particleColor;
+    float theta;
+    PShape shard;
     
-    Particles(PVector orig)
+    Particles(PVector orig, int col)
     {
         this.position = new PVector(random(orig.x-width*(.17)*(.5), orig.x+width*(.17)*(.5)), orig.y);
         this.velocity = new PVector(random(-1, 1), random(-2,0));
         this.acceleration = new PVector(0, 0.05);
         this.lifespan = 255;
+        this.particleColor = color(col);//color(random(150,255), random(75,100), random(75,100));
+        this.theta = random(0, TWO_PI);
     }//end ParticleEffect
     
     void runEffect()
@@ -271,16 +280,40 @@ class Particles
     
     void updateParticle()
     {
+        shardShape();
         velocity.add(acceleration);
         position.add(velocity);
+        if(velocity.x < 0)
+        {
+            theta -= .3;
+        }//end if
+        else
+        {
+            theta += .3;
+        }//end else
+        
         lifespan -= 2.55;
     }//end updateParticle()
     
+    void shardShape()
+    {
+        shard = createShape();
+          shard.beginShape();
+          shard.stroke(particleColor, lifespan);
+          shard.fill(particleColor, lifespan);
+          shard.vertex(-(width+height)*(.005), (width+height)*(.005));
+          shard.vertex(0, -(width+height)*(.005));
+          shard.vertex((width+height)*(.005), (width+height)*(.005));
+        shard.endShape(CLOSE);
+    }//end shardShape()
+    
     void displayParticle()
     {
-        stroke(random(150,255), random(75,100), random(75,100), lifespan);
-        fill(random(150,255), random(75,100), random(75,100), lifespan);
-        ellipse(position.x, position.y, (width+height)*(.005), (width+height)*(.005));
+        pushMatrix();
+          translate(position.x, position.y);
+          rotate(theta);
+          shape(shard);
+        popMatrix();
     }//end displayParticle()
     
     boolean isDead()

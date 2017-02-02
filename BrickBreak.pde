@@ -76,11 +76,12 @@ void draw()
 void createGrid()
 {
     Destruct temp;
-    for(int i=0; i<5; i++)
+    
+    for(int i =0; i<5; i++)
     {
         for(int j=0; j<10; j++)
         {
-            int typeChk = (int)(random(0, 50));
+            int typeChk = (int)(random(0, 49));
             if(typeChk <= 40)                        // Brick has an 80% chance to be a Normal Block
             {
                 temp = new NormalBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
