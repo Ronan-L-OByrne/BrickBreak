@@ -40,6 +40,9 @@ void setup()
     
     //Loads the font used in the sketch
     titleFont = loadFont("Leelawadee-Bold-48.vlw");
+    
+    //Load the BrickBreak Leaderboards
+    loadData("LeaderBoards.csv");
 }//end setup()
 
 // Draw //
@@ -100,3 +103,13 @@ void createGrid()
         }//end for(j)
     }//end for(i)
 }//end createGrid
+
+void loadData(String file)
+{
+    Table t = loadTable(file);
+    
+    for(int i=0; i<t.getRowCount(); i++)
+    {
+        TableRow row = t.getRow(i); // Variable to temporaraly hold the current 
+    }//end for
+}//end loadData
