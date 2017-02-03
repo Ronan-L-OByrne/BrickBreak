@@ -20,7 +20,6 @@ boolean start;                                         // Used to keep track of 
 PFont titleFont;                                       // Font used throughout the Program
 
 int menu = 0;                                          // Dictates what menu or game the screen will display
-int Enemy = 0;                                         // Used to see if the current game is PvP or not
 
 // Setup //
 void setup()
@@ -35,9 +34,10 @@ void setup()
     // Creates the first ball and adds them to the ArrayList
     Ball tempBall = new Ball();
     objBall.add(tempBall);
+    objBall.get(0).speed = 5;
     
     //The ball has not been fired yet
-    start = false;
+    start = true;
     
     //Loads the font used in the sketch
     titleFont = loadFont("Leelawadee-Bold-48.vlw");

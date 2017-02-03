@@ -5,13 +5,59 @@ void Menu()
     fill(255, 150, 20);
     strokeWeight((width+height)*(.002));
     stroke(50, 20, 255);
-    rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
+    rect(width*(.18), height*(.09), width*(.64), height*(.07), (width+height)*(.01));
     
     fill(255);
     textFont(titleFont, (height+width)*(.04));
     textAlign(CENTER,CENTER);
-    text("C15332036", width*(.5), height*(.125));
-    text("", width*(.5), height*(.125));
+    text("2 IN 1 DELUX", width*(.5), height*(.125));
+    
+    for(int i=0; i<4; i++)
+    {
+        for(int j=0; j<5; j++)
+        {
+            fill(255, 75, 50);
+            stroke(255, 125, 100);
+            if(j%2 == 0)
+            {
+                rect((width*(.3))*i, height*(.225)+(height*(.05))*j, width*(.3), height*(.05));
+            }//end if
+            else
+            {
+                rect(-(width*(.15))+(width*(.3))*i, height*(.225)+(height*(.05))*j, width*(.3), height*(.05));
+            }//end else
+        }//end for(j)
+    }//end for(i)
+    
+    fill(0);
+    stroke(0);
+    rect(0, height*(.525), width, height*(.25));
+    fill(255);
+    
+    rect(width*(.025), height*(.625), width*(.025), height*(.05)); // 525
+    rect(width*(.95), height*(.625), width*(.025), height*(.05)); // 775
+    
+    objBall.get(0).ballPos.y = height*(.65);
+    objBall.get(0).renderBall();
+    if(objBall.get(0).ballPos.x-objBall.get(0).ballDiam*(.5) <= width*(.05))
+    {
+        println("IF");
+        objBall.get(0).speed = 5;
+        
+        objBall.get(0).ballPos.x = width*(.05)+objBall.get(0).ballDiam*(.5)+1;
+    }//end if
+    else if(objBall.get(0).ballPos.x+objBall.get(0).ballDiam*(.5) >= width*(.95))
+    {
+        println("ELSE IF");
+        objBall.get(0).speed = -5;
+        
+        objBall.get(0).ballPos.x = width*(.95)-objBall.get(0).ballDiam*(.5)-1;
+    }//end else if
+    else
+    {
+        println("ELSE");
+        objBall.get(0).ballPos.x += objBall.get(0).speed;
+    }//end else
     
     if((mouseX < width *(.2)  || mouseX > width*(.805)) 
     || (mouseY < height*(.29) || mouseY > height*(.41)))
@@ -86,34 +132,37 @@ void instructBrickBreak()
     fill(200, 100, 70);
     strokeWeight((width+height)*(.002));
     stroke(255);
-    rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
+    rect(width*(.2), height*(.04), width*(.605), height*(.07), (width+height)*(.01));
     
     fill(255);
     textFont(titleFont, (height+width)*(.04));
     textAlign(CENTER,CENTER);
-    text("BRICK BREAK", width*(.5), height*(.125));
+    text("BRICK BREAK", width*(.5), height*(.075));
     
-    textFont(titleFont, (height+width)*(.025));
-    text("CONTROLS", width*(.5), height*(.25));
-    text("_____________", width*(.5), height*(.25));
-    text("UP: BEGIN GAME", width*(.5), height*(.3));
-    text("LEFT: MOVE LEFT", width*(.5), height*(.35));
-    text("RIGHT: MOVE RIGHT", width*(.5), height*(.4));
+    textFont(titleFont, (height+width)*(.0225));
+    text("CONTROLS", width*(.5), height*(.2));
+    text("_____________", width*(.5), height*(.2));
+    text("UP: BEGIN GAME", width*(.5), height*(.25));
+    text("LEFT: MOVE LEFT", width*(.5), height*(.3));
+    text("RIGHT: MOVE RIGHT", width*(.5), height*(.35));
     
-    text("GAME", width*(.5), height*(.5));
-    text("_______", width*(.5), height*(.5));
-    text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.55));
-    text("THE BLOCKS", width*(.5), height*(.6));
-    text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.65));
-    text("BALL", width*(.5), height*(.7));
-    text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.75));
-    text("THAT HIT IT", width*(.5), height*(.8));
+    text("GAME", width*(.5), height*(.45));
+    text("_______", width*(.5), height*(.45));
+    text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.5));
+    text("THE BLOCKS", width*(.5), height*(.55));
+    text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.6));
+    text("BALL", width*(.5), height*(.65));
+    text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.7));
+    text("THAT HIT IT", width*(.5), height*(.75));
     
-    text("ENTER TO CONTINUE", width*(.5), height*(.9));
-    text("_________________________", width*(.5), height*(.9));
+    text("ENTER TO CONTINUE", width*(.5), height*(.85));
+    text("_________________________", width*(.5), height*(.85));
     
-    text("SHIFT TO RETURN", width*(.5), height*(.95));
-    text("_____________________", width*(.5), height*(.95));
+    text("SHIFT TO RETURN", width*(.5), height*(.9));
+    text("_____________________", width*(.5), height*(.9));
+    
+    text("UP FOR LEADERBOARD", width*(.5), height*(.95));
+    text("___________________________", width*(.5), height*(.95));
     
     if(checkKey(ENTER))
     {
@@ -125,6 +174,7 @@ void instructBrickBreak()
         menu = 3;
         objPlayer.get(0).pScore = 0;
         objBall.get(0).speed = 5;
+        start = false;
         createGrid();
     }//end if
     else if(checkKey(SHIFT))
@@ -206,6 +256,7 @@ void instructPong()
         Ball tempBall = new Ball();
         objBall.add(tempBall);
         objBall.get(0).speed = 7;
+        start = false;
       
         objPlayer.get(0).pScore = 0;
         
@@ -232,6 +283,7 @@ void instructPong()
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 7;
+            start = false;
           
             objPlayer.get(0).pScore = 0;
         
@@ -255,6 +307,7 @@ void instructPong()
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 7;
+            start = false;
           
             objPlayer.get(0).pScore = 0;
           

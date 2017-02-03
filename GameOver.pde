@@ -71,10 +71,14 @@ void GameOverBB(boolean val)
         text("YOU LOSE", width*(.5), height*(.3));
         
         textSize((width+height)*(.02));
-        text("PRESS ENTER TO", width*(.5), height*(.725));
-        text("PLAY AGAIN", width*(.5), height*(.755));
+        text("ENTER TO PLAY AGAIN", width*(.5), height*(.7));
+        text("___________________________", width*(.5), height*(.7));
         
-        text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
+        text("SHIFT TO RETURN", width*(.5), height*(.75));
+        text("_____________________", width*(.5), height*(.75));
+        
+        text("UP FOR LEADERBOARD", width*(.5), height*(.8));
+        text("___________________________", width*(.5), height*(.8));
     }//end else
     
     if(checkKey(SHIFT))
@@ -99,10 +103,12 @@ void GameOverP(int play)
     text("PLAYER " + (play+1) +" WINS", width*(.5), height*(.275));
     
     textSize((width+height)*(.02));
-    text("PRESS ENTER TO", width*(.5), height*(.725));
-    text("PLAY AGAIN", width*(.5), height*(.755));
+    text("ENTER TO PLAY AGAIN", width*(.5), height*(.75));
+    text("___________________________", width*(.5), height*(.75));
     
-    text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
+    text("SHIFT TO RETURN", width*(.5), height*(.8));
+    text("_____________________", width*(.5), height*(.8));
+        
     
     if(checkKey(ENTER))
     {
