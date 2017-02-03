@@ -36,6 +36,12 @@ void GameOverBB(boolean val)
         fill(255);
         textSize((width+height)*(.05));
         text("YOU WIN", width*(.5), height*(.3));
+    
+        textSize((width+height)*(.02));
+        text("PRESS ENTER TO", width*(.5), height*(.725));
+        text("PLAY AGAIN", width*(.5), height*(.755));
+        
+        text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
     }//end if
     else
     {
@@ -54,6 +60,21 @@ void GameOverBB(boolean val)
         stroke(0);
         fill(180, 125, 125);
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+        
+        for(int i=0; i<Grid.size(); i++)
+        {
+            Grid.get(i).renderBlock();
+        }//end for
+    
+        fill(255);
+        textSize((width+height)*(.05));
+        text("YOU LOSE", width*(.5), height*(.3));
+        
+        textSize((width+height)*(.02));
+        text("PRESS ENTER TO", width*(.5), height*(.725));
+        text("PLAY AGAIN", width*(.5), height*(.755));
+        
+        text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
     }//end else
     
     if(checkKey(SHIFT))
@@ -64,7 +85,6 @@ void GameOverBB(boolean val)
     }//end if
     
     objPlayer.get(0).renderBlock();
-    
 }//end GameOver()
 
 //Provides either the win or lose screens for Pong
@@ -77,6 +97,12 @@ void GameOverP(int play)
     fill(255);
     textSize((width+height)*(.05));
     text("PLAYER " + (play+1) +" WINS", width*(.5), height*(.275));
+    
+    textSize((width+height)*(.02));
+    text("PRESS ENTER TO", width*(.5), height*(.725));
+    text("PLAY AGAIN", width*(.5), height*(.755));
+    
+    text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
     
     if(checkKey(ENTER))
     {

@@ -133,25 +133,26 @@ void instructBrickBreak()
     }//end else if
     else if(checkKey(UP))
     {
-        background(20, 100, 35);
+        background(0);
         fill(255);
+        textFont(titleFont, (height+width)*(.025));
         textAlign(CENTER, CENTER);
         text("LEADERBOARD", width*(.5), height*(.1));
         text("_________________", width*(.5), height*(.1));
         
         textAlign(CENTER, CENTER);
-        text("PLACE", width*(.175), height*(.2));
-        text("_______", width*(.175), height*(.2));
-        text("NAME", width*(.4), height*(.2));
-        text("_______", width*(.4), height*(.2));
-        text("SCORE", width*(.725), height*(.2));
-        text("_______", width*(.725), height*(.2));
+        text("PLACE", width*(.2), height*(.2));
+        text("_______", width*(.2), height*(.2));
+        text("NAME", width*(.45), height*(.2));
+        text("_______", width*(.45), height*(.2));
+        text("SCORE", width*(.775), height*(.2));
+        text("_______", width*(.775), height*(.2));
         
         for(int i=0; i<Lead.size(); i++)
         {
-            text(Lead.get(i).place, width*(.175), height*(.25)+((height*(.075))*i));
-            text(Lead.get(i).name, width*(.4), height*(.25)+((height*(.075))*i));
-            text(Lead.get(i).score, width*(.725), height*(.25)+((height*(.075))*i));
+            text(Lead.get(i).place, width*(.2), height*(.25)+((height*(.075))*i));
+            text(Lead.get(i).name, width*(.45), height*(.25)+((height*(.075))*i));
+            text(Lead.get(i).score, width*(.775), height*(.25)+((height*(.075))*i));
         }//end for
     }//end else if
 }//end instructBrickBreak()
