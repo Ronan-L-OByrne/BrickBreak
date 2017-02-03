@@ -64,6 +64,7 @@ void GameOverBB(boolean val)
     }//end if
     
     objPlayer.get(0).renderBlock();
+    
 }//end GameOver()
 
 //Provides either the win or lose screens for Pong
