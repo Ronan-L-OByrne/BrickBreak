@@ -9,11 +9,15 @@ void brickBreak()
         }//end if
         
         background(20, 20, 75);
-        fill(255, 195, 100);
+        fill(255, 0, 0);
         
+        rect(width*(.25)+((width*(.2))*rad), height*(.4), width*(.1), height*(.2));
+        
+        fill(255, 195, 100);
         textAlign(CENTER,CENTER);
         textFont(titleFont, (width+height)*(.025));
         text("PLESASE ENTER INITIALS", width*(.5), height*(.2));
+        text("PRESS ENTER TO CONTINUE", width*(.5), height*(.8));
         
         textFont(titleFont, (width+height)*(.03));
         text(in1, width*(.3), height*(.5));
@@ -129,14 +133,16 @@ void brickBreak()
         
         fill(255, 195, 100);
         
-        textFont(titleFont, (width+height)*(.025));
+        textFont(titleFont, (width+height)*(.02));
         textAlign(LEFT, CENTER);
         text("SCORE: " + objPlayer.get(0).pScore, width*(.625), height*(.035));
-        text(objPlayer.get(0).pName, width*(.5), height*(.75));
         
-        textFont(titleFont, (width+height)*(.035));
+        textFont(titleFont, (width+height)*(.015));
+        text(objPlayer.get(0).pName, width*(.45), height*(.035));
+        
+        textFont(titleFont, (width+height)*(.025));
         textAlign(CENTER, CENTER);
-        text("BRICKBREAK", width*(.325), height*(.035));
+        text("BRICKBREAK", width*(.2), height*(.035));
     }//end else
     
     if((Grid.size() == 0 || objBall.size() == 0) && checkKey(UP))
