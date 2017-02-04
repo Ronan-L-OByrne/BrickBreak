@@ -1,10 +1,33 @@
 //Creates the initial Menu where the user chooses the game
 void Menu()
 {
-    background(255);
-    fill(255, 150, 20);
+    //background(100, 75, 150);
+    background(100, 25, 100);
+    
+    fill(255);
+    noStroke();
+    ellipse(width*(.5), height, width*(.8), height*(.3));
+    
     strokeWeight((width+height)*(.002));
-    stroke(50, 20, 255);
+    stroke(255);
+    
+    rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
+    float cx = width*(.5);
+    float cy = height;
+    
+    for(int i=0; i<=20; i++)
+    {
+        float x = cx+sin(rad)*height*2;
+        float y = cy+cos(rad)*height*2;
+        
+        rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
+        
+        line(x, y, cx, cy);
+    }//end for
+    
+    fill(0);
+    strokeWeight((width+height)*(.002));
+    stroke(255);
     rect(width*(.18), height*(.09), width*(.64), height*(.07), (width+height)*(.01));
     
     fill(255);
@@ -30,7 +53,7 @@ void Menu()
     }//end for(i)
     
     fill(0);
-    stroke(0);
+    stroke(255);
     rect(0, height*(.525), width, height*(.25));
     fill(255);
     
@@ -41,21 +64,18 @@ void Menu()
     objBall.get(0).renderBall();
     if(objBall.get(0).ballPos.x-objBall.get(0).ballDiam*(.5) <= width*(.05))
     {
-        println("IF");
         objBall.get(0).speed = 5;
         
         objBall.get(0).ballPos.x = width*(.05)+objBall.get(0).ballDiam*(.5)+1;
     }//end if
     else if(objBall.get(0).ballPos.x+objBall.get(0).ballDiam*(.5) >= width*(.95))
     {
-        println("ELSE IF");
         objBall.get(0).speed = -5;
         
         objBall.get(0).ballPos.x = width*(.95)-objBall.get(0).ballDiam*(.5)-1;
     }//end else if
     else
     {
-        println("ELSE");
         objBall.get(0).ballPos.x += objBall.get(0).speed;
     }//end else
     
@@ -171,39 +191,17 @@ void instructBrickBreak()
         
         objBall.add(new Ball());
         
+        rad = 0;
+        
         menu = 3;
         objPlayer.get(0).pScore = 0;
         objBall.get(0).speed = 5;
         start = false;
         createGrid();
     }//end if
-    else if(checkKey(SHIFT))
-    {
-        menu = 0;
-    }//end else if
     else if(checkKey(UP))
     {
-        background(0);
-        fill(255);
-        textFont(titleFont, (height+width)*(.025));
-        textAlign(CENTER, CENTER);
-        text("LEADERBOARD", width*(.5), height*(.1));
-        text("_________________", width*(.5), height*(.1));
-        
-        textAlign(CENTER, CENTER);
-        text("PLACE", width*(.2), height*(.2));
-        text("_______", width*(.2), height*(.2));
-        text("NAME", width*(.45), height*(.2));
-        text("_______", width*(.45), height*(.2));
-        text("SCORE", width*(.775), height*(.2));
-        text("_______", width*(.775), height*(.2));
-        
-        for(int i=0; i<Lead.size(); i++)
-        {
-            text(Lead.get(i).place, width*(.2), height*(.25)+((height*(.075))*i));
-            text(Lead.get(i).name, width*(.45), height*(.25)+((height*(.075))*i));
-            text(Lead.get(i).score, width*(.775), height*(.25)+((height*(.075))*i));
-        }//end for
+        displayLeaderboard();
     }//end else if
 }//end instructBrickBreak()
 
@@ -265,10 +263,6 @@ void instructPong()
         
         menu = 4;
     }//end if
-    else if(checkKey(SHIFT))
-    {
-        menu = 0;
-    }//end else if
     else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.7) && mouseY <= height*(.9))
     {
         fill(255);

@@ -1,9 +1,78 @@
 //Bulk of the code used in the Birck Break game
 void brickBreak()
 {
-    if(checkKey(SHIFT))
+    if(objPlayer.get(0).pName == null)
     {
-        menu = 0;
+        if(rad < 0)
+        {
+            rad = 0;
+        }//end if
+        
+        background(20, 20, 75);
+        fill(255, 195, 100);
+        
+        textAlign(CENTER,CENTER);
+        textFont(titleFont, (width+height)*(.025));
+        text("PLESASE ENTER INITIALS", width*(.5), height*(.2));
+        
+        textFont(titleFont, (width+height)*(.03));
+        text(in1, width*(.3), height*(.5));
+        text(in2, width*(.5), height*(.5));
+        text(in3, width*(.7), height*(.5));
+        
+        in1 = (char)((in1 % 90));
+        
+        println(rad);
+        
+        if(in1 < 38)
+        {
+            in1 = (char)38;
+        }//end if
+        else if(in2 < 38)
+        {
+            in2 = (char)38;
+        }//end else if
+        else if(in3 < 38)
+        {
+            in3 = (char)38;
+        }//end else if
+        
+        if(checkKey(UP) && rad == 0 && frameCount % 10 == 0)
+        {
+            in1 = (char)(in1+1);
+        }//end if
+        else if(checkKey(UP) && rad == 1 && frameCount % 10 == 0)
+        {
+            in2 = (char)(in2+1);
+        }//end else if
+        else if(checkKey(UP) && rad == 2 && frameCount % 10 == 0)
+        {
+            in3 = (char)(in3+1);
+        }//end else if
+        else if(checkKey(DOWN) && rad == 0 && frameCount % 10 == 0)
+        {
+            in1 = (char)(in1-1);
+        }//end else if
+        else if(checkKey(DOWN) && rad == 1 && frameCount % 10 == 0)
+        {
+            in2 = (char)(in2-1);
+        }//end else if
+        else if(checkKey(DOWN) && rad == 2 && frameCount % 10 == 0)
+        {
+            in3 = (char)(in3-1);
+        }//end else if
+        else if(checkKey(RIGHT) && frameCount % 10 == 0)
+        {
+            rad = (rad+1)%3;
+        }//end else if
+        else if(checkKey(LEFT) && frameCount % 10 == 0)
+        {
+            rad = (rad-1)%3;
+        }//end else if
+        else if(checkKey(ENTER) && frameCount % 20 == 0)
+        {
+            objPlayer.get(0).pName = "" + in1 + in2 + in3;
+        }//end else if
     }//end if
     else if(Grid.size() == 0)
     {
@@ -43,32 +112,32 @@ void brickBreak()
         
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
+    
+        for(int i=0; i< pSystem.size(); i++)
+        {
+            if(pSystem.get(i).Lifespan > 0)
+            {
+                pSystem.get(i).run();
+                pSystem.get(i).Lifespan--;
+            }//end if
+            else
+            {
+                pSystem.remove(i);
+            }//end else
+        }//end for
+        
+        
+        fill(255, 195, 100);
+        
+        textFont(titleFont, (width+height)*(.025));
+        textAlign(LEFT, CENTER);
+        text("SCORE: " + objPlayer.get(0).pScore, width*(.625), height*(.035));
+        text(objPlayer.get(0).pName, width*(.5), height*(.75));
+        
+        textFont(titleFont, (width+height)*(.035));
+        textAlign(CENTER, CENTER);
+        text("BRICKBREAK", width*(.325), height*(.035));
     }//end else
-    
-    for(int i=0; i< pSystem.size(); i++)
-    {
-        if(pSystem.get(i).Lifespan > 0)
-        {
-            pSystem.get(i).run();
-            pSystem.get(i).Lifespan--;
-        }//end if
-        else
-        {
-            println("ELSE\n");
-            pSystem.remove(i);
-        }//end else
-    }//end for
-    
-    
-    fill(255, 195, 100);
-    
-    textFont(titleFont, (width+height)*(.025));
-    textAlign(LEFT, CENTER);
-    text("SCORE: " + objPlayer.get(0).pScore, width*(.625), height*(.035));
-    
-    textFont(titleFont, (width+height)*(.035));
-    textAlign(CENTER, CENTER);
-    text("BRICKBREAK", width*(.325), height*(.035));
     
     if((Grid.size() == 0 || objBall.size() == 0) && checkKey(UP))
     {

@@ -3,6 +3,7 @@ class Player extends Block
 {
     int playerNo;
     int pScore;
+    String pName;
     
     //Player Constructor
     Player(int play)
@@ -23,6 +24,7 @@ class Player extends Block
         this.blockWidth = width*(.1);
         this.blockHeight = height*(.02);
         this.blockCol = color(255);
+        this.pName = null;
     }//end Player
     
     //Updates the position of the player

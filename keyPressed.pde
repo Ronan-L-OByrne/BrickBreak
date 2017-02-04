@@ -1,6 +1,6 @@
 //Records when a key is Pressed
 void keyPressed()
-{ 
+{
     keys[keyCode] = true;
 }//end keyPressed
  

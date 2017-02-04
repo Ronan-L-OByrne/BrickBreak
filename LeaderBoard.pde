@@ -23,7 +23,7 @@ void updateBoard(int score)
 {
     if(score > Lead.get(0).score)
     {
-        Lead.add(0, new Leaderboard(1, "NEW", score));
+        Lead.add(0, new Leaderboard(1, objPlayer.get(0).pName, score));
         Lead.remove(9);
         
         writeData("LeaderBoard.csv");
@@ -34,8 +34,8 @@ void updateBoard(int score)
         {
             if(score <= Lead.get(i).score && score > Lead.get(i+1).score)
             {
-                Lead.add(i+1, new Leaderboard(i+2, "NEW", score));
-                Lead.remove(9);
+                Lead.add(i+1, new Leaderboard(i+2, objPlayer.get(0).pName, score));
+                Lead.remove(10);
                 break;
             }//end if
         }//end for
@@ -69,6 +69,33 @@ void loadData(String file)
     }//end for
 }//end loadData()
 
+// Function to display the leaderboard.
+void displayLeaderboard()
+{
+    background(0);
+    fill(255);
+    textFont(titleFont, (height+width)*(.025));
+    textAlign(CENTER, CENTER);
+    text("LEADERBOARD", width*(.5), height*(.1));
+    text("_________________", width*(.5), height*(.1));
+    
+    textAlign(CENTER, CENTER);
+    text("PLACE", width*(.2), height*(.2));
+    text("_______", width*(.2), height*(.2));
+    text("NAME", width*(.45), height*(.2));
+    text("_______", width*(.45), height*(.2));
+    text("SCORE", width*(.775), height*(.2));
+    text("_______", width*(.775), height*(.2));
+    
+    for(int i=0; i<Lead.size(); i++)
+    {
+        text(Lead.get(i).place, width*(.2), height*(.25)+((height*(.075))*i));
+        text(Lead.get(i).name, width*(.45), height*(.25)+((height*(.075))*i));
+        text(Lead.get(i).score, width*(.775), height*(.25)+((height*(.075))*i));
+    }//end for
+  
+}//end displayLeaderboard()
+
 //writes data to the table
 void writeData(String file)
 {
@@ -84,7 +111,7 @@ void writeData(String file)
         //TableRow row = t.getRow(i);
         temp.addRow();
         
-        temp.setInt(i, "Position", i);
+        temp.setInt(i, "Position", (i+1));
         temp.setString(i, "Name", Lead.get(i).name);
         temp.setInt(i, "Score", Lead.get(i).score);
     }//end for

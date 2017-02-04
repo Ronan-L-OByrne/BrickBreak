@@ -20,6 +20,8 @@ boolean start;                                         // Used to keep track of 
 PFont titleFont;                                       // Font used throughout the Program
 
 int menu = 0;                                          // Dictates what menu or game the screen will display
+float rad;
+char in1='A', in2='A', in3='A';
 
 // Setup //
 void setup()
@@ -74,6 +76,14 @@ void draw()
     {
         Pong(2);              // Pong game(2 Player)
     }//end else if
+    
+    if(checkKey(SHIFT))
+    {
+        objBall.clear();
+        objBall.add(new Ball());
+        menu = 0;
+    }//end else if
+    
 }//end draw
 
 //Used to create the grid used in the Brick Break game
