@@ -1,10 +1,11 @@
 //Bulk of the code used in the Birck Break game
 void brickBreak()
 {
+    background(20, 20, 75);
+    
     //Checks if the player name has been set yet in the current game
     if(objPlayer.get(0).pName == null)
     {
-        background(20, 20, 75);
         fill(255, 0, 0);
         
         rect(width*(.25)+((width*(.15))*rad), height*(.325), width*(.1), height*(.35));
@@ -111,7 +112,6 @@ void brickBreak()
     // Otherwise play the game
     else
     {
-        background(20, 20, 75);
         strokeWeight((width+height)*(.0025));
         stroke(255, 195, 100);
         fill(125, 125, 180);
@@ -138,9 +138,11 @@ void brickBreak()
             }//end else
         }//end for
         
+        //Updates and renders the player
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
     
+        //Updates and renders all of the Particle Systems
         for(int i=0; i< pSystem.size(); i++)
         {
             if(pSystem.get(i).Lifespan > 0)
@@ -169,6 +171,7 @@ void brickBreak()
         text("BRICKBREAK", width*(.225), height*(.035));
     }//end else
     
+    //If the game has not started yet the User can view the leaderboard with the UP arrow
     if((Grid.size() == 0 || objBall.size() == 0) && checkKey(UP))
     {
         background(0);
@@ -186,6 +189,7 @@ void brickBreak()
         text("SCORE", width*(.775), height*(.2));
         text("_______", width*(.775), height*(.2));
         
+        // Displays the top ten scores in decending order
         for(int i=0; i<Lead.size(); i++)
         {
             text(Lead.get(i).place, width*(.2), height*(.25)+((height*(.075))*i));
@@ -198,14 +202,17 @@ void brickBreak()
 //Bulk of the code used in the Pong Game
 void Pong(int noPlayers)
 {
+    // If Player 1's score is 5 Player 1 wins
     if(objPlayer.get(0).pScore == 5)
     {
         GameOverP(0);
     }//end if
+    // If Player 2's score is 5 Player 2 wins
     else if(objPlayer.get(1).pScore == 5)
     {
         GameOverP(1);
     }//end else if
+    // Otherwise continue the game
     else
     {
         background(0);
@@ -217,23 +224,28 @@ void Pong(int noPlayers)
         ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
         line(width*(.05), height*(.525), width*(.95), height*(.525));
         
-        
+        // Update, render and check if the ball has hit player 1
         objPlayer.get(0).updatePlayer();
         objPlayer.get(0).renderBlock();
         objPlayer.get(0).checkPlayer(0);
         
+        // Check if Player 2 is a person or an AI
         if(noPlayers == 1)
         {
+            // If AI auto update position
             objPlayer.get(1).updatePlayerAI();
         }//end if
         else if(noPlayers == 2)
         {
+            // If other player check for input
             objPlayer.get(1).updatePlayer();
         }//end else if
         
+        // Render and Check if the ball has hit Player 2
         objPlayer.get(1).renderBlock();
         objPlayer.get(1).checkPlayer(0);
             
+        // Render and update the Ball
         objBall.get(0).renderBall();
         objBall.get(0).updateBall();
     }//end else

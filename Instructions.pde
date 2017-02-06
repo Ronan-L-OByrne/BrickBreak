@@ -1,29 +1,11 @@
 //Creates the initial Menu where the user chooses the game
 void Menu()
 {
-    //background(100, 75, 150);
-    background(100, 25, 100);
+    background(100, 75, 150);
+    //background(100, 25, 100);
     
-    fill(255);
-    noStroke();
-    ellipse(width*(.5), height, width*(.8), height*(.3));
-    
-    strokeWeight((width+height)*(.002));
-    stroke(255);
-    
-    rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
-    float cx = width*(.5);
-    float cy = height;
-    
-    for(int i=0; i<=20; i++)
-    {
-        float x = cx+sin(rad)*height*2;
-        float y = cy+cos(rad)*height*2;
-        
-        rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
-        
-        line(x, y, cx, cy);
-    }//end for
+    // Draws the sun graphic in the background of the main menu
+    DrawSun(color(255, 255, 50));
     
     fill(0);
     strokeWeight((width+height)*(.002));
@@ -149,16 +131,10 @@ void Menu()
 void instructBrickBreak()
 {
     background(20, 20, 75);
-    fill(200, 100, 70);
-    strokeWeight((width+height)*(.002));
-    stroke(255);
-    rect(width*(.2), height*(.04), width*(.605), height*(.07), (width+height)*(.01));
+    
+    DrawSun(color(25, 25, 80));
     
     fill(255);
-    textFont(titleFont, (height+width)*(.04));
-    textAlign(CENTER,CENTER);
-    text("BRICK BREAK", width*(.5), height*(.075));
-    
     textFont(titleFont, (height+width)*(.0225));
     text("CONTROLS", width*(.5), height*(.2));
     text("_____________", width*(.5), height*(.2));
@@ -203,12 +179,25 @@ void instructBrickBreak()
     {
         displayLeaderboard();
     }//end else if
+    
+    fill(200, 100, 70);
+    strokeWeight((width+height)*(.002));
+    stroke(255);
+    rect(width*(.2), height*(.04), width*(.605), height*(.07), (width+height)*(.01));
+    
+    fill(255);
+    textFont(titleFont, (height+width)*(.04));
+    textAlign(CENTER,CENTER);
+    text("BRICK BREAK", width*(.5), height*(.075));
 }//end instructBrickBreak()
 
 //Provides the user with instructions on how to play Pong and lets them choose the number of players
 void instructPong()
 {
     background(0);
+    
+    DrawSun(color(10));
+    
     fill(0);
     strokeWeight((width+height)*(.002));
     stroke(255);
@@ -312,3 +301,27 @@ void instructPong()
         }//end if
     }//end else if
 }//end instructPong()
+
+void DrawSun(color col)
+{
+    noStroke();
+    fill(col);//fill(255, 255, 50);
+    ellipse(width*(.5), height*(1.045), width*(.8), height*(.35));
+    
+    strokeWeight((width+height)*(.002));
+    stroke(col);//stroke(255, 255, 50);
+    
+    rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
+    float cx = width*(.5);
+    float cy = height;
+    
+    for(int i=0; i<=20; i++)
+    {
+        float x = cx+sin(rad)*height*2;
+        float y = cy+cos(rad)*height*2;
+        
+        rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
+        
+        line(x, y, cx, cy);
+    }//end for
+}//end DrawSun
