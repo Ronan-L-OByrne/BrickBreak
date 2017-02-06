@@ -3,6 +3,7 @@ void GameOverBB(boolean val)
 {
     strokeWeight((width+height)*(.0025));
     
+    // If the user has won
     if(val)
     {
         for(int i=0; i<objBall.size(); i++)
@@ -10,6 +11,7 @@ void GameOverBB(boolean val)
             objBall.get(i).renderBall();
         }//end for
         
+        //Restarts the game, carries over score
         if(checkKey(ENTER))
         {
             objBall.clear();
@@ -43,8 +45,10 @@ void GameOverBB(boolean val)
         
         text("PRESS SHIFT TO RETURN", width*(.5), height*(.85));
     }//end if
+    // If the user has lost
     else
     {
+        //Restarts the game, sets score to 0
         if(checkKey(ENTER))
         {
             objBall.clear();
@@ -112,7 +116,7 @@ void GameOverP(int play)
     text("SHIFT TO RETURN", width*(.5), height*(.8));
     text("_____________________", width*(.5), height*(.8));
         
-    
+    // Restarts the game
     if(checkKey(ENTER))
     {
         objBall.clear();

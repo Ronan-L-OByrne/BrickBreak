@@ -7,21 +7,21 @@
 */
 
 // Global Variables //
-boolean[] keys = new boolean[700];                     // Array to store whether or not a key is pressed
+boolean[] keys = new boolean[700];                                   // Array to store whether or not a key is pressed
 
-ArrayList<Player> objPlayer = new ArrayList<Player>(); // ArrayList to hold either 1 or 2 players 
-ArrayList<Ball> objBall = new ArrayList<Ball>();       // ArrayList to hold all the Balls on the screen at a given time
-ArrayList<Destruct> Grid = new ArrayList<Destruct>();  // ArrayList to hold all of the Blocks in the grid
-ArrayList<ParticleSystem> pSystem = new ArrayList<ParticleSystem>();
-ArrayList<Leaderboard> Lead = new ArrayList<Leaderboard>();
+ArrayList<Player> objPlayer = new ArrayList<Player>();               // ArrayList to hold either 1 or 2 players 
+ArrayList<Ball> objBall = new ArrayList<Ball>();                     // ArrayList to hold all the Balls on the screen at a given time
+ArrayList<Destruct> Grid = new ArrayList<Destruct>();                // ArrayList to hold all of the Blocks in the grid
+ArrayList<ParticleSystem> pSystem = new ArrayList<ParticleSystem>(); // ArrayList of Particle effects for when bricks are hit
+ArrayList<Leaderboard> Lead = new ArrayList<Leaderboard>();          // ArrayList of the leaderboard for easy editing
 
-boolean start;                                         // Used to keep track of if the ball has been fired yet
+boolean start;                                                       // Used to keep track of if the ball has been fired yet
 
-PFont titleFont;                                       // Font used throughout the Program
+PFont titleFont;                                                     // Font used throughout the Program
 
-int menu = 0;                                          // Dictates what menu or game the screen will display
-float rad;
-char in1='A', in2='A', in3='A';
+int menu = 0;                                                        // Dictates what menu or game the screen will display
+float rad;                                                           // Used for the main menu effects and the initial select screen
+char in1='A', in2='A', in3='A';                                      // Stores the User initials Before entering them to the class
 
 // Setup //
 void setup()
@@ -77,20 +77,21 @@ void draw()
         Pong(2);              // Pong game(2 Player)
     }//end else if
     
+    //Allows the player to return from the menu from any screen
     if(checkKey(SHIFT))
     {
         objBall.clear();
         objBall.add(new Ball());
         menu = 0;
     }//end else if
-    
 }//end draw
 
 //Used to create the grid used in the Brick Break game
 void createGrid()
 {
-    Destruct temp;
+    Destruct temp; //Temporarily stores a block before writing it to the arraylist
     
+    // Used to make a grid of blocks
     for(int i =0; i<5; i++)
     {
         for(int j=0; j<10; j++)
@@ -106,7 +107,7 @@ void createGrid()
                 temp = new PowerBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);
             }//end else if
-            else if(typeChk > 45 && typeChk <= 50)   // Brick has a 10% chance to be a Hazard Block
+            else if(typeChk > 45 && typeChk < 50)   // Brick has a 10% chance to be a Hazard Block
             {
                 temp = new HazardBlock((width*(.145))+width*((.1775)*i), (height*(.1))+height*((.0375)*j));
                 Grid.add(temp);

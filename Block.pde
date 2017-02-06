@@ -34,16 +34,19 @@ class Destruct extends Block
     //Checks if the ball has collided with the brick from any angle or direction
     void checkBlock(int i, int x)
     {
+        //Checks if the block has been hit from the top or bottom
         if(objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) 
         && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)
         && objBall.get(x).ballPos.x > positionX-blockWidth*(.5)  
         && objBall.get(x).ballPos.x < positionX+blockWidth*(.5))
         {
+            //Slows down the ball if the speed is over 4
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
             }//end if
             
+            //Checks if any power has been hit and increments the score
             if(type == 1)
             {
                 ((PowerBlock)Grid.get(i)).hitPower();
@@ -59,9 +62,12 @@ class Destruct extends Block
                 objPlayer.get(0).pScore += 100*objBall.get(x).scoreMultiplier;
             }//end else
             
+            //Adds to the score multipier
             objBall.get(x).scoreMultiplier += .25;
+            //Removes a block from the grid
             Grid.remove(i);
             
+            //Re-calculates the angle the ball is traveling
             if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta < PI)
             {
                 objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI, PI, HALF_PI, 0);
@@ -105,16 +111,19 @@ class Destruct extends Block
             
             pSystem.add(temp);
         }//end else if
+        //Checks if the block has been hit from the side
         else if(objBall.get(x).ballPos.x+objBall.get(x).ballDiam*(.5) > positionX-blockWidth*(.5)  
              && objBall.get(x).ballPos.x-objBall.get(x).ballDiam*(.5) < positionX+blockWidth*(.5)
              && objBall.get(x).ballPos.y > positionY-blockHeight*(.5) 
              && objBall.get(x).ballPos.y < positionY+blockHeight*(.5))
         {
+            //Slows down the ball if the speed is over 4
             if(objBall.get(x).speed > 4)
             {
                 objBall.get(x).speed -= .25; 
             }//end if
             
+            //Checks if any power has been hit and increments the score
             if(type == 1)
             {
                 ((PowerBlock)Grid.get(i)).hitPower();
@@ -130,8 +139,12 @@ class Destruct extends Block
                 objPlayer.get(0).pScore += 100*objBall.get(x).scoreMultiplier;
             }//end else
             
+            //Adds to the score multipier
+            objBall.get(x).scoreMultiplier += .25;
+            //Removes the block from the grid
             Grid.remove(i);
             
+            //Re-calculates the angle the ball is traveling
             if(objBall.get(x).theta >= HALF_PI && objBall.get(x).theta < PI)
             {
                 objBall.get(x).theta = map(objBall.get(x).theta, HALF_PI, PI, HALF_PI*3, PI);
@@ -223,6 +236,7 @@ class HazardBlock extends Destruct
     }//end hitHazard()
 }//end clss HazardBlock
 
+//Stores the particle effect Values
 class ParticleSystem
 {
     ArrayList<Particles> particles;
@@ -230,6 +244,7 @@ class ParticleSystem
     int Lifespan;
     color col;
   
+    // Constructor for ParticleSystem
     ParticleSystem(PVector position, int col)
     {
         this.origin = position.copy();
@@ -238,11 +253,13 @@ class ParticleSystem
         this.col = color(col);
     }
   
+    // Adds a particle to the system
     void addParticle()
     {
         particles.add(new Particles(origin,col));
     }//end addParticle()
   
+    // Runs and displays the effect
     void run()
     {
         for (int i = particles.size()-1; i >= 0; i--)
@@ -258,6 +275,7 @@ class ParticleSystem
     }//end run()
 }//end ParticleSystem
 
+//Stores the values needed for the individual particles
 class Particles
 {
     PVector position;
@@ -268,6 +286,7 @@ class Particles
     float theta;
     PShape shard;
     
+    //Constructor for Particles
     Particles(PVector orig, int col)
     {
         this.position = new PVector(random(orig.x-width*(.17)*(.5), orig.x+width*(.17)*(.5)), orig.y);
@@ -278,12 +297,14 @@ class Particles
         this.theta = random(0, TWO_PI);
     }//end ParticleEffect
     
+    // Updates and displays the particle
     void runEffect()
     {
         updateParticle();
         displayParticle();
     }//end runEffect()
     
+    //Updates the position of the particle
     void updateParticle()
     {
         shardShape();
@@ -301,6 +322,7 @@ class Particles
         lifespan -= 2.55;
     }//end updateParticle()
     
+    // The shape of the particle
     void shardShape()
     {
         shard = createShape();
@@ -313,6 +335,7 @@ class Particles
         shard.endShape(CLOSE);
     }//end shardShape()
     
+    //Displays the particles to output
     void displayParticle()
     {
         pushMatrix();
@@ -322,6 +345,7 @@ class Particles
         popMatrix();
     }//end displayParticle()
     
+    //Checks if the particle sould be deleted
     boolean isDead()
     {
         if (lifespan < 0.0)
