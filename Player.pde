@@ -49,24 +49,20 @@ class Player extends Block
     //Controls the computer Player in 1 player Pong
     void updatePlayerAI()
     {
+        if(objBall.get(0).curPlayer == 2 && !start)
+        {
+            start = true;
+        }//end if
         if(positionX > objBall.get(0).ballPos.x)
         {
-            if(objBall.get(0).curPlayer == 2 && !start)
-            {
-                start = true;
-            }//end if
-            else if((positionX-blockWidth*(.5)) > width*(.05))
+            if((positionX-blockWidth*(.5)) > width*(.05))
             {
                 positionX = positionX-width*(.005);
             }//end if
         }//end if
         if(positionX < objBall.get(0).ballPos.x)
         {
-            if(objBall.get(0).curPlayer == 2 && !start)
-            {
-                start = true;
-            }//end if
-            else if((positionX+blockWidth*(.5)) < width*(.95))
+            if((positionX+blockWidth*(.5)) < width*(.95))
             {
                 positionX = positionX+width*(.005);
             }//end if

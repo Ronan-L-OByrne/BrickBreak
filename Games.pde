@@ -1,13 +1,9 @@
 //Bulk of the code used in the Birck Break game
 void brickBreak()
 {
+    //Checks if the player name has been set yet in the current game
     if(objPlayer.get(0).pName == null)
     {
-        if(rad < 0)
-        {
-            rad = 0;
-        }//end if
-        
         background(20, 20, 75);
         fill(255, 0, 0);
         
@@ -19,12 +15,14 @@ void brickBreak()
         text("PLESASE ENTER INITIALS", width*(.5), height*(.2));
         text("USE ARROWS KEYS", width*(.5), height*(.8));
         
+        //Displayes the curent initials 
         textFont(titleFont, (width+height)*(.03));
         text(in1, width*(.3), height*(.5));
         text(in2, width*(.45), height*(.5));
         text(in3, width*(.6), height*(.5));
         text("E\nN\nT\nE\nR", width*(.75), height*(.5));
         
+        //Checks that the current caracter is within the acceptable range for each char
         if(in1 > 95)
         {
             in1 = (char)33;
@@ -51,6 +49,7 @@ void brickBreak()
             in3 = (char)95;
         }//end else if
         
+        // Allows the user to scroll through the the characters for each variable
         if(checkKey(UP) && rad == 0 && frameCount % 5 == 0)
         {
             in1 = (char)(in1+1);
@@ -75,6 +74,7 @@ void brickBreak()
         {
             in3 = (char)(in3-1);
         }//end else if
+        // Concatinates the chars into the pName variable
         else if(checkKey(ENTER) && rad == 3)
         {
             objPlayer.get(0).pName = "" + in1 + in2 + in3;
@@ -88,6 +88,7 @@ void brickBreak()
             rad--;
         }//end else if
         
+        //Checks that rad is between the acceptable values
         if(rad < 0)
         {
             rad = 3;
@@ -97,14 +98,17 @@ void brickBreak()
             rad = 0;
         }//end else if
     }//end if
+    // If the grid is destroyed the player has won
     else if(Grid.size() == 0)
     {
         GameOverBB(true);
     }//end if
+    //If there are no balls left the player has lost
     else if(objBall.size() == 0)
     {
         GameOverBB(false);
     }//end else if
+    // Otherwise play the game
     else
     {
         background(20, 20, 75);
@@ -113,6 +117,7 @@ void brickBreak()
         fill(125, 125, 180);
         rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
         
+        // Renders and updates every ball in the arraylist
         for(int x=0; x<objBall.size(); x++)
         {
             if((objBall.get(x).ballPos.y) > height*(.97))
@@ -193,11 +198,7 @@ void brickBreak()
 //Bulk of the code used in the Pong Game
 void Pong(int noPlayers)
 {
-    if(checkKey(SHIFT))
-    {
-        menu = 0;
-    }//end if
-    else if(objPlayer.get(0).pScore == 5)
+    if(objPlayer.get(0).pScore == 5)
     {
         GameOverP(0);
     }//end if

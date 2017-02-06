@@ -96,7 +96,7 @@ class Ball
             }//end else if
             
             //Checks if Pong is being played
-            if(menu == 4 || menu == 5 && (objPlayer.get(0).pScore < 5 || objPlayer.get(1).pScore < 5))
+            if((menu == 4 || menu == 5) && (objPlayer.get(0).pScore < 5 || objPlayer.get(1).pScore < 5))
             {
                 //Checks if Player 1 has scored
                 if((ballPos.y-ballDiam*(.5)) < height*(.075))
@@ -106,15 +106,17 @@ class Ball
                     start = false;
                     
                     objBall.get(0).curPlayer = 2;
+                    objBall.get(0).updateBall();
                 }//end else if
                 //Checks if Player 2 has scored
-                else if((ballPos.y) > height*(.97))
+                else if((ballPos.y+ballDiam*(.5)) > height*(.97))
                 {
                     objPlayer.get(1).pScore += 1;
                     
                     start = false;
                     
                     objBall.get(0).curPlayer = 1;
+                    objBall.get(0).updateBall();
                 }//end else if
             }//end if
             // Checks if Brick Break is being played
