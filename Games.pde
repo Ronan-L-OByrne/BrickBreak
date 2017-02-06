@@ -8,7 +8,7 @@ void brickBreak()
     {
         fill(255, 0, 0);
         
-        rect(width*(.25)+((width*(.15))*rad), height*(.325), width*(.1), height*(.35));
+        rect(width*(.225)+((width*(.15))*rad), height*(.325), width*(.1), height*(.35));
         
         fill(255, 195, 100);
         textAlign(CENTER,CENTER);
@@ -18,10 +18,10 @@ void brickBreak()
         
         //Displayes the curent initials 
         textFont(titleFont, (width+height)*(.03));
-        text(in1, width*(.3), height*(.5));
-        text(in2, width*(.45), height*(.5));
-        text(in3, width*(.6), height*(.5));
-        text("E\nN\nT\nE\nR", width*(.75), height*(.5));
+        text(in1, width*(.275), height*(.5));
+        text(in2, width*(.425), height*(.5));
+        text(in3, width*(.575), height*(.5));
+        text("E\nN\nT\nE\nR", width*(.725), height*(.5));
         
         //Checks that the current caracter is within the acceptable range for each char
         if(in1 > 95)
@@ -99,66 +99,70 @@ void brickBreak()
             rad = 0;
         }//end else if
     }//end if
-    // If the grid is destroyed the player has won
-    else if(Grid.size() == 0)
-    {
-        GameOverBB(true);
-    }//end if
-    //If there are no balls left the player has lost
-    else if(objBall.size() == 0)
-    {
-        GameOverBB(false);
-    }//end else if
-    // Otherwise play the game
     else
     {
-        strokeWeight((width+height)*(.0025));
-        stroke(255, 195, 100);
-        fill(125, 125, 180);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-        
-        // Renders and updates every ball in the arraylist
-        for(int x=0; x<objBall.size(); x++)
+        // If the grid is destroyed the player has won
+        if(Grid.size() == 0)
         {
-            if((objBall.get(x).ballPos.y) > height*(.97))
+            GameOverBB(true);
+        }//end if
+        //If there are no balls left the player has lost
+        else if(objBall.size() == 0)
+        {
+            GameOverBB(false);
+        }//end else if
+        // Otherwise play the game
+        else
+        {
+            strokeWeight((width+height)*(.0025));
+            stroke(255, 195, 100);
+            fill(125, 125, 180);
+            rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+            
+            // Renders and updates every ball in the arraylist
+            for(int x=0; x<objBall.size(); x++)
             {
-                objBall.remove(x);
-            }//end if
-            else
-            {
-                objBall.get(x).updateBall();
-                objBall.get(x).renderBall();
-                
-                for(int i=0; i<Grid.size(); i++)
+                if((objBall.get(x).ballPos.y) > height*(.97))
                 {
-                    Grid.get(i).renderBlock();
-                    Grid.get(i).checkBlock(i, x);
-                }//end for
-                objPlayer.get(0).checkPlayer(x);
-            }//end else
-        }//end for
+                    objBall.remove(x);
+                }//end if
+                else
+                {
+                    objBall.get(x).updateBall();
+                    objBall.get(x).renderBall();
+                    
+                    for(int i=0; i<Grid.size(); i++)
+                    {
+                        Grid.get(i).renderBlock();
+                        Grid.get(i).checkBlock(i, x);
+                    }//end for
+                    objPlayer.get(0).checkPlayer(x);
+                }//end else
+            }//end for
+            
+            //Updates and renders the player
+            //objPlayer.get(0).updatePlayer();
+            objPlayer.get(0).updatePlayerAI();
+            objPlayer.get(0).renderBlock();
         
-        //Updates and renders the player
-        objPlayer.get(0).updatePlayer();
-        objPlayer.get(0).renderBlock();
-    
-        //Updates and renders all of the Particle Systems
-        for(int i=0; i< pSystem.size(); i++)
-        {
-            if(pSystem.get(i).Lifespan > 0)
+            //Updates and renders all of the Particle Systems
+            for(int i=0; i< pSystem.size(); i++)
             {
-                pSystem.get(i).run();
-                pSystem.get(i).Lifespan--;
-            }//end if
-            else
-            {
-                pSystem.remove(i);
-            }//end else
-        }//end for
+                if(pSystem.get(i).Lifespan > 0)
+                {
+                    pSystem.get(i).run();
+                    pSystem.get(i).Lifespan--;
+                }//end if
+                else
+                {
+                    pSystem.remove(i);
+                }//end else
+            }//end for
+        }//end else
         
-        
+        // Writes the players score and name
         fill(255, 195, 100);
-        
+            
         textFont(titleFont, (width+height)*(.02));
         textAlign(LEFT, CENTER);
         text("SCORE: " + objPlayer.get(0).pScore, width*(.625), height*(.035));

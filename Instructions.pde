@@ -61,18 +61,7 @@ void Menu()
         objBall.get(0).ballPos.x += objBall.get(0).speed;
     }//end else
     
-    if((mouseX < width *(.2)  || mouseX > width*(.805)) 
-    || (mouseY < height*(.29) || mouseY > height*(.41)))
-    {
-        fill(200, 100, 70);
-        stroke(20, 20, 75);
-        rect(width*(.2), height*(.29), width*(.605), height*(.12), (width+height)*(.01));
-        
-        fill(0);
-        textFont(titleFont, (height+width)*(.025));
-        text("1. BRICK BREAK", width*(.5), height*(.35));
-    }//end if
-    else
+    if(mouseX > width *(.2)  && mouseX < width*(.805) && mouseY > height*(.29) && mouseY < height*(.41))
     {
         fill(20, 20, 75);
         stroke(200, 100, 70);
@@ -86,19 +75,19 @@ void Menu()
         {
             menu = 1;
         }//end if
-    }//end else
-    
-    if((mouseX < width *(.2)  || mouseX > width*(.805)) 
-    || (mouseY < height*(.59) || mouseY > height*(.71)))
-    {
-        fill(0);
-        stroke(255);
-        rect(width*(.2), height*(.59), width*(.605), height*(.12), (width+height)*(.01));
-        
-        fill(255);
-        text("2. PONG", width*(.5), height*(.65));
     }//end if
     else
+    {
+        fill(200, 100, 70);
+        stroke(20, 20, 75);
+        rect(width*(.2), height*(.29), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(0);
+        textFont(titleFont, (height+width)*(.025));
+        text("1. BRICK BREAK", width*(.5), height*(.35));
+    }//end else
+    
+    if(mouseX > width *(.2)  && mouseX < width*(.805) && mouseY > height*(.59) && mouseY < height*(.71))
     {
         fill(255);
         stroke(0);
@@ -111,6 +100,16 @@ void Menu()
         {
             menu = 2;
         }//end if
+        
+    }//end if
+    else
+    {
+        fill(0);
+        stroke(255);
+        rect(width*(.2), height*(.59), width*(.605), height*(.12), (width+height)*(.01));
+        
+        fill(255);
+        text("2. PONG", width*(.5), height*(.65));
     }//end else
     
     fill(0);
@@ -120,11 +119,11 @@ void Menu()
     if(checkKey('1'))
     {
         menu = 1;
-    }//end if
+    }//end else if
     else if(checkKey('2'))
     {
         menu = 2;
-    }//end if
+    }//end else if
 }//end Menu()
 
 //Provides the user with instructions on how to play Brick Break

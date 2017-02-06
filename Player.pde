@@ -54,24 +54,42 @@ class Player extends Block
     //Controls the computer Player in 1 player Pong
     void updatePlayerAI()
     {
-        if(objBall.get(0).curPlayer == 2 && !start)
+        if(objBall.size() > 0)
         {
-            start = true;
-        }//end if
-        if(positionX > objBall.get(0).ballPos.x)
-        {
-            if((positionX-blockWidth*(.5)) > width*(.05))
+            if(objBall.get(0).curPlayer == 2 && !start)
             {
-                positionX = positionX-width*(.005);
+                start = true;
+            }//end if
+            
+            float dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
+            int closest = 0;
+            
+            for(int i=0; i<objBall.size(); i++)
+            {
+                if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist &&  objBall.get(i).theta != 0)
+                {
+                    dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
+                    closest = i;
+                }//end if;
+            }//end for
+            
+            if(positionX-blockWidth*(.25) > objBall.get(closest).ballPos.x)
+            {
+                if((positionX-blockWidth*(.5)) > width*(.05))
+                {
+                    positionX = positionX-width*(.005);
+                }//end if
+            }//end if
+            if(positionX+blockWidth*(.25) < objBall.get(closest).ballPos.x)
+            {
+                if((positionX+blockWidth*(.5)) < width*(.95))
+                {
+                    positionX = positionX+width*(.005);
+                }//end if
             }//end if
         }//end if
-        if(positionX < objBall.get(0).ballPos.x)
-        {
-            if((positionX+blockWidth*(.5)) < width*(.95))
-            {
-                positionX = positionX+width*(.005);
-            }//end if
-        }//end if
+        
+        
     }//end updatePlayerAI()
     
     //Checks if the ball is hitting the player
