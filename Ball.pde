@@ -20,6 +20,11 @@ class Ball
         this.scoreMultiplier = 1;
     }//end Ball
     
+    String toString()
+    {
+            return ballPos.x + "\t" + ballPos.y + "\t" + forward.x + "\t" + forward.y + "\t" + speed + "\t" + theta + "\t" + ballDiam + "\t" + curPlayer + "\t" + scoreMultiplier;
+    }//end toString()
+    
     //Renders the balls on the screen
     void renderBall()
     {

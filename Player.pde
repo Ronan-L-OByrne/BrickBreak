@@ -27,6 +27,11 @@ class Player extends Block
         this.pName = null;
     }//end Player
     
+    String toString()
+    {
+        return playerNo + "\t" + pScore + "\t" + pName + "\t" + positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
+    
     //Updates the position of the player
     void updatePlayer()
     {

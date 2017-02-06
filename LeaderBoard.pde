@@ -64,8 +64,6 @@ void loadData(String file)
         
         Leaderboard temp = new Leaderboard(place, name, score);
         Lead.add(temp);
-        
-        println(Lead.get(i-1).toString());
     }//end for
 }//end loadData()
 

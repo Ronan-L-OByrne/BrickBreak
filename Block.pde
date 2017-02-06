@@ -15,6 +15,11 @@ class Block
         fill(blockCol);
         rect(positionX-blockWidth*(.5), positionY-blockHeight*(.5), blockWidth, blockHeight);
     }//end renderBlock
+    
+    String toString()
+    {
+        return positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
 }//end class Block
 
 //Sub-class for all non-Player blocks
@@ -30,6 +35,11 @@ class Destruct extends Block
         this.blockWidth = width*(.17);
         this.blockHeight = height*(.031);
     }//end Destruct()
+    
+    String toString()
+    {
+        return type + "\t" + positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
     
     //Checks if the ball has collided with the brick from any angle or direction
     void checkBlock(int i, int x)
@@ -196,6 +206,11 @@ class PowerBlock extends Destruct
         this.blockCol = color(random(50,75), random(100,255), random(50,75));
     }//end PowerBlock
     
+    String toString()
+    {
+        return type + "\t" + positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
+    
     //Gives the user a second ball to destroy more blocks faster
     void hitPower()
     {
@@ -215,6 +230,11 @@ class NormalBlock extends Destruct
         this.blockCol = color(random(50,75), random(50,75), random(100,255));
     }//end NormalBlock
     
+    String toString()
+    {
+        return type + "\t" + positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
+    
     //NO UNIQUE METHODS FOR THE NORMAL BLOCKS
 }//end clss NormalBlock
 
@@ -229,132 +249,14 @@ class HazardBlock extends Destruct
         this.blockCol = color(random(150,255), random(75,100), random(75,100));
     }//end HazardBlock
     
+    String toString()
+    {
+        return type + "\t" + positionX + "\t" + positionY + "\t" + blockWidth + "\t" + blockHeight + "\t" + blockCol;
+    }//end toString()
+    
     //When a hazard is hit 2 is added to the balls speed
     void hitHazard(int x)
     {
         objBall.get(x).speed = objBall.get(x).speed+2;
     }//end hitHazard()
 }//end clss HazardBlock
-
-//Stores the particle effect Values
-class ParticleSystem
-{
-    ArrayList<Particles> particles;
-    PVector origin;
-    int Lifespan;
-    color col;
-  
-    // Constructor for ParticleSystem
-    ParticleSystem(PVector position, int col)
-    {
-        this.origin = position.copy();
-        this.particles = new ArrayList<Particles>();
-        this.Lifespan = 100;
-        this.col = color(col);
-    }
-  
-    // Adds a particle to the system
-    void addParticle()
-    {
-        particles.add(new Particles(origin,col));
-    }//end addParticle()
-  
-    // Runs and displays the effect
-    void run()
-    {
-        for (int i = particles.size()-1; i >= 0; i--)
-        {
-            Particles p = particles.get(i);
-            p.runEffect();
-            
-            if (p.isDead())
-            {
-                particles.remove(i);
-            }//end if
-        }//end for
-    }//end run()
-}//end ParticleSystem
-
-//Stores the values needed for the individual particles
-class Particles
-{
-    PVector position;
-    PVector velocity;
-    PVector acceleration;
-    int lifespan;
-    color particleColor;
-    float theta;
-    PShape shard;
-    
-    //Constructor for Particles
-    Particles(PVector orig, int col)
-    {
-        this.position = new PVector(random(orig.x-width*(.17)*(.5), orig.x+width*(.17)*(.5)), orig.y);
-        this.velocity = new PVector(random(-1, 1), random(-2,0));
-        this.acceleration = new PVector(0, 0.05);
-        this.lifespan = 255;
-        this.particleColor = color(col);//color(random(150,255), random(75,100), random(75,100));
-        this.theta = random(0, TWO_PI);
-    }//end ParticleEffect
-    
-    // Updates and displays the particle
-    void runEffect()
-    {
-        updateParticle();
-        displayParticle();
-    }//end runEffect()
-    
-    //Updates the position of the particle
-    void updateParticle()
-    {
-        shardShape();
-        velocity.add(acceleration);
-        position.add(velocity);
-        if(velocity.x < 0)
-        {
-            theta -= .3;
-        }//end if
-        else
-        {
-            theta += .3;
-        }//end else
-        
-        lifespan -= 2.55;
-    }//end updateParticle()
-    
-    // The shape of the particle
-    void shardShape()
-    {
-        shard = createShape();
-          shard.beginShape();
-          shard.stroke(particleColor, lifespan);
-          shard.fill(particleColor, lifespan);
-          shard.vertex(-(width+height)*(.005), (width+height)*(.005));
-          shard.vertex(0, -(width+height)*(.005));
-          shard.vertex((width+height)*(.005), (width+height)*(.005));
-        shard.endShape(CLOSE);
-    }//end shardShape()
-    
-    //Displays the particles to output
-    void displayParticle()
-    {
-        pushMatrix();
-          translate(position.x, position.y);
-          rotate(theta);
-          shape(shard);
-        popMatrix();
-    }//end displayParticle()
-    
-    //Checks if the particle sould be deleted
-    boolean isDead()
-    {
-        if (lifespan < 0.0)
-        {
-            return true;
-        }//end if
-        else
-        {
-            return false;
-        }//end else
-    }//end isDead()
-}//end class ParticleEffect
