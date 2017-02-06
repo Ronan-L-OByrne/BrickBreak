@@ -11,18 +11,19 @@ void brickBreak()
         background(20, 20, 75);
         fill(255, 0, 0);
         
-        rect(width*(.25)+((width*(.2))*rad), height*(.4), width*(.1), height*(.2));
+        rect(width*(.25)+((width*(.15))*rad), height*(.325), width*(.1), height*(.35));
         
         fill(255, 195, 100);
         textAlign(CENTER,CENTER);
         textFont(titleFont, (width+height)*(.025));
         text("PLESASE ENTER INITIALS", width*(.5), height*(.2));
+        text("USE ARROWS KEYS", width*(.5), height*(.8));
         
         textFont(titleFont, (width+height)*(.03));
         text(in1, width*(.3), height*(.5));
-        text(in2, width*(.5), height*(.5));
-        text(in3, width*(.7), height*(.5));
-        text("FIN", width*(.9), height*(.5));
+        text(in2, width*(.45), height*(.5));
+        text(in3, width*(.6), height*(.5));
+        text("E\nN\nT\nE\nR", width*(.75), height*(.5));
         
         if(in1 > 90)
         {
@@ -74,17 +75,26 @@ void brickBreak()
         {
             in3 = (char)(in3-1);
         }//end else if
-        else if(checkKey(RIGHT) && frameCount % 5 == 0)
-        {
-            rad = (rad+1)%4;
-        }//end else if
-        else if(checkKey(LEFT) && frameCount % 5 == 0)
-        {
-            rad = (rad-1)%4;
-        }//end else if
         else if(checkKey(ENTER) && rad == 3)
         {
             objPlayer.get(0).pName = "" + in1 + in2 + in3;
+        }//end else if
+        else if(checkKey(RIGHT) && frameCount % 10 == 0)
+        {
+            rad++;
+        }//end else if
+        else if(checkKey(LEFT) && frameCount % 10 == 0)
+        {
+            rad--;
+        }//end else if
+        
+        if(rad < 0)
+        {
+            rad = 3;
+        }//end if
+        else if(rad > 3)
+        {
+            rad = 0;
         }//end else if
     }//end if
     else if(Grid.size() == 0)
