@@ -47,13 +47,16 @@ void GameOverBB(boolean val)
     {
         if(checkKey(ENTER))
         {
-            updateBoard(objPlayer.get(0).pScore);
-            
             objBall.clear();
             Grid.clear();
+            
+            createGrid();
+            
+            Ball tempBall = new Ball();
+            objBall.add(tempBall);
             objPlayer.get(0).pScore = 0;
             
-            setup();
+            start = false;
         }//end if
         
         background(100, 20, 35);

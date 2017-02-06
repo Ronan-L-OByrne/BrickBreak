@@ -80,7 +80,15 @@ class Player extends Block
         && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)
         && playerNo == 1)
         {
-            if(objBall.get(x).ballPos.x <= positionX)
+            if(objBall.get(0).theta == 0)
+            {
+                objBall.get(0).theta = random(PI-HALF_PI/2, PI+HALF_PI/2);
+            }//end if
+            else if(objBall.get(0).theta == TWO_PI)
+            {
+                objBall.get(0).theta = random(TWO_PI-HALF_PI/2, TWO_PI+HALF_PI/2)%TWO_PI;
+            }//end if
+            else if(objBall.get(x).ballPos.x <= positionX)
             {
                 float temp = map(objBall.get(x).ballPos.x, positionX-blockWidth*(.65), positionX, HALF_PI+PI+(HALF_PI/4), TWO_PI);
                 objBall.get(x).theta = temp;
@@ -99,7 +107,15 @@ class Player extends Block
         && objBall.get(x).ballPos.y+objBall.get(x).ballDiam*(.5) > positionY-blockHeight*(.5) && objBall.get(x).ballPos.y-objBall.get(x).ballDiam*(.5) < positionY+blockHeight*(.5)
         && playerNo == 2)
         {
-            if(objBall.get(x).ballPos.x <= positionX)
+            if(objBall.get(0).theta == 0)
+            {
+                objBall.get(0).theta = random(PI-HALF_PI/2, PI+HALF_PI/2);
+            }//end if
+            else if(objBall.get(0).theta == TWO_PI)
+            {
+                objBall.get(0).theta = random(TWO_PI-HALF_PI/2, TWO_PI+HALF_PI/2)%TWO_PI;
+            }//end if
+            else if(objBall.get(x).ballPos.x <= positionX)
             {
                 float temp = map(objBall.get(x).ballPos.x, positionX+blockWidth*(.65), positionX, HALF_PI+(HALF_PI/4), PI);
                 objBall.get(x).theta = temp;

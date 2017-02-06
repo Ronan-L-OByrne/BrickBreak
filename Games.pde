@@ -25,30 +25,30 @@ void brickBreak()
         text(in3, width*(.6), height*(.5));
         text("E\nN\nT\nE\nR", width*(.75), height*(.5));
         
-        if(in1 > 90)
+        if(in1 > 95)
         {
-            in1 = (char)38;
+            in1 = (char)33;
         }//end if
-        else if(in2 > 90)
+        else if(in2 > 95)
         {
-            in2 = (char)38;
+            in2 = (char)33;
         }//end else if
-        else if(in3 > 90)
+        else if(in3 > 95)
         {
-            in3 = (char)38;
+            in3 = (char)33;
         }//end else if
         
-        if(in1 < 38)
+        if(in1 < 33)
         {
-            in1 = (char)90;
+            in1 = (char)95;
         }//end if
-        else if(in2 < 38)
+        else if(in2 < 33)
         {
-            in2 = (char)90;
+            in2 = (char)95;
         }//end else if
-        else if(in3 < 38)
+        else if(in3 < 33)
         {
-            in3 = (char)90;
+            in3 = (char)95;
         }//end else if
         
         if(checkKey(UP) && rad == 0 && frameCount % 5 == 0)
