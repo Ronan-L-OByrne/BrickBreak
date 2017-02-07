@@ -62,51 +62,23 @@ class Player extends Block
             }//end if
             
             float dist = height;
-            /*if(playerNo == 1)
-            {
-                dist = height;
-            }//end if
-            else
-            {
-                dist = height;
-            }//end else*/
-            
             int closest = 0;
             
-            /*if(objBall.size() == 1)
+            for(int i=0; i<objBall.size(); i++)
             {
-                if(dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY) < dist
-                && objBall.get(0).theta > HALF_PI && objBall.get(0).theta < HALF_PI*3 && positionY > height*(.5))
+                if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
+                && objBall.get(i).theta > HALF_PI && objBall.get(i).theta < HALF_PI*3 && positionY > height*(.5))
                 {
-                    dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
-                    closest = 1;
+                    dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
+                    closest = i+1;
                 }//end if;
-                else if(dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY) < dist
-                && (objBall.get(0).theta < HALF_PI || objBall.get(0).theta > HALF_PI*3) && positionY < height*(.5))
+                else if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
+                && (objBall.get(i).theta < HALF_PI || objBall.get(i).theta > HALF_PI*3) && positionY < height*(.5))
                 {
-                    dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
-                    closest = 1;
+                    dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
+                    closest = i+1;
                 }//end if;
-                //closest = 1;
-            }//end if
-            else*/
-            {
-                for(int i=0; i<objBall.size(); i++)
-                {
-                    if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
-                    && objBall.get(i).theta > HALF_PI && objBall.get(i).theta < HALF_PI*3 && positionY > height*(.5))
-                    {
-                        dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
-                        closest = i+1;
-                    }//end if;
-                    else if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
-                    && (objBall.get(i).theta < HALF_PI || objBall.get(i).theta > HALF_PI*3) && positionY < height*(.5))
-                    {
-                        dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
-                        closest = i+1;
-                    }//end if;
-                }//end for
-            }//end else
+            }//end for
             
             if(closest == 0)
             {

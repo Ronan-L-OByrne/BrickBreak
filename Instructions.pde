@@ -17,6 +17,7 @@ void Menu()
     textAlign(CENTER,CENTER);
     text("2 IN 1 DELUX", width*(.5), height*(.125));
     
+    //Draws the brick graphic behind the brick break button
     for(int i=0; i<4; i++)
     {
         for(int j=0; j<5; j++)
@@ -42,6 +43,7 @@ void Menu()
     rect(width*(.025), height*(.625), width*(.025), height*(.05)); // 525
     rect(width*(.95), height*(.625), width*(.025), height*(.05)); // 775
     
+    //Renders the ball bouncing between two paddles behind the pong button
     objBall.get(0).ballPos.y = height*(.65);
     objBall.get(0).renderBall();
     if(objBall.get(0).ballPos.x-objBall.get(0).ballDiam*(.5) <= width*(.05))
@@ -61,6 +63,7 @@ void Menu()
         objBall.get(0).ballPos.x += objBall.get(0).speed;
     }//end else
     
+    //Checks if the mouse is over the buttons
     if(mouseX > width *(.2)  && mouseX < width*(.805) && mouseY > height*(.29) && mouseY < height*(.41))
     {
         fill(20, 20, 75);
@@ -71,6 +74,7 @@ void Menu()
         textFont(titleFont, (height+width)*(.025));
         text("1. BRICK BREAK", width*(.5), height*(.35));
         
+        //Goes to BrickBreak instruction screen
         if(mousePressed)
         {
             menu = 1;
@@ -96,6 +100,7 @@ void Menu()
         fill(0);
         text("2. PONG", width*(.5), height*(.65));
         
+        //Goes to Pong instruction screen
         if(mousePressed)
         {
             menu = 2;
@@ -131,8 +136,10 @@ void instructBrickBreak()
 {
     background(20, 20, 75);
     
+    //Draws the faint sun in the background
     DrawSun(color(25, 25, 80));
     
+    //Displays the instructions for BrickBreak
     fill(255);
     textFont(titleFont, (height+width)*(.0225));
     text("CONTROLS", width*(.5), height*(.2));
@@ -159,6 +166,7 @@ void instructBrickBreak()
     text("UP FOR LEADERBOARD", width*(.5), height*(.95));
     text("___________________________", width*(.5), height*(.95));
     
+    //Pressing enter begins the game
     if(checkKey(ENTER))
     {
         objBall.clear();
@@ -174,6 +182,7 @@ void instructBrickBreak()
         start = false;
         createGrid();
     }//end if
+    //Up displays the leaderboard
     else if(checkKey(UP))
     {
         displayLeaderboard();
@@ -195,6 +204,7 @@ void instructPong()
 {
     background(0);
     
+    //Draws the faint sun in the background
     DrawSun(color(10));
     
     fill(0);
@@ -202,6 +212,7 @@ void instructPong()
     stroke(255);
     rect(width*(.2), height*(.09), width*(.605), height*(.07), (width+height)*(.01));
     
+    //Displays the instructions for Pong
     fill(255);
     textFont(titleFont, (height+width)*(.04));
     textAlign(CENTER,CENTER);
@@ -236,6 +247,7 @@ void instructPong()
     text("SHIFT TO RETURN", width*(.5), height*(.95));
     text("_____________________", width*(.5), height*(.95));
     
+    //If enter is pressed a 1 player game begins
     if(checkKey(ENTER))
     {
         objBall.clear();
@@ -251,6 +263,7 @@ void instructPong()
         
         menu = 4;
     }//end if
+    //Checks if the mouse is above a button
     else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.7) && mouseY <= height*(.9))
     {
         fill(255);
@@ -259,6 +272,7 @@ void instructPong()
         fill(0);
         text("1 Player", width*(.27), height*(.8));
         
+        //If Mose is pressed a 1 player game begins
         if(mousePressed)
         {
             objBall.clear();
@@ -283,6 +297,7 @@ void instructPong()
         fill(0);
         text("2 Player", width*(.725), height*(.8));
         
+        //If enter is pressed a 2 player game begins
         if(mousePressed)
         {
             objBall.clear();
@@ -301,6 +316,7 @@ void instructPong()
     }//end else if
 }//end instructPong()
 
+//Draws a sun graphic in the background of various menu's
 void DrawSun(color col)
 {
     noStroke();

@@ -21,17 +21,26 @@ class Leaderboard
 //Update the Leaderboard
 void updateBoard(int score)
 {
+    //Checks if the users score is the new Best
     if(score > Lead.get(0).score)
     {
         Lead.add(0, new Leaderboard(1, objPlayer.get(0).pName, score));
-        Lead.remove(9);
+        Lead.remove(10);
         
+        for(int i=0; i<Lead.size(); i++)
+        {
+            Lead.get(i).place = i+1;
+        }//end for
+        
+        //Saves the table
         writeData("LeaderBoard.csv");
     }//end if
+    //Checks if the users score has beaten the lowest score
     else if(score > Lead.get(9).score)
     {
         for(int i=0; i<Lead.size()-1; i++)
         {
+            //Checks if the score is between two of the current Scores
             if(score <= Lead.get(i).score && score > Lead.get(i+1).score)
             {
                 Lead.add(i+1, new Leaderboard(i+2, objPlayer.get(0).pName, score));
@@ -40,11 +49,13 @@ void updateBoard(int score)
             }//end if
         }//end for
         
+        //Resets the place number
         for(int i=0; i<Lead.size(); i++)
         {
             Lead.get(i).place = i+1;
         }//end for
         
+        //Saves the table
         writeData("LeaderBoard.csv");
     }//end else if
 }//end updateBoard()
@@ -54,14 +65,17 @@ void loadData(String file)
 {
     Table t = loadTable(file);
     
+    //For every row in the table
     for(int i=1; i<t.getRowCount(); i++)
     {
         TableRow row = t.getRow(i); // Variable to temporaraly hold the current
         
+        //Loads all the data from the current row
         int place = i;
         String name = row.getString(1);
         int score = row.getInt(2);
         
+        //Adds the data to the ArrayList
         Leaderboard temp = new Leaderboard(place, name, score);
         Lead.add(temp);
     }//end for
