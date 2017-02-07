@@ -54,7 +54,7 @@ void Menu()
     }//end if
     else if(objBall.get(0).ballPos.x+objBall.get(0).ballDiam*(.5) >= width*(.95))
     {
-        objBall.get(0).speed = (width+height)*(.003571428);
+        objBall.get(0).speed = -(width+height)*(.003571428);
         
         objBall.get(0).ballPos.x = width*(.95)-objBall.get(0).ballDiam*(.5)-1;
     }//end else if
@@ -86,7 +86,7 @@ void Menu()
         stroke(20, 20, 75);
         rect(width*(.2), height*(.29), width*(.605), height*(.12), (width+height)*(.01));
         
-        fill(0);
+        fill(20, 20, 75);
         textFont(titleFont, (height+width)*(.025));
         text("1. BRICK BREAK", width*(.5), height*(.35));
     }//end else
@@ -367,14 +367,14 @@ void instructPong()
         {
             objBall.clear();
             objPlayer.clear();
+          
+            objPlayer.add(new Player(1));
+            objPlayer.add(new Player(2));
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
-          
-            objPlayer.add(new Player(1));
-            objPlayer.add(new Player(2));
             
             menu = 6;
         }//end if

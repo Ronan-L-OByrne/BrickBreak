@@ -15,14 +15,16 @@ void GameOverBB(boolean val)
         if(checkKey(ENTER))
         {
             objBall.clear();
-            Grid.clear();
+            objPlayer.clear();
             
-            createGrid();
+            objPlayer.add(new Player(1));
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            
+            objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
+            
+            createGrid();
         }//end if
         
         background(20, 100, 35);
@@ -51,18 +53,23 @@ void GameOverBB(boolean val)
         //Restarts the game, sets score to 0
         if(checkKey(ENTER))
         {
-            updateBoard(objPlayer.get(0).pScore);
+            if(menu == 3)
+            {
+                updateBoard(objPlayer.get(0).pScore);
+            }//end if
             
-            objBall.clear();
             Grid.clear();
+            objBall.clear();
             
-            createGrid();
+            objPlayer.get(0).positionX = width*(.5);
+            objPlayer.get(0).pScore = 0;
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objPlayer.get(0).pScore = 0;
-            
+            objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
+            
+            createGrid();
         }//end if
         
         background(100, 20, 35);
@@ -115,12 +122,15 @@ void GameOverP(int play)
     if(checkKey(ENTER))
     {
         objBall.clear();
+        objPlayer.clear();
         
-        objPlayer.get(1).pScore = 0;
-        objPlayer.get(0).pScore = 0;
+        objPlayer.add(new Player(1));
+        objPlayer.add(new Player(2));
         
         Ball tempBall = new Ball();
         objBall.add(tempBall);
+        objBall.get(0).speed = (width+height)*(.004285714);
+        start = false;
         
         start = false;
     }//end if

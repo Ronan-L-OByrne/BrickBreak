@@ -125,7 +125,7 @@ class Ball
                 }//end else if
             }//end if
             // Checks if Brick Break is being played
-            else if(menu == 3)
+            else if(menu == 3 || menu == 4)
             {
                 // Checks if the ball has hit the top wall
                 if((ballPos.y-ballDiam*(.5)) < height*(.075))
