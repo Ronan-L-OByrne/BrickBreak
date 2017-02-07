@@ -11,7 +11,9 @@ The assignment was to use Processing to create a game using the skills we learne
 year sofar and preferably skills we learned in our own time, the game should meet all of the 
 requirements laid out in the brief.
 
-Link to video of the sketch running: [![Video](http://img.youtube.com/vi/Lun3kk02Czw/0.jpg)](http://www.youtube.com/watch?v=Lun3kk02Czw)
+Link to video of the sketch running:
+
+[![Video](http://img.youtube.com/vi/Lun3kk02Czw/0.jpg)](http://www.youtube.com/watch?v=Lun3kk02Czw)
  
 # Contents
 The project contains two games, BrickBreak and Pong, that the user can play in various modes
