@@ -66,19 +66,23 @@ void draw()
     }//end else if
     else if(menu == 3)
     {
-        brickBreak(1);         // Brick Break game
+        brickBreak(1);         // Brick Break game player mode
     }//end else if
     else if(menu == 4)
     {              
-        brickBreak(0);         // Brick Break game
+        brickBreak(0);         // Brick Break game spectator mode
     }//end else if
     else if(menu == 5)
     {
-        Pong(1);              // Pong game (1 Player)
+        Pong(1);              // Pong game(1 Player)
     }//end else if
     else if(menu == 6)
     {
         Pong(2);              // Pong game(2 Player)
+    }//end else if
+    else if(menu == 7)
+    {
+        Pong(0);              // Pong game(0 Player)
     }//end else if
     
     //Allows the player to return from the menu from any screen

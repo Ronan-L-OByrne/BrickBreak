@@ -101,7 +101,7 @@ class Ball
             }//end else if
             
             //Checks if Pong is being played
-            if((menu == 5 || menu == 6) && (objPlayer.get(0).pScore < 5 || objPlayer.get(1).pScore < 5))
+            if((menu == 5 || menu == 6 || menu == 7) && (objPlayer.get(0).pScore < 5 || objPlayer.get(1).pScore < 5))
             {
                 //Checks if Player 1 has scored
                 if((ballPos.y-ballDiam*(.5)) < height*(.075))

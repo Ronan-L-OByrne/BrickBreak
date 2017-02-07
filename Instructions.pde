@@ -166,9 +166,6 @@ void instructBrickBreak()
     text("__________________", width*(.5), height*(.475));
     text("HIT AND DESTROY ALL BLOCKS", width*(.5), height*(.525));
     
-    //text("ENTER TO CONTINUE", width*(.5), height*(.6));
-    //text("_________________________", width*(.5), height*(.6));
-    
     text("UP FOR LEADERBOARD", width*(.5), height*(.65));
     text("___________________________", width*(.5), height*(.65));
     
@@ -303,6 +300,13 @@ void instructPong()
     fill(255);
     text("2 Player", width*(.725), height*(.8));
     
+    fill(0);
+    rect(width*(.8), height*(.925), width*(.175), height*(.05), (width+height)*(.005));
+        
+    textFont(titleFont, (height+width)*(.015));
+    fill(255);
+    text("Spectate", width*(.8875), height*(.95));
+    
     text("SHIFT TO RETURN", width*(.5), height*(.95));
     text("_____________________", width*(.5), height*(.95));
     
@@ -371,6 +375,32 @@ void instructPong()
             objPlayer.add(tempPlayer);
             
             menu = 6;
+        }//end if
+    }//end else if
+    else if(mouseX >= width*(.8) && mouseX <= width*(.975) && mouseY >= height*(.925) && mouseY <= height*(.975))
+    {
+        fill(255);
+        rect(width*(.8), height*(.925), width*(.175), height*(.05), (width+height)*(.005));
+            
+        textFont(titleFont, (height+width)*(.015));
+        fill(0);
+        text("Spectate", width*(.8875), height*(.95));
+        
+        //If enter is pressed a 2 player game begins
+        if(mousePressed)
+        {
+            objBall.clear();
+            Ball tempBall = new Ball();
+            objBall.add(tempBall);
+            objBall.get(0).speed = 6;
+            start = false;
+          
+            objPlayer.get(0).pScore = 0;
+          
+            Player tempPlayer = new Player(2);
+            objPlayer.add(tempPlayer);
+            
+            menu = 7;
         }//end if
     }//end else if
 }//end instructPong()

@@ -242,12 +242,19 @@ void Pong(int noPlayers)
         line(width*(.05), height*(.525), width*(.95), height*(.525));
         
         // Update, render and check if the ball has hit player 1
-        objPlayer.get(0).updatePlayerAI();
+        if(noPlayers == 0)
+        {
+            objPlayer.get(0).updatePlayerAI();
+        }
+        else
+        {
+            objPlayer.get(0).updatePlayer();
+        }
         objPlayer.get(0).renderBlock();
         objPlayer.get(0).checkPlayer(0);
         
         // Check if Player 2 is a person or an AI
-        if(noPlayers == 1)
+        if(noPlayers == 1 || noPlayers == 0)
         {
             // If AI auto update position
             objPlayer.get(1).updatePlayerAI();
