@@ -13,8 +13,6 @@ requirements laid out in the brief.
 
 Link to video of the sketch running:
  
-[![Video](http://img.youtube.com/vi/rrI7ruHb1ws/0.jpg)](http://www.youtube.com/watch?v=rrI7ruHb1ws)
-
 # Contents
 The project contains two games, BrickBreak and Pong, that the user can play in various modes
 or specate the computer playing.
@@ -45,7 +43,7 @@ It Contains:
 
 	4. Spectator mode that allows the user to watch the AI play the game.
 
-#  BrickBreak Controls
+# BrickBreak Controls
 * Arrow Keys to navigate the initial select screen, Enter over the enter button to start the game
 
 * Left and Right Arrows to move the paddle.
@@ -66,3 +64,12 @@ It Contains:
 	* W Key to start the game.
 
 * Shift to return to the main menu.
+
+# Key Notes
+* Uses Polymorphism and Inheritence for various classes most notably with the Block class.
+
+* Fully scalable and functional at any resolution.
+
+* Basic AI programmed to play against the player or itself.
+
+ 
