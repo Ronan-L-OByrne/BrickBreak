@@ -52,38 +52,49 @@ void setup()
 void draw()
 {
     //Checks which game or menu the user is currently on
-    if(menu == 0)
+    switch(menu)
     {
-        Menu();               // Game selection screen
-    }//end if
-    else if(menu == 1)
-    {
-        instructBrickBreak(); // Brick Break instruction creen
-    }//end else if
-    else if(menu == 2)
-    {
-        instructPong();       // Pong instruction screen
-    }//end else if
-    else if(menu == 3)
-    {
-        brickBreak(1);         // Brick Break game player mode
-    }//end else if
-    else if(menu == 4)
-    {              
-        brickBreak(0);         // Brick Break game spectator mode
-    }//end else if
-    else if(menu == 5)
-    {
-        Pong(1);              // Pong game(1 Player)
-    }//end else if
-    else if(menu == 6)
-    {
-        Pong(2);              // Pong game(2 Player)
-    }//end else if
-    else if(menu == 7)
-    {
-        Pong(0);              // Pong game(0 Player)
-    }//end else if
+        case 0:
+        {
+            Menu();               // Game selection screen
+            break;
+        }//end case 0
+        case 1:
+        {
+            instructBrickBreak(); // Brick Break instruction screen
+            break;
+        }//end case 1
+        case 2:
+        {
+            instructPong();       // Pong instruction screen
+            break;
+        }//end case 2
+        case 3:
+        {
+            brickBreak(1);         // Brick Break game player mode
+            break;
+        }//end case 3
+        case 4:
+        {              
+            brickBreak(0);         // Brick Break game spectator mode
+            break;
+        }//end case 4
+        case 5:
+        {
+            Pong(1);              // Pong game(1 Player)
+            break;
+        }//end case 5
+        case 6:
+        {
+            Pong(2);              // Pong game(2 Player)
+            break;
+        }//end case 6
+        case 7:
+        {
+            Pong(0);              // Pong game(0 Player)
+            break;
+        }//end case 7
+    }//end switch(menu)
     
     //Allows the player to return from the menu from any screen
     if(checkKey(SHIFT))

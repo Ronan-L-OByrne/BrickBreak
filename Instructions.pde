@@ -105,7 +105,6 @@ void Menu()
         {
             menu = 2;
         }//end if
-        
     }//end if
     else
     {
@@ -176,17 +175,17 @@ void instructBrickBreak()
     if(checkKey(ENTER))
     {
         objBall.clear();
+        objPlayer.clear();
         Grid.clear();
         
-        objBall.add(new Ball());
+        objPlayer.add(new Player(1));
         
+        objBall.add(new Ball());
+        start = false;
         rad = 0;
+        createGrid();
         
         menu = 3;
-        objPlayer.get(0).pScore = 0;
-        objBall.get(0).speed = 5;
-        start = false;
-        createGrid();
     }//end if//Checks if the mouse is above a button
     else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.7) && mouseY <= height*(.9))
     {
@@ -201,16 +200,17 @@ void instructBrickBreak()
         if(mousePressed)
         {
             objBall.clear();
+            objPlayer.clear();
             Grid.clear();
             
-            objBall.add(new Ball());
+            objPlayer.add(new Player(1));
             
+            objBall.add(new Ball());
+            start = false;
             rad = 0;
+            createGrid();
             
             menu = 4;
-            objPlayer.get(0).pScore = 0;
-            start = false;
-            createGrid();
         }//end if
     }//end else if
     else if(mouseX >= width*(.55) && mouseX <= width*(.85) && mouseY >= height*(.7) && mouseY <= height*(.9))
@@ -226,16 +226,17 @@ void instructBrickBreak()
         if(mousePressed)
         {
             objBall.clear();
+            objPlayer.clear();
             Grid.clear();
             
-            objBall.add(new Ball());
+            objPlayer.add(new Player(1));
             
+            objBall.add(new Ball());
+            start = false;
             rad = 0;
+            createGrid();
             
             menu = 3;
-            objPlayer.get(0).pScore = 0;
-            start = false;
-            createGrid();
         }//end if
     }//end else if
     //Up displays the leaderboard
@@ -307,6 +308,7 @@ void instructPong()
     fill(255);
     text("Spectate", width*(.8875), height*(.95));
     
+    textFont(titleFont, (height+width)*(.025));
     text("SHIFT TO RETURN", width*(.5), height*(.95));
     text("_____________________", width*(.5), height*(.95));
     
@@ -314,15 +316,15 @@ void instructPong()
     if(checkKey(ENTER))
     {
         objBall.clear();
+        objPlayer.clear();
+      
+        objPlayer.add(new Player(1));
+        objPlayer.add(new Player(2));
+        
         Ball tempBall = new Ball();
         objBall.add(tempBall);
         objBall.get(0).speed = 6;
         start = false;
-      
-        objPlayer.get(0).pScore = 0;
-        
-        Player tempPlayer = new Player(2);
-        objPlayer.add(tempPlayer);
         
         menu = 5;
     }//end if
@@ -339,15 +341,15 @@ void instructPong()
         if(mousePressed)
         {
             objBall.clear();
+            objPlayer.clear();
+          
+            objPlayer.add(new Player(1));
+            objPlayer.add(new Player(2));
+            
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 6;
             start = false;
-          
-            objPlayer.get(0).pScore = 0;
-        
-            Player tempPlayer = new Player(2);
-            objPlayer.add(tempPlayer);
             
             menu = 5;
         }//end if
@@ -364,15 +366,15 @@ void instructPong()
         if(mousePressed)
         {
             objBall.clear();
+            objPlayer.clear();
+            
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 6;
             start = false;
           
-            objPlayer.get(0).pScore = 0;
-          
-            Player tempPlayer = new Player(2);
-            objPlayer.add(tempPlayer);
+            objPlayer.add(new Player(1));
+            objPlayer.add(new Player(2));
             
             menu = 6;
         }//end if
@@ -390,15 +392,15 @@ void instructPong()
         if(mousePressed)
         {
             objBall.clear();
+            objPlayer.clear();
+          
+            objPlayer.add(new Player(1));
+            objPlayer.add(new Player(2));
+            
             Ball tempBall = new Ball();
             objBall.add(tempBall);
             objBall.get(0).speed = 6;
             start = false;
-          
-            objPlayer.get(0).pScore = 0;
-          
-            Player tempPlayer = new Player(2);
-            objPlayer.add(tempPlayer);
             
             menu = 7;
         }//end if
