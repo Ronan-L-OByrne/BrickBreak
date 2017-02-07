@@ -86,3 +86,4 @@ It Contains:
 
 * Much of the functionallity of the program is done throught methods.
 
+* In BrickBreak if the Ball goes directly between two blocks then it may destroy the whole row.

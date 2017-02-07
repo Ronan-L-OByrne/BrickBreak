@@ -15,9 +15,8 @@ void GameOverBB(boolean val)
         if(checkKey(ENTER))
         {
             objBall.clear();
-            objPlayer.clear();
             
-            objPlayer.add(new Player(1));
+            objPlayer.get(0).positionX = width*(.5);
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);

@@ -136,7 +136,7 @@ void instructBrickBreak()
     background(20, 20, 75);
     
     //Draws the faint sun in the background
-    DrawSun(color(25, 25, 80));
+    DrawSun(color(35, 35, 90));
     
     //Displays the Buttons
     textFont(titleFont, (height+width)*(.025));
@@ -240,7 +240,8 @@ void instructBrickBreak()
         }//end if
     }//end else if
     //Up displays the leaderboard
-    else if(checkKey(UP))
+    
+    if(checkKey(UP))
     {
         displayLeaderboard();
     }//end else if
@@ -262,7 +263,7 @@ void instructPong()
     background(0);
     
     //Draws the faint sun in the background
-    DrawSun(color(10));
+    DrawSun(color(20));
     
     fill(0);
     strokeWeight((width+height)*(.002));
@@ -415,7 +416,7 @@ void DrawSun(color col)
     ellipse(width*(.5), height*(1.045), width*(.8), height*(.35));
     
     strokeWeight((width+height)*(.002));
-    stroke(col);//stroke(255, 255, 50);
+    stroke(col, 100);//stroke(255, 255, 50);
     
     rad = (HALF_PI+(rad+(PI/20)*(2)))%HALF_PI*3;
     float cx = width*(.5);
