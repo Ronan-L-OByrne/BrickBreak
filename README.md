@@ -76,10 +76,13 @@ It Contains:
 
 * Particle effects occur whenever the user breaks a block in BrickBreak.
 
+* Particles gradually become transparent before being removed from the ArrayList.
+
 * Reads and writes a leaderboard to and from a .csv file.
 
 * User is able to enter their initials before playing BrickBreak.
 
 * Multiple balls can be used with varying speeds in BrickBreak at any one time.
 
-* 
+* Much of the functionallity of the program is done throught methods.
+
