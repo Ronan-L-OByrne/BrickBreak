@@ -241,7 +241,7 @@ void instructPong()
         objBall.clear();
         Ball tempBall = new Ball();
         objBall.add(tempBall);
-        objBall.get(0).speed = 7;
+        objBall.get(0).speed = 6;
         start = false;
       
         objPlayer.get(0).pScore = 0;
@@ -264,7 +264,7 @@ void instructPong()
             objBall.clear();
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objBall.get(0).speed = 7;
+            objBall.get(0).speed = 6;
             start = false;
           
             objPlayer.get(0).pScore = 0;
@@ -288,7 +288,7 @@ void instructPong()
             objBall.clear();
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objBall.get(0).speed = 7;
+            objBall.get(0).speed = 6;
             start = false;
           
             objPlayer.get(0).pScore = 0;

@@ -56,40 +56,87 @@ class Player extends Block
     {
         if(objBall.size() > 0)
         {
-            if(objBall.get(0).curPlayer == 2 && !start)
+            if(objBall.get(0).curPlayer == playerNo && !start)
             {
                 start = true;
             }//end if
             
-            float dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
+            float dist = height;
+            /*if(playerNo == 1)
+            {
+                dist = height;
+            }//end if
+            else
+            {
+                dist = height;
+            }//end else*/
+            
             int closest = 0;
             
-            for(int i=0; i<objBall.size(); i++)
+            /*if(objBall.size() == 1)
             {
-                if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist &&  objBall.get(i).theta != 0)
+                if(dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY) < dist
+                && objBall.get(0).theta > HALF_PI && objBall.get(0).theta < HALF_PI*3 && positionY > height*(.5))
                 {
-                    dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
-                    closest = i;
+                    dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
+                    closest = 1;
                 }//end if;
-            }//end for
+                else if(dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY) < dist
+                && (objBall.get(0).theta < HALF_PI || objBall.get(0).theta > HALF_PI*3) && positionY < height*(.5))
+                {
+                    dist = dist(objBall.get(0).ballPos.x, objBall.get(0).ballPos.y, positionX, positionY);
+                    closest = 1;
+                }//end if;
+                //closest = 1;
+            }//end if
+            else*/
+            {
+                for(int i=0; i<objBall.size(); i++)
+                {
+                    if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
+                    && objBall.get(i).theta > HALF_PI && objBall.get(i).theta < HALF_PI*3 && positionY > height*(.5))
+                    {
+                        dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
+                        closest = i+1;
+                    }//end if;
+                    else if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
+                    && (objBall.get(i).theta < HALF_PI || objBall.get(i).theta > HALF_PI*3) && positionY < height*(.5))
+                    {
+                        dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
+                        closest = i+1;
+                    }//end if;
+                }//end for
+            }//end else
             
-            if(positionX-blockWidth*(.25) > objBall.get(closest).ballPos.x)
+            if(closest == 0)
             {
-                if((positionX-blockWidth*(.5)) > width*(.05))
+                if(positionX < width*(.5))
                 {
-                    positionX = positionX-width*(.005);
+                    positionX = positionX+width*(.002);
                 }//end if
+                else if(positionX > width*(.5))
+                {
+                    positionX = positionX-width*(.002);
+                }//end else if
             }//end if
-            if(positionX+blockWidth*(.25) < objBall.get(closest).ballPos.x)
+            else
             {
-                if((positionX+blockWidth*(.5)) < width*(.95))
+                if(positionX-blockWidth*(.25) > objBall.get(closest-1).ballPos.x)
                 {
-                    positionX = positionX+width*(.005);
+                    if((positionX-blockWidth*(.5)) > width*(.05))
+                    {
+                        positionX = positionX-width*(.005);
+                    }//end if
                 }//end if
-            }//end if
+                if(positionX+blockWidth*(.25) < objBall.get(closest-1).ballPos.x)
+                {
+                    if((positionX+blockWidth*(.5)) < width*(.95))
+                    {
+                        positionX = positionX+width*(.005);
+                    }//end if
+                }//end if
+            }//end else 
         }//end if
-        
-        
     }//end updatePlayerAI()
     
     //Checks if the ball is hitting the player
