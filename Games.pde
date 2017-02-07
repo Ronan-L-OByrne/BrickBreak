@@ -1,10 +1,10 @@
 //Bulk of the code used in the Birck Break game
-void brickBreak()
+void brickBreak(int mode)
 {
     background(20, 20, 75);
     
     //Checks if the player name has been set yet in the current game
-    if(objPlayer.get(0).pName == null)
+    if(objPlayer.get(0).pName == null && mode != 0)
     {
         fill(255, 0, 0);
         
@@ -141,8 +141,14 @@ void brickBreak()
             }//end for
             
             //Updates and renders the player
-            //objPlayer.get(0).updatePlayer();
-            objPlayer.get(0).updatePlayerAI();
+            if(mode == 0)
+            {
+                objPlayer.get(0).updatePlayerAI();
+            }//end if
+            else
+            {
+                objPlayer.get(0).updatePlayer();
+            }
             objPlayer.get(0).renderBlock();
         
             //Updates and renders all of the Particle Systems
@@ -168,7 +174,14 @@ void brickBreak()
         text("SCORE: " + objPlayer.get(0).pScore, width*(.625), height*(.035));
         
         textFont(titleFont, (width+height)*(.015));
-        text(objPlayer.get(0).pName, width*(.475), height*(.035));
+        if(mode == 0)
+        {
+            text("HAL", width*(.475), height*(.035));
+        }//end if
+        else
+        {
+            text(objPlayer.get(0).pName, width*(.475), height*(.035));
+        }//end else
         
         textFont(titleFont, (width+height)*(.025));
         textAlign(CENTER, CENTER);
@@ -229,7 +242,7 @@ void Pong(int noPlayers)
         line(width*(.05), height*(.525), width*(.95), height*(.525));
         
         // Update, render and check if the ball has hit player 1
-        objPlayer.get(0).updatePlayer();
+        objPlayer.get(0).updatePlayerAI();
         objPlayer.get(0).renderBlock();
         objPlayer.get(0).checkPlayer(0);
         

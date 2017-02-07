@@ -5,6 +5,7 @@ class Leaderboard
     String name;
     int score;
     
+    //Constructor for the Leaderboard
     Leaderboard(int place, String name, int score)
     {
         this.place = place;
@@ -86,6 +87,7 @@ void displayLeaderboard()
 {
     background(20, 20, 75);
     
+    //Draws the faint sun in the background
     DrawSun(color(25, 25, 80));
     
     fill(255);
@@ -102,6 +104,7 @@ void displayLeaderboard()
     text("SCORE", width*(.775), height*(.225));
     text("________", width*(.775), height*(.225));
     
+    //Displays all of the entries in the leaderboard
     for(int i=0; i<Lead.size(); i++)
     {
         text(Lead.get(i).place, width*(.2), height*(.275)+((height*(.075))*i));
@@ -111,7 +114,7 @@ void displayLeaderboard()
   
 }//end displayLeaderboard()
 
-//writes data to the table
+//Writes data to the table
 void writeData(String file)
 {
     //Table t = loadTable(file);
@@ -120,10 +123,10 @@ void writeData(String file)
     temp.addColumn("Position", Table.INT);
     temp.addColumn("Name", Table.STRING);
     temp.addColumn("Score", Table.INT);
-
+    
+    //Fills each of the columns
     for(int i=0; i<10; i++)
     {
-        //TableRow row = t.getRow(i);
         temp.addRow();
         
         temp.setInt(i, "Position", (i+1));
@@ -131,5 +134,6 @@ void writeData(String file)
         temp.setInt(i, "Score", Lead.get(i).score);
     }//end for
     
+    //Saves the new table to the file
     saveTable(temp, "data/" + file);
 }//end loadData()

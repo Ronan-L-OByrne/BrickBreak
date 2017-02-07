@@ -139,32 +139,41 @@ void instructBrickBreak()
     //Draws the faint sun in the background
     DrawSun(color(25, 25, 80));
     
+    //Displays the Buttons
+    textFont(titleFont, (height+width)*(.025));
+    textAlign(CENTER,CENTER);
+    fill(200, 100, 70);
+    stroke(255);
+    rect(width*(.55), height*(.7), width*(.35), height*(.2), (width+height)*(.01));
+    fill(255);
+    text("Normal", width*(.725), height*(.8));
+    
+    fill(200, 100, 70);
+    stroke(255);
+    rect(width*(.1), height*(.7), width*(.35), height*(.2), (width+height)*(.01));
+    fill(255);
+    text("Spectator", width*(.27), height*(.8));
+    
     //Displays the instructions for BrickBreak
     fill(255);
-    textFont(titleFont, (height+width)*(.0225));
     text("CONTROLS", width*(.5), height*(.2));
     text("_____________", width*(.5), height*(.2));
     text("UP: BEGIN GAME", width*(.5), height*(.25));
     text("LEFT: MOVE LEFT", width*(.5), height*(.3));
     text("RIGHT: MOVE RIGHT", width*(.5), height*(.35));
     
-    text("GAME", width*(.5), height*(.45));
-    text("_______", width*(.5), height*(.45));
-    text("OBJECTIVE: HIT AND DESTROY ALL", width*(.5), height*(.5));
-    text("THE BLOCKS", width*(.5), height*(.55));
-    text("GREEN BLOCKS: SPAWN AN EXTRA", width*(.5), height*(.6));
-    text("BALL", width*(.5), height*(.65));
-    text("RED BLOCKS: SPEED UP BALLS", width*(.5), height*(.7));
-    text("THAT HIT IT", width*(.5), height*(.75));
+    text("GAME OBJECTIVE", width*(.5), height*(.475));
+    text("__________________", width*(.5), height*(.475));
+    text("HIT AND DESTROY ALL BLOCKS", width*(.5), height*(.525));
     
-    text("ENTER TO CONTINUE", width*(.5), height*(.85));
-    text("_________________________", width*(.5), height*(.85));
+    //text("ENTER TO CONTINUE", width*(.5), height*(.6));
+    //text("_________________________", width*(.5), height*(.6));
     
-    text("SHIFT TO RETURN", width*(.5), height*(.9));
-    text("_____________________", width*(.5), height*(.9));
+    text("UP FOR LEADERBOARD", width*(.5), height*(.65));
+    text("___________________________", width*(.5), height*(.65));
     
-    text("UP FOR LEADERBOARD", width*(.5), height*(.95));
-    text("___________________________", width*(.5), height*(.95));
+    text("SHIFT TO RETURN", width*(.5), height*(.95));
+    text("_____________________", width*(.5), height*(.95));
     
     //Pressing enter begins the game
     if(checkKey(ENTER))
@@ -181,7 +190,57 @@ void instructBrickBreak()
         objBall.get(0).speed = 5;
         start = false;
         createGrid();
-    }//end if
+    }//end if//Checks if the mouse is above a button
+    else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.7) && mouseY <= height*(.9))
+    {
+        fill(255);
+        stroke(200, 100, 70);
+        rect(width*(.1), height*(.7), width*(.35), height*(.2), (width+height)*(.01));
+            
+        fill(200, 100, 70);
+        text("Spectator", width*(.27), height*(.8));
+        
+        //If Mose is pressed a 1 player game begins
+        if(mousePressed)
+        {
+            objBall.clear();
+            Grid.clear();
+            
+            objBall.add(new Ball());
+            
+            rad = 0;
+            
+            menu = 4;
+            objPlayer.get(0).pScore = 0;
+            start = false;
+            createGrid();
+        }//end if
+    }//end else if
+    else if(mouseX >= width*(.55) && mouseX <= width*(.85) && mouseY >= height*(.7) && mouseY <= height*(.9))
+    {
+        fill(255);
+        stroke(200, 100, 70);
+        rect(width*(.55), height*(.7), width*(.35), height*(.2), (width+height)*(.01));
+            
+        fill(200, 100, 70);
+        text("Normal", width*(.725), height*(.8));
+        
+        //If enter is pressed a 2 player game begins
+        if(mousePressed)
+        {
+            objBall.clear();
+            Grid.clear();
+            
+            objBall.add(new Ball());
+            
+            rad = 0;
+            
+            menu = 3;
+            objPlayer.get(0).pScore = 0;
+            start = false;
+            createGrid();
+        }//end if
+    }//end else if
     //Up displays the leaderboard
     else if(checkKey(UP))
     {
@@ -227,10 +286,10 @@ void instructPong()
     text("RIGHT/D: MOVE RIGHT", width*(.5), height*(.4));
     
     textAlign(CENTER,CENTER);
-    text("GAME", width*(.5), height*(.55));
-    text("_______", width*(.5), height*(.55));
-    text("OBJECTIVE: GET THE BALL PAST ", width*(.5), height*(.6));
-    text("THE OTHER PADDLE 5 TIMES", width*(.5), height*(.65));
+    text("GAME", width*(.5), height*(.5));
+    text("_______", width*(.5), height*(.5));
+    text("OBJECTIVE: GET THE BALL PAST ", width*(.5), height*(.55));
+    text("THE OTHER PADDLE 5 TIMES", width*(.5), height*(.6));
     
     fill(0);
     rect(width*(.1), height*(.7), width*(.35), height*(.2), (width+height)*(.01));
@@ -261,7 +320,7 @@ void instructPong()
         Player tempPlayer = new Player(2);
         objPlayer.add(tempPlayer);
         
-        menu = 4;
+        menu = 5;
     }//end if
     //Checks if the mouse is above a button
     else if(mouseX >= width*(.1) && mouseX <= width*(.45) && mouseY >= height*(.7) && mouseY <= height*(.9))
@@ -286,7 +345,7 @@ void instructPong()
             Player tempPlayer = new Player(2);
             objPlayer.add(tempPlayer);
             
-            menu = 4;
+            menu = 5;
         }//end if
     }//end else if
     else if(mouseX >= width*(.55) && mouseX <= width*(.85) && mouseY >= height*(.7) && mouseY <= height*(.9))
@@ -311,7 +370,7 @@ void instructPong()
             Player tempPlayer = new Player(2);
             objPlayer.add(tempPlayer);
             
-            menu = 5;
+            menu = 6;
         }//end if
     }//end else if
 }//end instructPong()

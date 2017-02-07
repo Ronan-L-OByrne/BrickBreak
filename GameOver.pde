@@ -51,6 +51,8 @@ void GameOverBB(boolean val)
         //Restarts the game, sets score to 0
         if(checkKey(ENTER))
         {
+            updateBoard(objPlayer.get(0).pScore);
+            
             objBall.clear();
             Grid.clear();
             
@@ -87,13 +89,6 @@ void GameOverBB(boolean val)
         text("UP FOR LEADERBOARD", width*(.5), height*(.8));
         text("___________________________", width*(.5), height*(.8));
     }//end else
-    
-    if(checkKey(SHIFT))
-    {
-        updateBoard(objPlayer.get(0).pScore);
-            
-        menu = 0;
-    }//end if
     
     objPlayer.get(0).renderBlock();
 }//end GameOver()

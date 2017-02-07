@@ -54,24 +54,30 @@ class Player extends Block
     //Controls the computer Player in 1 player Pong
     void updatePlayerAI()
     {
+        //Checks that the game is active
         if(objBall.size() > 0)
         {
+            //Checks if the AI is in control of the ball
             if(objBall.get(0).curPlayer == playerNo && !start)
             {
                 start = true;
             }//end if
             
+            //Sets the distace to the maximum value
             float dist = height;
             int closest = 0;
             
+            //Checks ehich ball is closest
             for(int i=0; i<objBall.size(); i++)
             {
+                //If the AI is on the top and the ball is closer closest
                 if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
                 && objBall.get(i).theta > HALF_PI && objBall.get(i).theta < HALF_PI*3 && positionY > height*(.5))
                 {
                     dist = dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY);
                     closest = i+1;
                 }//end if;
+                //If the AI is on the botom and the ball is closer than the current closest
                 else if(dist(objBall.get(i).ballPos.x, objBall.get(i).ballPos.y, positionX, positionY) < dist
                 && (objBall.get(i).theta < HALF_PI || objBall.get(i).theta > HALF_PI*3) && positionY < height*(.5))
                 {
@@ -80,6 +86,7 @@ class Player extends Block
                 }//end if;
             }//end for
             
+            //If the ball is going the oposite direction move to the centre
             if(closest == 0)
             {
                 if(positionX < width*(.5))
@@ -93,14 +100,14 @@ class Player extends Block
             }//end if
             else
             {
-                if(positionX-blockWidth*(.25) > objBall.get(closest-1).ballPos.x)
+                if(positionX-blockWidth*(.35) > objBall.get(closest-1).ballPos.x)
                 {
                     if((positionX-blockWidth*(.5)) > width*(.05))
                     {
                         positionX = positionX-width*(.005);
                     }//end if
                 }//end if
-                if(positionX+blockWidth*(.25) < objBall.get(closest-1).ballPos.x)
+                if(positionX+blockWidth*(.35) < objBall.get(closest-1).ballPos.x)
                 {
                     if((positionX+blockWidth*(.5)) < width*(.95))
                     {

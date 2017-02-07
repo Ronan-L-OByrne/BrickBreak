@@ -114,7 +114,7 @@ class Destruct extends Block
             
             ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY), blockCol);
             
-            while(temp.particles.size() < 10)
+            while(temp.particles.size() < 5)
             {
                 temp.addParticle();
             }//end for
@@ -185,7 +185,7 @@ class Destruct extends Block
             objBall.get(x).forward.y = -cos(objBall.get(x).theta);
             
             ParticleSystem temp = new ParticleSystem(new PVector(positionX, positionY), blockCol);
-            while(temp.particles.size() < 10)
+            while(temp.particles.size() < 5)
             {
                 temp.addParticle();
             }//end for

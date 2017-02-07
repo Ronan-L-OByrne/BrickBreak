@@ -66,13 +66,17 @@ void draw()
     }//end else if
     else if(menu == 3)
     {
-        brickBreak();         // Brick Break game
+        brickBreak(1);         // Brick Break game
     }//end else if
     else if(menu == 4)
+    {              
+        brickBreak(0);         // Brick Break game
+    }//end else if
+    else if(menu == 5)
     {
         Pong(1);              // Pong game (1 Player)
     }//end else if
-    else if(menu == 5)
+    else if(menu == 6)
     {
         Pong(2);              // Pong game(2 Player)
     }//end else if
@@ -82,6 +86,13 @@ void draw()
     {
         objBall.clear();
         objBall.add(new Ball());
+        
+        if(menu == 3)
+        {
+            updateBoard(objPlayer.get(0).pScore);
+            objPlayer.get(0).pScore = 0;
+        }//end if
+        
         menu = 0;
     }//end else if
 }//end draw
