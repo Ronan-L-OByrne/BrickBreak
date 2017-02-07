@@ -48,13 +48,13 @@ void Menu()
     objBall.get(0).renderBall();
     if(objBall.get(0).ballPos.x-objBall.get(0).ballDiam*(.5) <= width*(.05))
     {
-        objBall.get(0).speed = 5;
+        objBall.get(0).speed = (width+height)*(.003571428);
         
         objBall.get(0).ballPos.x = width*(.05)+objBall.get(0).ballDiam*(.5)+1;
     }//end if
     else if(objBall.get(0).ballPos.x+objBall.get(0).ballDiam*(.5) >= width*(.95))
     {
-        objBall.get(0).speed = -5;
+        objBall.get(0).speed = (width+height)*(.003571428);
         
         objBall.get(0).ballPos.x = width*(.95)-objBall.get(0).ballDiam*(.5)-1;
     }//end else if
@@ -323,7 +323,7 @@ void instructPong()
         
         Ball tempBall = new Ball();
         objBall.add(tempBall);
-        objBall.get(0).speed = 6;
+        objBall.get(0).speed = (width+height)*(.004285714);
         start = false;
         
         menu = 5;
@@ -348,7 +348,7 @@ void instructPong()
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objBall.get(0).speed = 6;
+            objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
             
             menu = 5;
@@ -370,7 +370,7 @@ void instructPong()
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objBall.get(0).speed = 6;
+            objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
           
             objPlayer.add(new Player(1));
@@ -399,7 +399,7 @@ void instructPong()
             
             Ball tempBall = new Ball();
             objBall.add(tempBall);
-            objBall.get(0).speed = 6;
+            objBall.get(0).speed = (width+height)*(.004285714);
             start = false;
             
             menu = 7;

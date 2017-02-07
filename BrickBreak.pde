@@ -27,7 +27,8 @@ char in1='A', in2='A', in3='A';                                      // Stores t
 void setup()
 {
     // Sets the size of the screen
-    size(600, 800);
+    //size(600, 800);
+    size(800, 1000);
     
     // Creates the first player and adds them to the ArrayList
     Player tempPlayer = new Player(1);
@@ -36,7 +37,7 @@ void setup()
     // Creates the first ball and adds them to the ArrayList
     Ball tempBall = new Ball();
     objBall.add(tempBall);
-    objBall.get(0).speed = 5;
+    objBall.get(0).speed = (width+height)*(.003571428);
     
     //The ball has not been fired yet
     start = true;

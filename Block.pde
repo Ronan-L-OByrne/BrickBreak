@@ -51,9 +51,9 @@ class Destruct extends Block
         && objBall.get(x).ballPos.x < positionX+blockWidth*(.5))
         {
             //Slows down the ball if the speed is over 4
-            if(objBall.get(x).speed > 4)
+            if(objBall.get(x).speed > (width+height)*(.002857142))
             {
-                objBall.get(x).speed -= .25; 
+                objBall.get(x).speed -= (width+height)*(.000178571); 
             }//end if
             
             //Checks if any power has been hit and increments the score
@@ -128,9 +128,9 @@ class Destruct extends Block
              && objBall.get(x).ballPos.y < positionY+blockHeight*(.5))
         {
             //Slows down the ball if the speed is over 4
-            if(objBall.get(x).speed > 4)
+            if(objBall.get(x).speed > (width+height)*(.002857142))
             {
-                objBall.get(x).speed -= .25; 
+                objBall.get(x).speed -= (width+height)*(.000178571); 
             }//end if
             
             //Checks if any power has been hit and increments the score
@@ -257,6 +257,6 @@ class HazardBlock extends Destruct
     //When a hazard is hit 2 is added to the balls speed
     void hitHazard(int x)
     {
-        objBall.get(x).speed = objBall.get(x).speed+2;
+        objBall.get(x).speed = objBall.get(x).speed+(width+height)*(.001428571);
     }//end hitHazard()
 }//end clss HazardBlock

@@ -14,7 +14,7 @@ class Ball
         this.curPlayer = 1;
         this.ballPos = new PVector(objPlayer.get(0).positionX, objPlayer.get(0).positionY-(height*(.025)));
         this.forward = new PVector(0, 1);
-        this.speed = 4;
+        this.speed = (width+height)*(.002857142);
         this.theta = 0;
         this.ballDiam = (width+height)*(.01);
         this.scoreMultiplier = 1;
