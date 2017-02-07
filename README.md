@@ -72,4 +72,14 @@ It Contains:
 
 * Basic AI programmed to play against the player or itself.
 
- 
+* Shift brings the user back to the Main Menu from any other screen.
+
+* Particle effects occur whenever the user breaks a block in BrickBreak.
+
+* Reads and writes a leaderboard to and from a .csv file.
+
+* User is able to enter their initials before playing BrickBreak.
+
+* Multiple balls can be used with varying speeds in BrickBreak at any one time.
+
+* 

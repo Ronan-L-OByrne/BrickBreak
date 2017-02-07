@@ -61,27 +61,6 @@ void updateBoard(int score)
     }//end else if
 }//end updateBoard()
 
-//Load data from the table
-void loadData(String file)
-{
-    Table t = loadTable(file);
-    
-    //For every row in the table
-    for(int i=1; i<t.getRowCount(); i++)
-    {
-        TableRow row = t.getRow(i); // Variable to temporaraly hold the current
-        
-        //Loads all the data from the current row
-        int place = i;
-        String name = row.getString(1);
-        int score = row.getInt(2);
-        
-        //Adds the data to the ArrayList
-        Leaderboard temp = new Leaderboard(place, name, score);
-        Lead.add(temp);
-    }//end for
-}//end loadData()
-
 // Function to display the leaderboard.
 void displayLeaderboard()
 {
@@ -113,6 +92,27 @@ void displayLeaderboard()
     }//end for
   
 }//end displayLeaderboard()
+
+//Load data from the table
+void loadData(String file)
+{
+    Table t = loadTable(file);
+    
+    //For every row in the table
+    for(int i=1; i<t.getRowCount(); i++)
+    {
+        TableRow row = t.getRow(i); // Variable to temporaraly hold the current
+        
+        //Loads all the data from the current row
+        int place = i;
+        String name = row.getString(1);
+        int score = row.getInt(2);
+        
+        //Adds the data to the ArrayList
+        Leaderboard temp = new Leaderboard(place, name, score);
+        Lead.add(temp);
+    }//end for
+}//end loadData()
 
 //Writes data to the table
 void writeData(String file)
