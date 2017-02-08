@@ -208,6 +208,19 @@ void brickBreak(int mode)
 //Bulk of the code used in the Pong Game
 void Pong(int noPlayers)
 {
+    background(0);
+    strokeWeight((width+height)*(.0025));
+    stroke(255);
+    fill(0);
+    rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
+    
+    ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
+    line(width*(.05), height*(.525), width*(.95), height*(.525));
+    
+    objPlayer.get(0).renderBlock();
+    objPlayer.get(1).renderBlock();
+    objBall.get(0).renderBall();
+        
     // If Player 1's score is 5 Player 1 wins
     if(objPlayer.get(0).pScore == 5)
     {
@@ -221,25 +234,15 @@ void Pong(int noPlayers)
     // Otherwise continue the game
     else
     {
-        background(0);
-        strokeWeight((width+height)*(.0025));
-        stroke(255);
-        fill(0);
-        rect(width*(.05), height*(.075), width*(.9), height*(.9), (width+height)*(.01));
-        
-        ellipse(width*(.5), height*(.525), (width+height)*(.2), (width+height)*(.2));
-        line(width*(.05), height*(.525), width*(.95), height*(.525));
-        
         // Update, render and check if the ball has hit player 1
         if(noPlayers == 0)
         {
             objPlayer.get(0).updatePlayerAI();
-        }
+        }//end if
         else
         {
             objPlayer.get(0).updatePlayer();
-        }
-        objPlayer.get(0).renderBlock();
+        }//end else
         objPlayer.get(0).checkPlayer(0);
         
         // Check if Player 2 is a person or an AI
@@ -255,11 +258,9 @@ void Pong(int noPlayers)
         }//end else if
         
         // Render and Check if the ball has hit Player 2
-        objPlayer.get(1).renderBlock();
         objPlayer.get(1).checkPlayer(0);
             
         // Render and update the Ball
-        objBall.get(0).renderBall();
         objBall.get(0).updateBall();
     }//end else
     

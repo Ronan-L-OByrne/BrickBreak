@@ -117,7 +117,6 @@ void loadData(String file)
 //Writes data to the table
 void writeData(String file)
 {
-    //Table t = loadTable(file);
     Table temp = new Table();
     
     temp.addColumn("Position", Table.INT);

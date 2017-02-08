@@ -2,7 +2,7 @@
   
   This Program be a brick break and pong like games which meets all of the requirements laid out in the assignment brief
 
-  Date Begun: 23/01/2016;    Date Finished: xx/xx/xxxx;
+  Date Begun: 23/01/2016;    Date Finished: 08/02/2017;
   Author: Ronan O'Byrne, C15332036;
 */
 

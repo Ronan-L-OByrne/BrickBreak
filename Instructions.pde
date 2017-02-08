@@ -2,7 +2,6 @@
 void Menu()
 {
     background(100, 75, 150);
-    //background(100, 25, 100);
     
     // Draws the sun graphic in the background of the main menu
     DrawSun(color(255, 255, 50));
